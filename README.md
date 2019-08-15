@@ -15,3 +15,7 @@ Advanced Internet Programming
 12544502 Alex Desmond
 
 12582072 Jaspreet Panesar
+
+
+Framework: Angular
+Database: MongoDB
