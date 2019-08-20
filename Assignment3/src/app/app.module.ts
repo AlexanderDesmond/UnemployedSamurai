@@ -3,10 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ContentComponent } from './content/content.component';
+import { PopularDiscussionsComponent } from './popular-discussions/popular-discussions.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContentComponent,
+    PopularDiscussionsComponent,
+    HeaderComponent,
+    FooterComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,
