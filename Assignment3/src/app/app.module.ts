@@ -8,6 +8,7 @@ import { PopularDiscussionsComponent } from './popular-discussions/popular-discu
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { DiscussionComponent } from './discussion/discussion.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     PopularDiscussionsComponent,
     HeaderComponent,
     FooterComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    DiscussionComponent
   ],
   imports: [
     BrowserModule,
