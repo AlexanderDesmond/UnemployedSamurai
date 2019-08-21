@@ -1,5 +1,21 @@
+* {
+  width: 100%;
+  margin: 0.25%;
+}
+
 app-popular-discussions {
-  width: 95%;
+  width: 85%;
   height: 70%;
   margin: auto;
+
+  border: 1px solid black;
+
+  float: left;
+}
+
+app-leaderboard {
+  width: 14%;
+  margin: auto;
+  float: right;
+  border: 1px solid black;
 }
