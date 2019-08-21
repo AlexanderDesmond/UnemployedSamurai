@@ -11,6 +11,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { DiscussionComponent } from './discussion/discussion.component';
 import { LeaderboardItemComponent } from './leaderboard-item/leaderboard-item.component';
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DiscussionDetailsComponent } from './discussion-details/discussion-deta
     LeaderboardComponent,
     DiscussionComponent,
     LeaderboardItemComponent,
-    DiscussionDetailsComponent
+    DiscussionDetailsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
