@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { DiscussionComponent } from './discussion/discussion.component';
+import { LeaderboardItemComponent } from './leaderboard-item/leaderboard-item.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DiscussionComponent } from './discussion/discussion.component';
     HeaderComponent,
     FooterComponent,
     LeaderboardComponent,
-    DiscussionComponent
+    DiscussionComponent,
+    LeaderboardItemComponent
   ],
   imports: [
     BrowserModule,
