@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { DiscussionComponent } from './discussion/discussion.component';
 import { LeaderboardItemComponent } from './leaderboard-item/leaderboard-item.component';
+import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LeaderboardItemComponent } from './leaderboard-item/leaderboard-item.co
     FooterComponent,
     LeaderboardComponent,
     DiscussionComponent,
-    LeaderboardItemComponent
+    LeaderboardItemComponent,
+    DiscussionDetailsComponent
   ],
   imports: [
     BrowserModule,
