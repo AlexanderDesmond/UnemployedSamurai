@@ -1,1 +1,9 @@
-<p>trending works!</p>
+<mat-form-field>
+  <mat-label>Test</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option value="trending">Trending</mat-option>
+    <mat-option value="recent">Recent</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<p>{{ selected }} selected</p>
