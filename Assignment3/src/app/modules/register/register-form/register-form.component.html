@@ -1,0 +1,33 @@
+<form [formGroup]="registerForm">
+  <p>Sign Up</p>
+
+  <mat-form-field>
+    <input matInput placeholder="username" formControlName="username" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="email" formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="password" formControlName="password" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="confirm password"
+      formControlName="confirmPassword"
+    />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    [disabled]="registerForm.invalid || loading"
+    color="primary"
+  >
+    Sign Up
+  </button>
+
+  <p>Already have an account? Sign In!</p>
+</form>

@@ -1,0 +1,21 @@
+<form [formGroup]="loginForm">
+  <p>Sign In</p>
+
+  <mat-form-field>
+    <input matInput placeholder="username" formControlName="username" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="password" formControlName="password" />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    [disabled]="loginForm.invalid || loading"
+    color="primary"
+  >
+    Login
+  </button>
+
+  <p>Don't have an account? Sign Up!</p>
+</form>
