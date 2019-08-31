@@ -16,6 +16,7 @@ import { RegisterModule } from "./modules/register/register.module";
 import { HeaderModule } from "./shared/header/header.module";
 import { FooterModule } from "./shared/footer/footer.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     RegisterModule,
     HeaderModule,
     FooterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
