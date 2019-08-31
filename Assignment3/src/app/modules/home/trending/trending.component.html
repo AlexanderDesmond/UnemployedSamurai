@@ -1,0 +1,13 @@
+<div class="container">
+  <span>Sort</span>
+  <mat-form-field>
+    <!-- <mat-label>Sort</mat-label> -->
+    <mat-select [(value)]="selected">
+      <mat-option value="trending">Trending</mat-option>
+      <mat-option value="recent">Recent</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <span>{{ selected }} selected</span>
+</div>
+<app-preview></app-preview>

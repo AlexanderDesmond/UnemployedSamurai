@@ -1,0 +1,16 @@
+.container {
+  width: 310px;
+  margin: 0;
+  background-color: lightgray;
+
+  img {
+    width: 300px;
+    margin: auto;
+    display: block;
+  }
+
+  .interaction {
+    display: flex;
+    justify-content: space-between;
+  }
+}
