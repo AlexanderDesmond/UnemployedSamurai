@@ -13,7 +13,8 @@ import {
   MatInputModule,
   MatSelectModule,
   MatCheckboxModule,
-  MatChipsModule
+  MatChipsModule,
+  MatFormFieldModule
 } from "@angular/material";
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
     MatCheckboxModule,
     MatChipsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ],
   exports: [
     MatButtonModule,
@@ -43,7 +45,8 @@ import {
     MatCheckboxModule,
     MatChipsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ]
 })
 export class MaterialModule {}
