@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
+import { UsersService } from "../../../services/users.service";
+
 @Component({
   selector: "app-register-form",
   templateUrl: "./register-form.component.html",
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class RegisterFormComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UsersService) {}
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -37,5 +39,9 @@ export class RegisterFormComponent implements OnInit {
 
   getConfirmPassword() {
     return this.registerForm.get("confirmPassword");
+  }
+
+  onSubmit() {
+    //this.userService.createUser();
   }
 }
