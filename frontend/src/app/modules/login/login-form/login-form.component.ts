@@ -30,5 +30,10 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     this.userService.loginUser(this.username.value, this.password.value);
+
+    // bad debugging ;)
+    alert(
+      "username:" + this.username.value + "/n password: " + this.password.value
+    );
   }
 }
