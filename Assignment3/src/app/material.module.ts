@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 
 import {
   MatButtonModule,
@@ -31,7 +32,8 @@ import {
     MatChipsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatPasswordStrengthModule.forRoot()
   ],
   exports: [
     MatButtonModule,

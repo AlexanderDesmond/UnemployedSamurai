@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-extensions/password-strength": "^4.0.1",
     "@angular/animations": "^8.2.4",
     "@angular/cdk": "github:angular/cdk-builds",
     "@angular/common": "~8.2.0",

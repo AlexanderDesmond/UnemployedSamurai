@@ -10,14 +10,13 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="password" formControlName="password" />
-  </mat-form-field>
-
-  <mat-form-field>
+    <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
     <input
       matInput
-      placeholder="confirm password"
-      formControlName="confirmPassword"
+      #password
+      [type]="toggle.type"
+      placeholder="password"
+      formControlName="password"
     />
   </mat-form-field>
 

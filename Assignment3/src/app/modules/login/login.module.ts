@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { LoginFormComponent } from "./login-form/login-form.component";
 
+import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
+
 /*
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -18,7 +20,8 @@ import { MaterialModule } from "../../material.module";
   declarations: [LoginFormComponent],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    MatPasswordStrengthModule
     /*
     ReactiveFormsModule,
     BrowserAnimationsModule,
