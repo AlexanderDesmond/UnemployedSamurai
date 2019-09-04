@@ -18,6 +18,15 @@ export class LoginFormComponent implements OnInit {
       username: ["", Validators.required],
       password: ["", Validators.required]
     });
+
+    this.userService.getLogin().subscribe(
+      response => {
+        console.log("response is ", response);
+      },
+      error => {
+        console.log("error is", error);
+      }
+    );
   }
 
   get username() {

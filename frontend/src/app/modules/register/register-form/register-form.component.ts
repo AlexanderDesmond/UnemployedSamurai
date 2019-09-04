@@ -33,7 +33,7 @@ export class RegisterFormComponent implements OnInit {
     return this.registerForm.get("email");
   }
 
-  getPassword() {
+  get password() {
     return this.registerForm.get("password");
   }
 
@@ -42,6 +42,6 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit() {
-    //this.userService.createUser();
+    //this.userService.createUser(this.username.value, this.email.value, this.password.value);
   }
 }
