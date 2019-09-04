@@ -15,7 +15,7 @@ npm start
 
 ### Rest API (Expressjs)
 ```
-cd backend-pi
+cd backend-api
 npm start
 ```
 
