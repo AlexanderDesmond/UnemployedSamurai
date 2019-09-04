@@ -13,7 +13,9 @@ import { HeaderModule } from "./shared/header/header.module";
 import { FooterModule } from "./shared/footer/footer.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
+
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -27,7 +29,8 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
     FooterModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MatPasswordStrengthModule
+    MatPasswordStrengthModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
