@@ -34,18 +34,17 @@ exports.create_user = function(req, res) {
             } 
             // send 409 conflict if username exists
             else {
-                res.send(409, "username already exists");
+                res.send(409, {error:"username already exists"});
             }
         }
         
         );
-    
-
-
-
-    
-
 };
+
+
+exports.login_user = function(req, res) {
+    res.send(501);
+}
 
 
 
