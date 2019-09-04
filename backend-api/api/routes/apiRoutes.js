@@ -15,7 +15,7 @@ module.exports = function(app) {
 
     
     app.route('/login')
-        .put(users.login_user);
+        .post(users.login_user);
 
 };
 
