@@ -43,9 +43,34 @@ exports.create_user = function(req, res) {
 
 
 exports.login_user = function(req, res) {
-    res.send(501);
+    
+    // get user from db using provided username
+    User.find( {username: req.body.username},
+        function (err, result) {
+            if (err) {
+                res.send(err);
+                return;
+            }
+
+            if (result.length) {
+                validateUser(result[0]);
+                return;
+            }
+            res.send(400, {error: "invalid credentials"});
+        });
+
+    // if user exists
+    var validateUser = function (user) {
+        // return provided password matches user password
+        if (user.password == req.body.password) {
+            res.send(user);
+            return;
+        }
+        else
+            res.send(400, {error: "invalid credentials"});
+    }
+    
+    // server error
+    //res.send(500);
 }
-
-
-
 
