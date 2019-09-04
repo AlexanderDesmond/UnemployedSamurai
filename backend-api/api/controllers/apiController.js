@@ -52,9 +52,19 @@ exports.login_user = function(req, res) {
 
             // if user exists
             if (result.length) {
-                console.log(result);
-                if (result[0].password == req.body.password) {
-                    res.send(result[0]);
+                var user = result[0];
+
+                if (user.password == req.body.password) {
+
+                    // update new login in database
+                    user.last_login = Date.now();
+                    user.save( function(err) {
+                        if (err)
+                            res.send(err);
+                    });
+
+                    // respond with user object
+                    res.send(user);
                     return;
                 }
             }
