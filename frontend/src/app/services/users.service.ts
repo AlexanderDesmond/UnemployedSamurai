@@ -42,12 +42,18 @@ export class UsersService {
     return this.http.delete("http://localhost3000/users/" + username);
   }
 
+  /*
   loginUser(username: String, password: String): Observable<void> {
     console.log("loginUser called: /n"); // Debugging line
     return this.http.post<void>("http://localhost3000/login/", {
       username,
       password
     });
+  }
+  */
+
+  loginUser(username: String, password: String) {
+    return this.http.post("/api/login/", { username, password });
   }
 
   getLogin() {
