@@ -47,30 +47,20 @@ exports.login_user = function(req, res) {
     // get user from db using provided username
     User.find( {username: req.body.username},
         function (err, result) {
-            if (err) {
+            if (err)
                 res.send(err);
-                return;
+
+            // if user exists
+            if (result.length) {
+                console.log(result);
+                if (result[0].password == req.body.password) {
+                    res.send(result[0]);
+                    return;
+                }
             }
 
-            if (result.length) {
-                validateUser(result[0]);
-                return;
-            }
+            // send error if process incomplete
             res.send(400, {error: "invalid credentials"});
         });
-
-    // if user exists
-    var validateUser = function (user) {
-        // return provided password matches user password
-        if (user.password == req.body.password) {
-            res.send(user);
-            return;
-        }
-        else
-            res.send(400, {error: "invalid credentials"});
-    }
-    
-    // server error
-    //res.send(500);
-}
+};
 
