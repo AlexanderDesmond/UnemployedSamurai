@@ -16,6 +16,8 @@ npm start
 # http://localhost:4200
 ```
 
+*Make sure to run the Database before running the API*
+
 ### Rest API (Expressjs)
 ```
 cd backend-api
@@ -29,7 +31,6 @@ npm start
 ```
 # create database directory
 mkdir database
-cd database
 
 # run database server
 mongod --dbpath ./database
