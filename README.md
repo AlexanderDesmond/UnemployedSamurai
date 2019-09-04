@@ -11,12 +11,18 @@ The following commands assume you are already in the project root folder.
 ```
 cd Assignment3
 npm start
+
+# view frontend on browser at link:
+# http://localhost:4200
 ```
 
 ### Rest API (Expressjs)
 ```
 cd backend-api
 npm start
+
+# call api at link:
+# http://localhost:3000
 ```
 
 ### Database (MongoDB)
@@ -34,17 +40,11 @@ mongod --dbpath ./database
 - Comment code reasonings and any required knowledge / information.
 
 
-
-
-
-
 ## Libraries
 
 **Front-end Framework**: Angular<br>
 **Back-end Framework**: Expressjs<br>
 **Database**: MongoDB
-
-
 
 
 ## Developers
