@@ -6,9 +6,11 @@ export interface User {
   username: String;
   email: String;
   password: String;
+  /*
   created: Date;
   lastLogin: Date;
   isAdmin: Boolean;
+  */
 }
 
 @Injectable({
@@ -40,10 +42,15 @@ export class UsersService {
     return this.http.delete("http://localhost3000/users/" + username);
   }
 
-  loginUser(username: String, password: String) {
-    return this.http.post("http://localhost3000/login/", {
+  loginUser(username: String, password: String): Observable<void> {
+    console.log("loginUser called: /n"); // Debugging line
+    return this.http.post<void>("http://localhost3000/login/", {
       username,
       password
     });
+  }
+
+  getLogin() {
+    return this.http.get("http:localhost:3000/login/");
   }
 }
