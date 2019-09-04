@@ -19,14 +19,7 @@ export class LoginFormComponent implements OnInit {
       password: ["", Validators.required]
     });
 
-    this.userService.getLogin().subscribe(
-      response => {
-        console.log("response is ", response);
-      },
-      error => {
-        console.log("error is", error);
-      }
-    );
+    this.userService.getLogin().subscribe();
   }
 
   get username() {
@@ -40,7 +33,14 @@ export class LoginFormComponent implements OnInit {
   onSubmit() {
     this.userService
       .loginUser(this.username.value, this.password.value)
-      .subscribe();
+      .subscribe(
+        response => {
+          console.log("response is ", response);
+        },
+        error => {
+          console.log("error is", error);
+        }
+      );
 
     // bad debugging ;)
     alert(
