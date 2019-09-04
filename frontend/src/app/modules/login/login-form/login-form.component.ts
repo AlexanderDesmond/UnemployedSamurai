@@ -38,7 +38,9 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.loginUser(this.username.value, this.password.value);
+    this.userService
+      .loginUser(this.username.value, this.password.value)
+      .subscribe();
 
     // bad debugging ;)
     alert(
