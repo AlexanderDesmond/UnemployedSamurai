@@ -6,7 +6,14 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="password" formControlName="password" />
+    <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
+    <input
+      matInput
+      #password
+      [type]="toggle.type"
+      placeholder="password"
+      formControlName="password"
+    />
   </mat-form-field>
 
   <button
