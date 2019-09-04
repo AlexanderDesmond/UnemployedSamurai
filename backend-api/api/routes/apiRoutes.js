@@ -8,10 +8,10 @@ module.exports = function(app) {
         .get(users.list_all_users)
         .post(users.create_user);
 
-    // app.route('/users/:userId)
-    //     .get(users.get_user)
-    //     .put(users.update_user)
-    //     .delete(users.remove_user);
+    app.route('/users/:username')
+        .get(users.get_user)
+        .put(users.update_user)
+        .delete(users.delete_user);
 
     
     app.route('/login')

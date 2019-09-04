@@ -42,6 +42,29 @@ exports.create_user = function(req, res) {
 };
 
 
+exports.get_user = function(req, res) {
+
+    // return user is found (username from request params)
+    User.find( {username: req.params.username},
+        function(err, result) {
+            if (result.length)
+                res.json(result[0]);
+            else
+                res.send(400, {error: "user does not exist"});
+        }
+    );
+}
+
+exports.update_user = function(req, res) {
+    res.send(501);
+}
+
+exports.delete_user = function(req, res) {
+    res.send(501);
+}
+
+
+
 exports.login_user = function(req, res) {
     
     // get user from db using provided username
