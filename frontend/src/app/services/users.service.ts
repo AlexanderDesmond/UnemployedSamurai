@@ -61,8 +61,8 @@ export class UsersService {
   }
 
   // CASH STUFF!!!
-  addCash(amount: number) {
-    return this.http.post("/api/cash", amount);
+  addCash(cash: number) {
+    return this.http.post("/api/cash", cash);
   }
 
   getCash() {
