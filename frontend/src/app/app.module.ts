@@ -16,9 +16,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 
 import { HttpClientModule } from "@angular/common/http";
+import { CashComponent } from "./cash/cash.component";
+
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, CashComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,7 +33,8 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatPasswordStrengthModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

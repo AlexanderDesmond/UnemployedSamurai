@@ -59,4 +59,13 @@ export class UsersService {
   getLogin() {
     return this.http.get("http:localhost:3000/login/");
   }
+
+  // CASH STUFF!!!
+  addCash(amount: number) {
+    return this.http.post("/api/cash", amount);
+  }
+
+  getCash() {
+    return this.http.get("/api/cash");
+  }
 }
