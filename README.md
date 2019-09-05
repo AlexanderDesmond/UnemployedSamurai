@@ -5,8 +5,8 @@ Advanced Internet Programming
 
 
 ## How to Run
-The following commands assume you are already in the project root folder.
-<br><b>Might not work on Mac; in progress to fix!</b>
+The following commands assume you are already in the project root folder and have already run `npm install` in the frontend and backend folders.
+
 ### Front-End (Angular)
 ```
 cd Assignment3
@@ -18,15 +18,6 @@ npm start
 
 *Make sure to run the Database before running the API*
 
-### Rest API (Expressjs)
-```
-cd backend-api
-npm start
-
-# call api at link:
-# http://localhost:3000
-```
-
 ### Database (MongoDB)
 ```
 # create database directory
@@ -34,6 +25,15 @@ mkdir database
 
 # run database server
 mongod --dbpath ./database
+```
+
+### Rest API (Expressjs)
+```
+cd backend-api
+npm start
+
+# call api at link:
+# http://localhost:3000
 ```
 
 
