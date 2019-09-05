@@ -22,7 +22,7 @@ module.exports = function(app) {
     // --- cash stuff
     app.route('/cash')
         .get(cash.get_cash)
-        .post(cash.put_cash);
+        .post(cash.add_cash);
 
 };
 
