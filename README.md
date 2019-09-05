@@ -6,7 +6,7 @@ Advanced Internet Programming
 
 ## How to Run
 The following commands assume you are already in the project root folder.
-<b>Might not work on Mac; in progress to fix!</b>
+<br><b>Might not work on Mac; in progress to fix!</b>
 ### Front-End (Angular)
 ```
 cd Assignment3
