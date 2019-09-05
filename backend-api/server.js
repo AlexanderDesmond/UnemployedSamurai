@@ -3,12 +3,14 @@ var express = require('express'),
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
     User = require('./api/models/apiModel'),
+    Cash = require('./api/models/cashModel'),
     bodyParser = require('body-parser');
 
 
 // moongose instance
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/userdb');
+mongoose.connect('mongodb://localhost/cashdb');
 
 
 app.use(bodyParser.urlencoded( {extended: true} ));

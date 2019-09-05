@@ -31,18 +31,7 @@ var UserSchema = new Schema( {
 
 });
 
-
-var CashSchema = new Schema( {
-    cash: {
-        type: Number,
-        default: 0
-    }
-});
-
-
-
 module.exports = mongoose.model('Users', UserSchema);
-module.exports = mongoose.model('Cash', CashSchema);
 
 
 

@@ -2,6 +2,7 @@
 'use strict';
 module.exports = function(app) {
     var users = require('../controllers/apiController');
+    var cash = require('../controllers/cashController');
 
     // routes
     app.route('/users')
@@ -19,8 +20,9 @@ module.exports = function(app) {
 
 
     // --- cash stuff
-    
-
+    app.route('/cash')
+        .get(cash.get_cash)
+        .post(cash.put_cash);
 
 };
 

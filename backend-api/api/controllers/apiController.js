@@ -72,7 +72,7 @@ exports.login_user = function(req, res) {
         function (err, result) {
             if (err)
                 res.send(err);
-
+z
             // if user exists
             if (result.length) {
                 var user = result[0];
@@ -96,12 +96,4 @@ exports.login_user = function(req, res) {
             res.send(400, {error: "invalid credentials"});
         });
 };
-
-
-
-
-// --- cash stuff
-
-
-
 
