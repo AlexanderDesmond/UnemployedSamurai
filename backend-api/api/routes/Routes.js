@@ -1,7 +1,7 @@
 
 'use strict';
 module.exports = function(app) {
-    var users = require('../controllers/apiController');
+    var users = require('../controllers/UsersController');
 
     // routes
     app.route('/users')
@@ -13,7 +13,7 @@ module.exports = function(app) {
         .put(users.update_user)
         .delete(users.delete_user);
 
-    
+
     app.route('/login')
         .post(users.login_user);
 
