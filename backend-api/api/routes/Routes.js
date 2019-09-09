@@ -25,6 +25,9 @@ module.exports = function(app) {
         .get(posts.list_all_posts)
         .post(posts.create_post);
 
+    app.route('/post/:username')
+        .get(posts.list_posts_for_user);
+
 };
 
 

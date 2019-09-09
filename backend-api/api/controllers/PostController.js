@@ -23,5 +23,20 @@ exports.create_post = function(req, res) {
             res.send(err);
         res.json(post);
     });
+}
 
+
+exports.list_posts_for_user = function(req, res) {
+    try {
+        Post.find( {author: req.params.username},
+            function(err, result) {
+                if (err)
+                    res.send(err);
+
+                res.json(result);
+            });
+
+    } catch (TypeError) {
+        res.send(400, {error: "username not found"});
+    }
 }
