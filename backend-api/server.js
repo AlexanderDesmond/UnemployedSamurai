@@ -11,7 +11,7 @@ var express = require('express'),
 
 // moongose instance
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/imageboard');
+mongoose.connect('mongodb://localhost/imageboard', {useNewUrlParser: true});
 
 
 app.use(bodyParser.urlencoded( {extended: true} ));
