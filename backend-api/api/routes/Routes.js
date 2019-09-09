@@ -1,9 +1,10 @@
 
 'use strict';
 module.exports = function(app) {
-    var users = require('../controllers/apiController');
+    var users = require('../controllers/UserController');
+    var posts = require('../controllers/PostController');
 
-    // routes
+    // user routes
     app.route('/users')
         .get(users.list_all_users)
         .post(users.create_user);
@@ -13,9 +14,19 @@ module.exports = function(app) {
         .put(users.update_user)
         .delete(users.delete_user);
 
-    
+
     app.route('/login')
         .post(users.login_user);
+
+
+
+    // post routes
+    app.route('/post')
+        .get(posts.list_all_posts)
+        .post(posts.create_post);
+
+    app.route('/post/:username')
+        .get(posts.list_posts_for_user);
 
 };
 

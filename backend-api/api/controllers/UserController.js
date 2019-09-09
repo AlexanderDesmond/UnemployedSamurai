@@ -31,13 +31,13 @@ exports.create_user = function(req, res) {
                         res.send(err);
                     res.json(user);
                 })
-            } 
+            }
             // send 409 conflict if username exists
             else {
                 res.send(409, {error:"username already exists"});
             }
         }
-        
+
         );
 };
 
@@ -66,7 +66,7 @@ exports.delete_user = function(req, res) {
 
 
 exports.login_user = function(req, res) {
-    
+
     // get user from db using provided username
     User.find( {username: req.body.username},
         function (err, result) {
