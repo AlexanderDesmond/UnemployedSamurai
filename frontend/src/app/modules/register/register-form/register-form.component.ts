@@ -16,11 +16,16 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.fb.group({
       username: ["", Validators.required],
-      email: ["", Validators.required, Validators.email],
+      email: ["", [Validators.required, Validators.email]],
       password: [
         "",
-        Validators.required,
-        Validators.pattern("^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$")
+        [
+          Validators.required,
+          //Validators.pattern("^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$")
+          Validators.pattern(
+            "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+          )
+        ]
       ]
     });
   }
@@ -41,7 +46,20 @@ export class RegisterFormComponent implements OnInit {
     return this.registerForm.get("confirmPassword");
   }
 
+  onStrengthChanged(strength: number) {
+    console.log("password strength = ", strength);
+  }
+
   onSubmit() {
-    //this.userService.createUser(this.username.value, this.email.value, this.password.value);
+    this.userService
+      .registerUser(this.username.value, this.email.value, this.password.value)
+      .subscribe(
+        response => {
+          console.log("response is ", response);
+        },
+        error => {
+          console.log("error is", error);
+        }
+      );
   }
 }

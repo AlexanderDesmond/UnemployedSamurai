@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { UsersService } from "../../../services/users.service";
+import { User } from "src/app/user.interface";
 
 @Component({
   selector: "app-login-form",
@@ -11,6 +12,10 @@ import { UsersService } from "../../../services/users.service";
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
 
+  // temp
+  user: User;
+  users: User[];
+
   constructor(private fb: FormBuilder, private userService: UsersService) {}
 
   ngOnInit() {
@@ -19,7 +24,8 @@ export class LoginFormComponent implements OnInit {
       password: ["", Validators.required]
     });
 
-    this.userService.getLogin().subscribe();
+    this.getUsers();
+    this.getUser();
   }
 
   get username() {
@@ -45,6 +51,29 @@ export class LoginFormComponent implements OnInit {
     // bad debugging ;)
     alert(
       "username:" + this.username.value + "/n password: " + this.password.value
+    );
+  }
+
+  // Test
+  getUsers() {
+    this.userService.getUsers().subscribe(
+      response => {
+        console.log("response is ", response);
+      },
+      error => {
+        console.log("error is", error);
+      }
+    );
+  }
+
+  getUser() {
+    this.userService.getUser("admin").subscribe(
+      response => {
+        console.log("response is ", response);
+      },
+      error => {
+        console.log("error is", error);
+      }
     );
   }
 }

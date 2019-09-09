@@ -2,16 +2,18 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
-export interface User {
-  username: String;
-  email: String;
-  password: String;
-  /*
-  created: Date;
-  lastLogin: Date;
-  isAdmin: Boolean;
-  */
-}
+import { User } from "../user.interface";
+
+// export interface User {
+//   username: String;
+//   email: String;
+//   password: String;
+//   /*
+//   created: Date;
+//   lastLogin: Date;
+//   isAdmin: Boolean;
+//   */
+// }
 
 @Injectable({
   providedIn: "root"
@@ -19,13 +21,13 @@ export interface User {
 export class UsersService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>("http://localhost:3000/users/");
-  }
+  // getUsers(): Observable<User[]> {
+  //   return this.http.get<User[]>("http://localhost:3000/users/");
+  // }
 
-  getUser(username: String): Observable<User> {
-    return this.http.get<User>("http://localhost:3000/users/" + username);
-  }
+  // getUser(username: String): Observable<User> {
+  //   return this.http.get<User>("http://localhost:3000/users/" + username);
+  // }
 
   createUser(user: User): Observable<User> {
     return this.http.post<User>("http://localhost:3000/users/", user);
@@ -38,25 +40,24 @@ export class UsersService {
     );
   }
 
-  deleteUser(username: String) {
+  deleteUser(username: string) {
     return this.http.delete("http://localhost3000/users/" + username);
   }
 
-  /*
-  loginUser(username: String, password: String): Observable<void> {
-    console.log("loginUser called: /n"); // Debugging line
-    return this.http.post<void>("http://localhost3000/login/", {
-      username,
-      password
-    });
-  }
-  */
-
-  loginUser(username: String, password: String) {
+  // This is implemented in the frontend!
+  loginUser(username: string, password: string) {
     return this.http.post("/api/login/", { username, password });
   }
 
-  getLogin() {
-    return this.http.get("http:localhost:3000/login/");
+  registerUser(username: string, email: string, password: string) {
+    return this.http.post("/api/users/", { username, email, password });
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>("/api/users/");
+  }
+
+  getUser(username: string): Observable<User> {
+    return this.http.get<User>("/api/users/" + username);
   }
 }

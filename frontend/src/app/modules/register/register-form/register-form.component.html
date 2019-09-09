@@ -9,16 +9,32 @@
     <input matInput placeholder="email" formControlName="email" />
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field
+    [color]="passwordComponentWithValidation.color"
+    style="width: 100%"
+  >
     <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
     <input
       matInput
-      #password
+      #passwordWithValidation
+      required
       [type]="toggle.type"
       placeholder="password"
       formControlName="password"
     />
   </mat-form-field>
+
+  <mat-password-strength
+    #passwordComponentWithValidation
+    (onStrengthChanged)="onStrengthChanged($event)"
+    [password]="password.value"
+  >
+  </mat-password-strength>
+  <mat-password-strength-info
+    *ngIf="showDetails"
+    [passwordComponent]="passwordComponentWithValidation"
+  >
+  </mat-password-strength-info>
 
   <button
     mat-raised-button
