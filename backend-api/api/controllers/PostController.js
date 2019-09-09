@@ -21,7 +21,7 @@ exports.create_post = function(req, res) {
     new_post.save( function(err, post) {
         if (err)
             res.send(err);
-        res.json(new_post);
+        res.json(post);
     });
 
 }
