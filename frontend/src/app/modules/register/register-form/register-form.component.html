@@ -24,17 +24,19 @@
     />
   </mat-form-field>
 
-  <mat-password-strength
-    #passwordComponentWithValidation
-    (onStrengthChanged)="onStrengthChanged($event)"
-    [password]="password.value"
-  >
-  </mat-password-strength>
-  <mat-password-strength-info
-    *ngIf="showDetails"
-    [passwordComponent]="passwordComponentWithValidation"
-  >
-  </mat-password-strength-info>
+  <div class="passwordStrength">
+    <mat-password-strength
+      #passwordComponentWithValidation
+      (onStrengthChanged)="onStrengthChanged($event)"
+      [password]="password.value"
+    >
+    </mat-password-strength>
+    <mat-password-strength-info
+      *ngIf="showDetails"
+      [passwordComponent]="passwordComponentWithValidation"
+    >
+    </mat-password-strength-info>
+  </div>
 
   <button
     mat-raised-button
