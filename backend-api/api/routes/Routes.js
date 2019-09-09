@@ -1,8 +1,8 @@
 
 'use strict';
 module.exports = function(app) {
-    var users = require('../controllers/UsersController');
-    var posts = require('../controllers/PostsController');
+    var users = require('../controllers/UserController');
+    var posts = require('../controllers/PostController');
 
     // user routes
     app.route('/users')
