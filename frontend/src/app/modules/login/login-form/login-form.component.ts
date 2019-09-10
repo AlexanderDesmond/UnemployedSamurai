@@ -13,7 +13,7 @@ export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
 
   // temp
-  user: User;
+  //user: User;
   users: User[];
 
   constructor(private fb: FormBuilder, private userService: UsersService) {}
@@ -56,14 +56,16 @@ export class LoginFormComponent implements OnInit {
 
   // Test
   getUsers() {
-    this.userService.getUsers().subscribe(
-      response => {
-        console.log("response is ", response);
-      },
-      error => {
-        console.log("error is", error);
-      }
-    );
+    // this.userService.getUsers().subscribe(
+    //   response => {
+    //     console.log("response is ", response);
+    //   },
+    //   error => {
+    //     console.log("error is", error);
+    //   }
+    // );
+
+    this.userService.getUsers().subscribe(data => (this.users = data));
   }
 
   getUser() {

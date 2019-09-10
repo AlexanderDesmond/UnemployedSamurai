@@ -25,7 +25,10 @@
   </button>
 
   <p>Don't have an account? <a routerLink="../register">Sign Up</a>!</p>
-  
 </form>
-    
 
+<div>
+  <ul *ngFor="let user of users">
+    <li>{{ user.username }}</li>
+  </ul>
+</div>
