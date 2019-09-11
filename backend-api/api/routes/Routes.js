@@ -21,11 +21,11 @@ module.exports = function(app) {
 
 
     // post routes
-    app.route('/post')
+    app.route('/posts')
         .get(posts.list_all_posts)
         .post(posts.create_post);
 
-    app.route('/post/:username')
+    app.route('/posts/:username')
         .get(posts.list_posts_for_user);
 
 };
