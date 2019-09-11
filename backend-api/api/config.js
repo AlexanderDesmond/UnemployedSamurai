@@ -1,9 +1,11 @@
 
 'use strict';
+require('dotenv').config();
+
 module.exports = {
 
     // temporary secret key
     // TODO: get from environment variables
-    'secret': 'supersecret'
+    'secret': process.env.SECRET
 
   };

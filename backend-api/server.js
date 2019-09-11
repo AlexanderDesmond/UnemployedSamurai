@@ -1,9 +1,12 @@
 
 'use strict';
+require('dotenv').config();
+
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
+
 
 var User = require('./api/models/UserModel');
 var Post = require('./api/models/PostModel');
@@ -13,7 +16,7 @@ var bodyParser = require('body-parser');
 
 // moongose instance
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/imageboard', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
 
 
 app.use(bodyParser.urlencoded( {extended: true} ));
