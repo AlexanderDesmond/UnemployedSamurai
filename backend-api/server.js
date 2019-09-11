@@ -1,12 +1,14 @@
-var express = require('express'),
-    app = express(),
-    port = process.env.PORT || 3000,
-    mongoose = require('mongoose'),
 
-    User = require('./api/models/UserModel'),
-    Post = require('./api/models/PostModel'),
+'use strict';
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 3000;
+var mongoose = require('mongoose');
 
-    bodyParser = require('body-parser');
+var User = require('./api/models/UserModel');
+var Post = require('./api/models/PostModel');
+
+var bodyParser = require('body-parser');
 
 
 // moongose instance
@@ -23,13 +25,4 @@ routes(app);
 
 app.listen(port);
 console.log("Backend API started on port: " + port);
-
-
-
-
-
-
-
-
-
 

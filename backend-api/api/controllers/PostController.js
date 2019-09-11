@@ -1,7 +1,7 @@
 
 'use strict';
-var mongoose = require('mongoose'),
-    Post = mongoose.model('Posts');
+var mongoose = require('mongoose');
+var Post = mongoose.model('Posts');
 
 
 exports.list_all_posts = function(req, res) {
@@ -18,6 +18,8 @@ exports.list_all_posts = function(req, res) {
 exports.create_post = function(req, res) {
 
     var new_post = new Post(req.body);
+    // get author from AuthController after token verification
+    new_post.author = req.username;
     new_post.save( function(err, post) {
         if (err)
             res.send(err);

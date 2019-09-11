@@ -1,13 +1,19 @@
 
 'use strict';
-var mongoose = require('mongoose'),
-    User = mongoose.model('Users');
+var mongoose = require('mongoose');
+var User = mongoose.model('Users');
+
+var jwt = require('jsonwebtoken');
+var bcrypt = require('bcryptjs');
+var config = require('../config');
+
 
 exports.list_all_users = function(req, res) {
-    User.find({}, function(err, user) {
+    User.find({},
+        function(err, users) {
         if (err)
-            res.send(err);
-        res.json(user);
+            return res.status(500).send({message:"Internal server error", error: err});
+        return res.status(200).send(users);
     });
 };
 
@@ -15,85 +21,110 @@ exports.list_all_users = function(req, res) {
 exports.create_user = function(req, res) {
 
     // query db for username
-    User.find({username: req.body.username},
+    User.find(
+        {username: req.body.username},
         function (err, results) {
             if (err)
-                res.send(err);
+                return res.status(500).send({message:"Internal server error", error: err});
 
-            // found username?
+            // if no users with username are found
             if (!results.length) {
-                // create new user
-                var new_user = new User(req.body);
 
-                // save user to database and send response
-                new_user.save(function(err, user) {
-                    if (err)
-                        res.send(err);
-                    res.json(user);
-                })
+                if (!req.body.password)
+                    return res.status(400).send({message: "Password not provided"});
+
+                // hash password
+                var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+
+                // create new user with hashed password
+                // then send back token
+                User.create(
+                    {
+                        username: req.body.username,
+                        email: req.body.email,
+                        password: hashedPassword
+                    },
+                    function(err, user) {
+                        if (err)
+                            return res.status(400).send({
+                                message: "There was a problem creating the account",
+                                error: err
+                            });
+
+                        // create a authentication token
+                        var token = jwt.sign({ username: user.username }, config.secret, {
+                            expiresIn: 86400
+                        });
+                        return res.status(200).send({auth: true, token: token});
+                    });
             }
             // send 409 conflict if username exists
-            else {
-                res.send(409, {error:"username already exists"});
-            }
+            else
+                return res.status(409).send({message: "username already exists"});
         }
-
-        );
+    );
 };
 
 
 exports.get_user = function(req, res) {
 
+    if (!req.params.username)
+        res.staus(400).send({message: "No username provided"});
+
     // return user is found (username from request params)
-    User.find( {username: req.params.username},
+    User.find(
+        {username: req.params.username},
         function(err, result) {
             if (result.length)
-                res.json(result[0]);
+                return res.status(200).send(result[0]);
             else
-                res.send(400, {error: "user does not exist"});
+                return res.status(400).send({message: "user not found"});
         }
     );
 }
 
+
 exports.update_user = function(req, res) {
-    res.send(501);
+    res.status(501).send();
 }
+
 
 exports.delete_user = function(req, res) {
-    res.send(501);
+    res.status(501).send();
 }
-
 
 
 exports.login_user = function(req, res) {
 
+    // if a credential is not provided
+    if (!req.body.username || !req.body.password)
+        return res.status(400).send({message: "Missing credentials"});
+
     // get user from db using provided username
-    User.find( {username: req.body.username},
-        function (err, result) {
+    User.findOne(
+        {username: req.body.username},
+        function (err, user) {
             if (err)
-                res.send(err);
+                return res.status(500).send({message: "Internal server error"});
 
-            // if user exists
-            if (result.length) {
-                var user = result[0];
+            if (user && bcrypt.compareSync(req.body.password, user.password)) {
 
-                if (user.password == req.body.password) {
+                // login successful
+                // mark login time in db
+                user.last_login = Date.now();
+                user.save( function(err) {} );
 
-                    // update new login in database
-                    user.last_login = Date.now();
-                    user.save( function(err) {
-                        if (err)
-                            res.send(err);
-                    });
+                // create token
+                var token = jwt.sign({username: user.username}, config.secret, {
+                    expiresIn: 86400
+                });
 
-                    // respond with user object
-                    res.send(user);
-                    return;
-                }
+                return res.status(200).send({auth: true, token: token});
             }
 
-            // send error if process incomplete
-            res.send(400, {error: "invalid credentials"});
-        });
+            // if no user found or incorrect password
+            return res.status(404).send({message: "Invalid credentials"});
+        }
+    );
 };
 
