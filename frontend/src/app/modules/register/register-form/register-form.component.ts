@@ -55,10 +55,10 @@ export class RegisterFormComponent implements OnInit {
       .registerUser(this.username.value, this.email.value, this.password.value)
       .subscribe(
         response => {
-          console.log("response is ", response);
+          alert("Account successfully created :)");
         },
         error => {
-          console.log("error is", error);
+          alert("Account could not be created :(");
         }
       );
   }
