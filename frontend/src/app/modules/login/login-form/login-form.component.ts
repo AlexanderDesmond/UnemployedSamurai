@@ -43,11 +43,13 @@ export class LoginFormComponent implements OnInit {
       .loginUser(this.username.value, this.password.value)
       .subscribe(
         response => {
+          console.log(response);
 
           // show alert to user
           alert("Login Successful :)");
 
           // save token to localstorage
+          localStorage.setItem("loginToken", response["token"]);
 
           // redirect to homepage
           this.router.navigate(["/"]);
