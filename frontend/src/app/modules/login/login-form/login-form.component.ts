@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UsersService } from "../../../services/users.service";
 import { User } from "src/app/user.interface";
 
+import { Router } from "@angular/router";
+
 @Component({
   selector: "app-login-form",
   templateUrl: "./login-form.component.html",
@@ -41,17 +43,15 @@ export class LoginFormComponent implements OnInit {
       .loginUser(this.username.value, this.password.value)
       .subscribe(
         response => {
-          console.log("response is ", response);
+          alert("Login Successful :)");
+          // save token to localstorage
+          // redirect to homepage
         },
         error => {
-          console.log("error is", error);
+          alert("Login Unsuccessful :(");
         }
       );
 
-    // bad debugging ;)
-    alert(
-      "username:" + this.username.value + "/n password: " + this.password.value
-    );
   }
 
   // Test
