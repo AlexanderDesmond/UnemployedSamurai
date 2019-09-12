@@ -18,7 +18,7 @@ export class LoginFormComponent implements OnInit {
   user: User;
   users: User[];
 
-  constructor(private fb: FormBuilder, private userService: UsersService) {}
+  constructor(private fb: FormBuilder, private userService: UsersService, private router: Router) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -43,9 +43,14 @@ export class LoginFormComponent implements OnInit {
       .loginUser(this.username.value, this.password.value)
       .subscribe(
         response => {
+
+          // show alert to user
           alert("Login Successful :)");
+
           // save token to localstorage
+
           // redirect to homepage
+          this.router.navigate(["/"]);
         },
         error => {
           alert("Login Unsuccessful :(");
