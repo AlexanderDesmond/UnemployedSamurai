@@ -31,7 +31,7 @@ var UserSchema = new Schema( {
 
 });
 
-module.exports = mongoose.model('Users', UserSchema); // database name
+module.exports = mongoose.model('Users', UserSchema);
 
 
 

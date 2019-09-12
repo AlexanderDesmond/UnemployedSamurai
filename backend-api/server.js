@@ -7,9 +7,8 @@ var app = express();
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 
-
-var User = require('./api/models/UserModel');
-var Post = require('./api/models/PostModel');
+require('./api/models/UserModel');
+require('./api/models/PostModel');
 
 var bodyParser = require('body-parser');
 

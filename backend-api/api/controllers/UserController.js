@@ -69,7 +69,7 @@ exports.create_user = function(req, res) {
 exports.get_user = function(req, res) {
 
     if (!req.params.username)
-        res.staus(400).send({message: "No username provided"});
+        return res.staus(400).send({message: "No username provided"});
 
     // return user is found (username from request params)
     User.find(
