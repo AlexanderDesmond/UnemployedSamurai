@@ -1,17 +1,21 @@
-var express = require('express'),
-    app = express(),
-    port = process.env.PORT || 3000,
-    mongoose = require('mongoose'),
 
-    User = require('./api/models/UserModel'),
-    Post = require('./api/models/PostModel'),
+'use strict';
+require('dotenv').config();
 
-    bodyParser = require('body-parser');
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 3000;
+var mongoose = require('mongoose');
+
+require('./api/models/UserModel');
+require('./api/models/PostModel');
+
+var bodyParser = require('body-parser');
 
 
 // moongose instance
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/imageboard', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
 
 
 app.use(bodyParser.urlencoded( {extended: true} ));
@@ -23,13 +27,4 @@ routes(app);
 
 app.listen(port);
 console.log("Backend API started on port: " + port);
-
-
-
-
-
-
-
-
-
 
