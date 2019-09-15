@@ -16,6 +16,10 @@
     />
   </mat-form-field>
 
+  <div class="error-message" *ngIf="isError">
+    Username or password incorrect.
+  </div>
+
   <button
     mat-raised-button
     [disabled]="loginForm.invalid || loading"
