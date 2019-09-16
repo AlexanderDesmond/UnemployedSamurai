@@ -5,5 +5,5 @@
     </nav> </span>
     <span *ngIf="isLoggedIn">{{ currentUser }}</span>
     <a *ngIf="!isLoggedIn" routerLink="login">Log In</a>
-    <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    <a *ngIf="isLoggedIn" routerLink="" (click)="logout()">Logout</a>
 </mat-toolbar>
