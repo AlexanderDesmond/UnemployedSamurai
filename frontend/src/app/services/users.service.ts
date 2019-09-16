@@ -4,17 +4,6 @@ import { HttpClient } from "@angular/common/http";
 
 import { User } from "../user.interface";
 
-// export interface User {
-//   username: String;
-//   email: String;
-//   password: String;
-//   /*
-//   created: Date;
-//   lastLogin: Date;
-//   isAdmin: Boolean;
-//   */
-// }
-
 @Injectable({
   providedIn: "root"
 })

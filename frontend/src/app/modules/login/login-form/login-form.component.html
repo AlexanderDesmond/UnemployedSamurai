@@ -16,6 +16,10 @@
     />
   </mat-form-field>
 
+  <div class="error-message" *ngIf="isError">
+    Username or password incorrect.
+  </div>
+
   <button
     mat-raised-button
     [disabled]="loginForm.invalid || loading"
@@ -25,7 +29,10 @@
   </button>
 
   <p>Don't have an account? <a routerLink="../register">Sign Up</a>!</p>
-  
 </form>
-    
 
+<div>
+  <ul *ngFor="let user of users">
+    <li>{{ user.username }}</li>
+  </ul>
+</div>

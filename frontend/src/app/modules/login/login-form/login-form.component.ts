@@ -15,10 +15,15 @@ export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
 
   // temp
-  user: User;
+  //user: User;
   users: User[];
+  isError: boolean;
 
-  constructor(private fb: FormBuilder, private userService: UsersService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UsersService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -47,6 +52,7 @@ export class LoginFormComponent implements OnInit {
 
           // show alert to user
           alert("Login Successful :)");
+          this.isError = false;
 
           // save token to localstorage
           localStorage.setItem("loginToken", response["token"]);
@@ -56,21 +62,23 @@ export class LoginFormComponent implements OnInit {
         },
         error => {
           alert("Login Unsuccessful :(");
+          this.isError = true;
         }
       );
-
   }
 
   // Test
   getUsers() {
-    this.userService.getUsers().subscribe(
-      response => {
-        console.log("response is ", response);
-      },
-      error => {
-        console.log("error is", error);
-      }
-    );
+    // this.userService.getUsers().subscribe(
+    //   response => {
+    //     console.log("response is ", response);
+    //   },
+    //   error => {
+    //     console.log("error is", error);
+    //   }
+    // );
+
+    this.userService.getUsers().subscribe(data => (this.users = data));
   }
 
   getUser() {
