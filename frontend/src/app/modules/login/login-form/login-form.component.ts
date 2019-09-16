@@ -28,6 +28,11 @@ export class LoginFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    // restrict access if user already logged in
+    if (this.authService.getCurrentUser())
+      this.router.navigate(['/']);
+
     this.loginForm = this.fb.group({
       username: ["", Validators.required],
       password: ["", Validators.required]
