@@ -119,7 +119,7 @@ exports.login_user = function(req, res) {
                     expiresIn: 86400
                 });
 
-                return res.status(200).send({auth: true, token: token});
+                return res.status(200).send({auth: true, token: token, user: {username: user.username}});
             }
 
             // if no user found or incorrect password
