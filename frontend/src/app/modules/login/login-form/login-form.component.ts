@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { UsersService } from "../../../services/users.service";
+import { AuthenticationService } from "../../../services/authentication.service";
 import { User } from "src/app/user.interface";
 
 import { Router } from "@angular/router";
@@ -22,6 +23,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
+    private authService: AuthenticationService,
     private router: Router
   ) {}
 
@@ -44,24 +46,21 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService
-      .loginUser(this.username.value, this.password.value)
+    this.authService
+      .login(this.username.value, this.password.value)
       .subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
 
           // show alert to user
-          alert("Login Successful :)");
+          // alert("Login Successful :)");
           this.isError = false;
-
-          // save token to localstorage
-          localStorage.setItem("loginToken", response["token"]);
 
           // redirect to homepage
           this.router.navigate(["/"]);
         },
         error => {
-          alert("Login Unsuccessful :(");
+          // alert("Login Unsuccessful :(");
           this.isError = true;
         }
       );
