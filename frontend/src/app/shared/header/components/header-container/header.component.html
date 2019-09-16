@@ -3,5 +3,7 @@
     <nav>
       <a routerLink="">Image Board</a>
     </nav> </span>
-  <a routerLink="login">Log In</a>
+    <span *ngIf="isLoggedIn">{{ currentUser }}</span>
+    <a *ngIf="!isLoggedIn" routerLink="login">Log In</a>
+    <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
 </mat-toolbar>

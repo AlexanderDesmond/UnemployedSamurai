@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
+import { User } from "../../../../user.interface";
+import { AuthenticationService } from "../../../../services/authentication.service";
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -7,10 +10,21 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
+  currentUser: String;
 
-  constructor() {
+
+  constructor(private authService: AuthenticationService) {
     this.isLoggedIn = false;
+    this.currentUser = null;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentUser = this.authService.getCurrentUser();
+    if (this.currentUser)
+      this.isLoggedIn = true;
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

@@ -10,24 +10,24 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-  private currentUser : Observable<User>;
-
   constructor(private http: HttpClient) {}
+
+  getCurrentUser(): String {
+    return localStorage.getItem("currentUser");
+  }
 
   login(username: string, password: string) {
     return this.http.post("/api/login/", { username, password })
       .pipe(map(response => {
         // store user data
         localStorage.setItem("loginToken", response["token"]);
-
-        // add to currentUser
-        this.currentUser = response["user"];
+        localStorage.setItem("currentUser", response["user"].username);
       }));
   }
 
   logout() {
     localStorage.removeItem("loginToken");
-    this.currentUser = null;
+    localStorage.removeItem("currentUser");
   }
 
 }
