@@ -24,8 +24,7 @@ export class HeaderComponent implements OnInit {
       // without this, login/logout buttons do not get updated
       // written this way as could not assign boolean to unknown type
       this.isLoggedIn = (loggedIn == true);
-
-      this.ngOnInit();
+      this.currentUser = this.authService.getCurrentUser();
     });
 
     this.currentUser = this.authService.getCurrentUser();
