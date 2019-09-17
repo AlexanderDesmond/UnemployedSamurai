@@ -104,6 +104,27 @@ describe("Users", () => {
     });
 
 
+    // get a specific user
+    it("should return a specific user", (done) => {
+        chai.request(server)
+            .get("/users/testusername")
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
+    });
+
+    // get a specific user not in the database
+    it("should not return any users", (done) => {
+        chai.request(server)
+            .get("/users/testusername1")
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            });
+    });
+
+
 });
 
 
