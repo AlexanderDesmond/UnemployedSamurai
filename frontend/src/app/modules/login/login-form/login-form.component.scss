@@ -1,3 +1,19 @@
+form {
+  width: 33%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 mat-form-field {
   display: block;
+}
+
+.error-message {
+  margin-bottom: 15px;
+  padding: 5px;
+  border: 1px solid red;
+  border-radius: 5px;
+  color: red;
+  background-color: #fff5fa;
 }

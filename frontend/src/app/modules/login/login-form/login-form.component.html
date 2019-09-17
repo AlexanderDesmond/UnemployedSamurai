@@ -1,5 +1,5 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <p>Sign In</p>
+  <h1>Sign In</h1>
 
   <mat-form-field>
     <input matInput placeholder="username" formControlName="username" />
@@ -16,6 +16,10 @@
     />
   </mat-form-field>
 
+  <div class="error-message" *ngIf="isError">
+    Username or password incorrect.
+  </div>
+
   <button
     mat-raised-button
     [disabled]="loginForm.invalid || loading"
@@ -24,5 +28,11 @@
     Login
   </button>
 
-  <p>Don't have an account? Sign Up!</p>
+  <p>Don't have an account? <a routerLink="../register">Sign Up</a>!</p>
 </form>
+
+<div>
+  <ul *ngFor="let user of users">
+    <li>{{ user.username }}</li>
+  </ul>
+</div>

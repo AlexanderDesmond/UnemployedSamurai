@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
+import { User } from "../../../../user.interface";
+import { AuthenticationService } from "../../../../services/authentication.service";
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -7,10 +10,30 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
+  currentUser: String;
 
-  constructor() {
+
+  constructor(private authService: AuthenticationService) {
     this.isLoggedIn = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    // refresh component when getLoggedIn value changes
+    this.authService.getLoggedIn.subscribe(loggedIn => {
+      // without this, login/logout buttons do not get updated
+      // written this way as could not assign boolean to unknown type
+      this.isLoggedIn = (loggedIn == true);
+      this.currentUser = this.authService.getCurrentUser();
+    });
+
+    this.currentUser = this.authService.getCurrentUser();
+    if (this.currentUser) {
+      this.isLoggedIn = true;
+    }
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

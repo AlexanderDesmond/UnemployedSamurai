@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 
 import { HeaderComponent } from "./shared/header/components/header-container/header.component";
 import { FooterComponent } from "./shared/footer/components/footer-container/footer.component";
+
 import { HomeModule } from "./modules/home/home.module";
 import { LoginModule } from "./modules/login/login.module";
 import { RegisterModule } from "./modules/register/register.module";

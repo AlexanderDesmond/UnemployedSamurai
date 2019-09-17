@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { LoginFormComponent } from "./login-form/login-form.component";
+import { RouterModule } from "@angular/router";
 
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 
@@ -21,7 +22,8 @@ import { MaterialModule } from "../../material.module";
   imports: [
     CommonModule,
     MaterialModule,
-    MatPasswordStrengthModule
+    MatPasswordStrengthModule,
+    RouterModule
     /*
     ReactiveFormsModule,
     BrowserAnimationsModule,
