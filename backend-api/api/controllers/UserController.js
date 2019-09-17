@@ -18,6 +18,21 @@ exports.list_all_users = function(req, res) {
 };
 
 
+exports.is_username_unique = function(req, res) {
+    if (!req.body.username)
+        return res.status(400).send({error: "Username not provided"});
+    User.find(
+        {username:req.body.username},
+        function(err, result) {
+            if (err)
+                return res.status(500).send({error: err});
+
+            return res.status(200).send({unique: !(result.length > 0) });
+        }
+    );
+};
+
+
 exports.create_user = function(req, res) {
 
     // query db for username

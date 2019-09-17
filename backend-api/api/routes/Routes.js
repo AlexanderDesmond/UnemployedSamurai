@@ -15,7 +15,6 @@ module.exports = function(app) {
         .put(users.update_user) // user auth required
         .delete(users.delete_user); // user auth required
 
-
     // login
     app.route('/login')
         .post(users.login_user);
@@ -28,6 +27,10 @@ module.exports = function(app) {
 
     app.route('/posts/:username')
         .get(posts.list_posts_for_user);
+
+    // helper functions
+    app.route('/unique_username')
+        .post(users.is_username_unique);
 
 };
 
