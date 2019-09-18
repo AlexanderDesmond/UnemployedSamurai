@@ -4,7 +4,10 @@ process.env.NODE_ENV = "test";
 
 let server = require("../server");
 let mongoose = require("mongoose");
-let User = require("../api/models/UserModel"); // model used to prune collection before starting
+
+// model used to prune collection before starting
+let User = require("../api/models/UserModel");
+let Post = require("../api/models/PostModel");
 
 let chai = require("chai");
 let chaiHttp = require("chai-http");
@@ -27,12 +30,19 @@ describe()
 */
 
 
+let testuser = {
+    username: "testuser",
+    password: "password123",
+    email: "test@test.com"
+}
+
+
 // Users test cases
 describe("Users", () => {
 
     // remove all previous data in users collection
     before((done) => {
-        User.deleteMany({}, (req) => {
+        User.deleteMany({}, (err) => {
             done();
         });
     });
@@ -52,16 +62,9 @@ describe("Users", () => {
 
     // create user with unique username
     it("should create a user", (done) => {
-
-        let newUser = {
-            username: "testusername",
-            email: "test@test.com",
-            password: "password123"
-        }
-
         chai.request(server)
             .post("/users")
-            .send(newUser)
+            .send(testuser)
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.have.a.property("token").that.is.not.empty;
@@ -73,24 +76,30 @@ describe("Users", () => {
 
     // create user with non-unique username
     it("should not create a user", (done) => {
-
-        let newUser = {
-            username: "testusername",
-            email: "test@test.com",
-            password: "password123"
-        }
-
         chai.request(server)
             .post("/users")
-            .send(newUser)
+            .send(testuser)
             .end((err, res) => {
                 res.should.have.status(409);
                 done();
             });
     });
 
+    // create user with missing data
 
-    // get non empty array
+
+    // create user with missing username
+
+
+    // create user with missing password
+
+
+    // create user with missing email
+
+
+
+
+    // get non empty array of users
     it("should return an array of users", (done) => {
         chai.request(server)
             .get("/users")
@@ -107,17 +116,18 @@ describe("Users", () => {
     // get a specific user
     it("should return a specific user", (done) => {
         chai.request(server)
-            .get("/users/testusername")
+            .get("/users/" + testuser.username)
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
             });
     });
 
+
     // get a specific user not in the database
     it("should not return any users", (done) => {
         chai.request(server)
-            .get("/users/testusername1")
+            .get("/users/doesnotexist")
             .end((err, res) => {
                 res.should.have.status(400);
                 done();
@@ -126,6 +136,118 @@ describe("Users", () => {
 
 
 });
+
+
+
+// login test cases
+describe("Login", () => {
+
+    // login existing user
+    it("should login successfuly", (done) => {
+        chai.request(server)
+            .post("/login")
+            .send(testuser)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.have.a.property("token").that.is.not.empty;
+                res.body.should.have.a.property("auth").that.is.eql(true);
+                done();
+            });
+
+    });
+
+    // login with incorrect password
+    it("should not login because of bad password", (done) => {
+        chai.request(server)
+            .post("/login")
+            .send({
+                username: testuser.username,
+                password: "incorrectpassword"
+            })
+            .end((err, res) => {
+                res.should.have.status(400);
+                // res.body.should.have.a.property("auth").that.is.eql(false);
+                done();
+            });
+    });
+
+
+    // login non-existing user
+    it("should not login because user does not exist", (done) => {
+        chai.request(server)
+            .post("/login")
+            .send({
+                username: "incorrectusername",
+                password: "incorrectpassword"
+            })
+            .end((err, res) => {
+                res.should.have.status(400);
+                // res.body.should.have.a.property("auth").that.is.eql(false);
+                done();
+            });
+    });
+
+
+    // login with no data provided
+    it("should not login because missing data", (done) => {
+        chai.request(server)
+            .post("/login")
+            .send({})
+            .end((err, res) => {
+                res.should.have.status(400);
+                // res.body.should.have.a.property("auth").that.is.eql(false);
+                done();
+            });
+    });
+
+
+    // login with username missing
+    it("should not login because missing username", (done) => {
+        chai.request(server)
+            .post("/login")
+            .send({
+                password: testuser.password
+            })
+            .end((err, res) => {
+                res.should.have.status(400);
+                // res.body.should.have.a.property("auth").that.is.eql(false);
+                done();
+            });
+    });
+
+
+    // login with password missing
+    it("should not login because of missing password", (done) => {
+        chai.request(server)
+            .post("/login")
+            .send({
+                username: testuser.username
+            })
+            .end((err, res) => {
+                res.should.have.status(400);
+                // res.body.should.have.a.property("auth").that.is.eql(false);
+                done();
+            });
+    });
+
+
+
+});
+
+
+describe.skip("Posts", () => {
+
+    // clear all posts before testing
+    before((done) => {
+        Post.deleteMany({}, (err) => {
+            done();
+        });
+    });
+
+
+});
+
+
 
 
 
