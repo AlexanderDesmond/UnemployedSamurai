@@ -23,6 +23,10 @@ export class AuthenticationService {
     return localStorage.getItem("currentUser");
   }
 
+  getToken(): String {
+    return localStorage.getItem("loginToken");
+  }
+
   login(username: string, password: string) {
     return this.http.post("/api/login/", { username, password })
       .pipe(map(response => {

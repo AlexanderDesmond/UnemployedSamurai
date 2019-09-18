@@ -16,7 +16,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 
-import { HttpClientModule } from "@angular/common/http";
+import { AuthenticationInterceptor } from "./helpers/authentication-interceptor";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -33,7 +34,9 @@ import { HttpClientModule } from "@angular/common/http";
     MatPasswordStrengthModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
