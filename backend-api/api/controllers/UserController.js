@@ -138,7 +138,7 @@ exports.login_user = function(req, res) {
             }
 
             // if no user found or incorrect password
-            return res.status(404).send({message: "Invalid credentials"});
+            return res.status(400).send({message: "Invalid credentials"});
         }
     );
 };
