@@ -267,20 +267,19 @@ describe("Login", () => {
 describe("Posts", () => {
 
     // log in
-    var agent = chai.request.agent(server)
     var authToken = null;
 
     before((done) => {
-        agent
-        .post('/login')
-        .send({username: testuser.username, password: testuser.password})
-        .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.have.a.property("token").that.is.not.empty;
-            // save auth token for usage by the other tests
-            authToken = res.body.token;
-            done();
-        });
+        chai.request(server)
+            .post('/login')
+            .send({username: testuser.username, password: testuser.password})
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.have.a.property("token").that.is.not.empty;
+                // save auth token for usage by the other tests
+                authToken = res.body.token;
+                done();
+            });
     });
 
     // clear all posts before testing
@@ -303,12 +302,38 @@ describe("Posts", () => {
     });
 
     // create new post without authentication
-
+    it("should not create a post due to no authentication", (done) => {
+        chai.request(server)
+            .post("/posts")
+            .attach('postImage', fs.readFileSync('test/image.png'), 'image.png')
+            .end((err, res) => {
+                res.should.have.status(403);
+                done();
+            });
+    });
 
     // create post with authentication & without image
-
+    it("should not create a post due to missing image", (done) => {
+        chai.request(server)
+            .post("/posts")
+            .set('x-access-token', authToken)
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            });
+    });
 
     // create post with incorrect key name
+    it("should not create a post due to incorrect image key name", (done) => {
+        chai.request(server)
+            .post("/posts")
+            .set('x-access-token', authToken)
+            .attach('incorrectKey', fs.readFileSync('test/image.png'), 'image.png')
+            .end((err, res) => {
+                res.should.have.status(500);
+                done();
+            });
+    });
 
 });
 
