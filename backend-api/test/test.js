@@ -12,6 +12,7 @@ let Post = require("../api/models/PostModel");
 let chai = require("chai");
 let chaiHttp = require("chai-http");
 let should = chai.should();
+let fs = require('fs');
 
 chai.use(chaiHttp);
 
@@ -263,7 +264,24 @@ describe("Login", () => {
 });
 
 
-describe.skip("Posts", () => {
+describe("Posts", () => {
+
+    // log in
+    var agent = chai.request.agent(server)
+    var authToken = null;
+
+    before((done) => {
+        agent
+        .post('/login')
+        .send({username: testuser.username, password: testuser.password})
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.have.a.property("token").that.is.not.empty;
+            // save auth token for usage by the other tests
+            authToken = res.body.token;
+            done();
+        });
+    });
 
     // clear all posts before testing
     before((done) => {
@@ -271,6 +289,26 @@ describe.skip("Posts", () => {
             done();
         });
     });
+
+    // create new post with authentication
+    it("should create a new post", (done) => {
+        chai.request(server)
+            .post("/posts")
+            .set('x-access-token', authToken)
+            .attach('postImage', fs.readFileSync('test/image.png'), 'image.png')
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
+    });
+
+    // create new post without authentication
+
+
+    // create post with authentication & without image
+
+
+    // create post with incorrect key name
 
 });
 
