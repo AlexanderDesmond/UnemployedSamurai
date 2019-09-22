@@ -20,19 +20,25 @@ exports.create_post = function(req, res) {
     // file is placed into req.file from
     // multer middlewhere
 
+    // check if file was actually saved
     if (!req.file) {
         return res.status(400).send({error: "Image is missing"});
     }
 
-    // var new_post = new Post(req.body);
-    // // get author from AuthController after token verification
-    // new_post.author = req.username;
-    // new_post.save( function(err, post) {
-    //     if (err)
-    //         res.send(err);
-    //     res.json(post);
-    // });
-    return res.status(200).send({success: true, filename: req.file.filename});
+    // ASSUMPTION: username will always be here from auth handler
+    // create new post with filename stored
+    Post.create(
+        {
+            author:  req.username,
+            image_path: req.file.filename
+        },
+        function(err, post) {
+            if (err)
+                return res.status(500).send({error: err});
+
+            return res.status(200).send({success: true, post: post});
+        }
+    );
 }
 
 
