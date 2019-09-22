@@ -59,7 +59,6 @@ describe("Users", () => {
             });
     });
 
-
     // create user with unique username
     it("should create a user", (done) => {
         chai.request(server)
@@ -73,7 +72,6 @@ describe("Users", () => {
             });
     });
 
-
     // create user with non-unique username
     it("should not create a user", (done) => {
         chai.request(server)
@@ -86,18 +84,56 @@ describe("Users", () => {
     });
 
     // create user with missing data
-
+    it("should not create a user due to missing data", (done) => {
+        chai.request(server)
+            .post("/users")
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            });
+    });
 
     // create user with missing username
-
+    it("should not create a user due to missing username", (done) => {
+        chai.request(server)
+            .post("/users")
+            .send({
+                password: testuser.password,
+                email: testuser.email
+            })
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            });
+    });
 
     // create user with missing password
-
+    it("should not create a user due to missing password", (done) => {
+        chai.request(server)
+            .post("/users")
+            .send({
+                username: testuser.username,
+                email: testuser.email
+            })
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            });
+    });
 
     // create user with missing email
-
-
-
+    it("should not create a user due to missing email", (done) => {
+        chai.request(server)
+            .post("/users")
+            .send({
+                username: testuser.username,
+                password: testuser.password
+            })
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            });
+    });
 
     // get non empty array of users
     it("should return an array of users", (done) => {
@@ -112,7 +148,6 @@ describe("Users", () => {
 
     });
 
-
     // get a specific user
     it("should return a specific user", (done) => {
         chai.request(server)
@@ -122,7 +157,6 @@ describe("Users", () => {
                 done();
             });
     });
-
 
     // get a specific user not in the database
     it("should not return any users", (done) => {
@@ -171,7 +205,6 @@ describe("Login", () => {
             });
     });
 
-
     // login non-existing user
     it("should not login because user does not exist", (done) => {
         chai.request(server)
@@ -187,7 +220,6 @@ describe("Login", () => {
             });
     });
 
-
     // login with no data provided
     it("should not login because missing data", (done) => {
         chai.request(server)
@@ -199,7 +231,6 @@ describe("Login", () => {
                 done();
             });
     });
-
 
     // login with username missing
     it("should not login because missing username", (done) => {
@@ -215,7 +246,6 @@ describe("Login", () => {
             });
     });
 
-
     // login with password missing
     it("should not login because of missing password", (done) => {
         chai.request(server)
@@ -230,8 +260,6 @@ describe("Login", () => {
             });
     });
 
-
-
 });
 
 
@@ -243,7 +271,6 @@ describe.skip("Posts", () => {
             done();
         });
     });
-
 
 });
 
