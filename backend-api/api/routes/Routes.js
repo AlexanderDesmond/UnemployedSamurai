@@ -4,6 +4,7 @@ module.exports = function(app) {
     var users = require('../controllers/UserController');
     var posts = require('../controllers/PostController');
     var auth  = require('../controllers/AuthController');
+    var upload = require('../../server').upload;
 
     // user routes
     app.route('/users')
@@ -23,7 +24,7 @@ module.exports = function(app) {
     // post routes
     app.route('/posts')
         .get(posts.list_all_posts)
-        .post(auth.verifyToken, posts.create_post); // user auth required
+        .post(auth.verifyToken, upload.single('postImage'), posts.create_post); // user auth required
 
     app.route('/posts/:username')
         .get(posts.list_posts_for_user);

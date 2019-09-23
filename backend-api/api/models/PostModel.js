@@ -9,7 +9,7 @@ var PostSchema = new Schema( {
         type: String,
         required: true
     },
-    content: { // TODO: use images instead of text
+    image_path: {
         type: String,
         required: true
     },
