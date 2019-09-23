@@ -18,9 +18,10 @@ import { MatPasswordStrengthModule } from "@angular-material-extensions/password
 
 import { AuthenticationInterceptor } from "./helpers/authentication-interceptor";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { PageNotFoundComponent } from './modules/error-pages/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
