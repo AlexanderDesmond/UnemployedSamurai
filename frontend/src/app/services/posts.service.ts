@@ -11,12 +11,12 @@ import { Post } from "../post.interface";
 export class PostsService {
   constructor(private http: HttpClient) {}
 
-  createPost(image: File) {
+  createPost(formData: FormData) {
     // https://www.freecodecamp.org/news/how-to-make-image-upload-easy-with-angular-1ed14cb2773b/
     // attached images must be sent as form-data
-    const formData = new FormData();
+    //const formData = new FormData();
     // "postImage" is the key which the backend is looking for
-    formData.append("postImage", image);
+    //formData.append("postImage", image);
 
     return this.http.post("/api/posts", formData);
   }
