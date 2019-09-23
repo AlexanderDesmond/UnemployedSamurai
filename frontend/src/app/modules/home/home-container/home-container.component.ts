@@ -22,4 +22,8 @@ export class HomeContainerComponent implements OnInit {
       this.isLoggedIn = LoggedIn == true;
     });
   }
+
+  redirectToHome() {
+    this.router.navigate(["/new"]);
+  }
 }
