@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from "../user.interface";
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
 
   // used to notify subscribing objects to change in login
-  public getLoggedIn = new Subject();
+  public getLoggedIn = new BehaviorSubject(this.getCurrentUser() != null);
 
   constructor(private http: HttpClient) {
 
