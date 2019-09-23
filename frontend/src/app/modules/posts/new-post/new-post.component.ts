@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
 import { PostsService } from "../../../services/posts.service";
+import { AuthenticationService } from "../../../services/authentication.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-new-post",
@@ -10,9 +12,17 @@ import { PostsService } from "../../../services/posts.service";
 export class NewPostComponent implements OnInit {
   private selectedFile: File = null;
 
-  constructor(private postsService: PostsService) {}
+  constructor(
+    private postsService: PostsService,
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.authService.getCurrentUser()) {
+      this.router.navigate(["/"]);
+    }
+  }
 
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];

@@ -1,1 +1,4 @@
 <app-trending></app-trending>
+<button type="button" *ngIf="isLoggedIn" (click)="router.navigate(['/new'])">
+  New Post
+</button>
