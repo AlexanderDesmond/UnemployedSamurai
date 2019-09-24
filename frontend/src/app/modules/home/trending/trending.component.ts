@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
+import { PostsService } from "../../../services/posts.service";
+import { Post } from "src/app/post.interface";
+
 @Component({
   selector: "app-trending",
   templateUrl: "./trending.component.html",
@@ -7,8 +10,19 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TrendingComponent implements OnInit {
   selected = "trending";
+  posts: Post[] = [];
 
-  constructor() {}
+  constructor(private postsService: PostsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getPosts();
+  }
+
+  getPosts() {
+    this.postsService.getPosts().subscribe(data => {
+      this.posts = data;
+      console.log(this.posts);
+      console.log(this.posts.length);
+    });
+  }
 }

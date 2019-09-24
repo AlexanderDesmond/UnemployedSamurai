@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 })
 export class NewPostComponent implements OnInit {
   private selectedFile: File = null;
+  private newImage: string;
 
   constructor(
     private postsService: PostsService,
@@ -37,5 +38,11 @@ export class NewPostComponent implements OnInit {
     });
 
     console.log("Submitted");
+
+    this.postsService.getPost("test").subscribe(res => {
+      console.log(res);
+    });
   }
+
+  displayImage() {}
 }

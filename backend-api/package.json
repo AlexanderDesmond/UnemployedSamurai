@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test/test",
+    "tests-alex": "mocha test/tests-alex --timeout 10000",
     "start": "nodemon server.js"
   },
   "author": "",
@@ -13,7 +14,8 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "mocha": "^6.2.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "should": "^13.2.3"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
