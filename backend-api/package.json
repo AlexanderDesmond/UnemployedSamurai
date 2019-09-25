@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "mocha test/test",
     "tests-alex": "mocha test/tests-alex --timeout 10000",
-    "start": "nodemon server.js"
+    "local": "NODE_ENV=test nodemon server.js"
   },
   "author": "",
   "license": "ISC",
