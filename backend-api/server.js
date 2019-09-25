@@ -52,6 +52,9 @@ if (process.env.NODE_ENV == "test") {
             s3: s3,
             bucket: process.env.AWS_BUCKET_NAME,
             acl: 'public-read',
+            contentType: function (req, file, cb) {
+                cb(null, file.mimetype);
+            },
             metadata: function (req, file, cb) {
                 cb(null,
                     {
