@@ -1,8 +1,10 @@
 
 'use strict';
+var path = require('path');
 var mongoose = require('mongoose');
 var Post = mongoose.model('Posts');
 var upload = require('../../server').upload;
+
 
 exports.list_all_posts = function(req, res) {
 
@@ -27,10 +29,16 @@ exports.create_post = function(req, res) {
 
     // ASSUMPTION: username will always be here from auth handler
     // create new post with filename stored
+
+    if (process.env.NODE_ENV == "test")
+        var image_path = path.resolve('uploads', req.file.filename);
+    else
+        var image_path = req.file.location;
+
     Post.create(
         {
             author:  req.username,
-            image_path: req.file.filename
+            image_path: image_path
         },
         function(err, post) {
             if (err)
