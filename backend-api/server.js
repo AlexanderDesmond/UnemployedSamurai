@@ -59,7 +59,6 @@ if (process.env.NODE_ENV == "test") {
                 cb(null,
                     {
                         fieldName: file.fieldname,
-                        /* originalName: file.origina */
                     }
                 );
             },

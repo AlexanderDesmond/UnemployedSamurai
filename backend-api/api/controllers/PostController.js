@@ -28,10 +28,11 @@ exports.create_post = function(req, res) {
     }
 
     // ASSUMPTION: username will always be here from auth handler
-    // create new post with filename stored
 
+    // store filepath in 'test' environment
+    // store public url path when image uploaded to aws
     if (process.env.NODE_ENV == "test")
-        var image_path = path.resolve('uploads', req.file.filename);
+        var image_path = path.resolve(req.file.path);
     else
         var image_path = req.file.location;
 
