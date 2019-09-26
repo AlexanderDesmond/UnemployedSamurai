@@ -27,6 +27,11 @@ export class HeaderComponent implements OnInit {
       this.currentUser = this.authService.getCurrentUser();
     });
 
+    if (this.isLoggedIn) {
+      // refresh login / or logout if session expired
+      this.authService.refreshLogin();
+    }
+
   }
 
   logout() {

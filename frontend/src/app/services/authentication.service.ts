@@ -37,6 +37,28 @@ export class AuthenticationService {
       }));
   }
 
+  refreshLogin() {
+    return this.http.get("/api/refreshtoken/")
+      .subscribe(
+        response => {
+          if (response["auth"] == true) {
+            console.log("refresh successful");
+            localStorage.setItem("loginToken", response["token"]);
+            localStorage.setItem("currentUser", response["user"].username);
+            this.getLoggedIn.next(true);
+          } else {
+            console.log("logging out");
+            this.logout();
+          }
+        },
+        error => {
+          console.log("logging out");
+          this.logout();
+        }
+      );
+  }
+
+
   logout() {
     localStorage.removeItem("loginToken");
     localStorage.removeItem("currentUser");

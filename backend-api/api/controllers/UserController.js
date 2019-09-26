@@ -131,7 +131,8 @@ exports.login_user = function(req, res) {
 
                 // create token
                 var token = jwt.sign({username: user.username}, config.secret, {
-                    expiresIn: 86400
+                    //expiresIn: 86400 = 24h
+                    expiresIn: '1h'
                 });
 
                 return res.status(200).send({auth: true, token: token, user: {username: user.username}});
@@ -142,4 +143,22 @@ exports.login_user = function(req, res) {
         }
     );
 };
+
+
+
+exports.refresh_token = function(req, res) {
+
+    User.findOne({username: req.username}, function (err, user) {
+        if (err)
+            return res.status(401).send({auth: false});
+
+        // contineuif token was still valid
+        var token = jwt.sign({username: user.username}, config.secret, {
+            expiresIn: '1h'
+        });
+
+        return res.status(200).send({auth: true, token: token, user: {username: user.username}});
+
+    });
+}
 

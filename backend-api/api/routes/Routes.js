@@ -20,6 +20,9 @@ module.exports = function(app) {
     app.route('/login')
         .post(users.login_user);
 
+    app.route('/refreshtoken')
+        .get(auth.verifyToken, users.refresh_token);
+
 
     // post routes
     app.route('/posts')
