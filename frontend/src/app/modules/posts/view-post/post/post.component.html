@@ -1,1 +1,9 @@
-<p>post works!</p>
+<h1>Post</h1>
+<p>{{ imageUrl }}</p>
+<img src="{{ imageUrl }}" alt="post" />
+<p>{{ this.post.author }}</p>
+
+<div>
+  <span>Reactions: {{ this.post.reactions.length }}</span>
+  <span>Comments: {{ this.post.comments.length }}</span>
+</div>

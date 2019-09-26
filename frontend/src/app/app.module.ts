@@ -22,6 +22,8 @@ import { PageNotFoundComponent } from "./modules/error-pages/page-not-found/page
 import { NewPostComponent } from "./modules/posts/new-post/new-post.component";
 import { PostContainerComponent } from './modules/posts/view-post/post-container/post-container.component';
 import { PostComponent } from './modules/posts/view-post/post/post.component';
+import { CommentsContainerComponent } from './modules/posts/view-post/comments/comments-container/comments-container.component';
+import { CommentComponent } from './modules/posts/view-post/comments/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { PostComponent } from './modules/posts/view-post/post/post.component';
     PageNotFoundComponent,
     NewPostComponent,
     PostContainerComponent,
-    PostComponent
+    PostComponent,
+    CommentsContainerComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

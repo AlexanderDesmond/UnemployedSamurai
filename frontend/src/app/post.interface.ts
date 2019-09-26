@@ -5,8 +5,8 @@ export interface Post {
   author: string;
   comments: Comment[];
   image_path: string;
-  postDate: string;
+  post_date: string;
   reactions: Reaction[];
-  version: number;
-  id: string;
+  __v: number;
+  _id: string;
 }

@@ -1,6 +1,7 @@
 <div class="container">
   <div>{{ post.author }}</div>
-  <img src="{{ post.image_path }}" alt="preview image" />
+  <p>{{ post.image_path }}</p>
+  <img src="{{ post.image_path }}" alt="preview image" (click)="onClick()" />
   <div class="interaction">
     <span>Reactions</span>
     <span>Comments</span>

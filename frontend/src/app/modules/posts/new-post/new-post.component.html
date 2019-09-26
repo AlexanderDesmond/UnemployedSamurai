@@ -1,5 +1,5 @@
 <h1>Upload</h1>
-<img src="" alt="new post">
+<img [src]="newImage" alt="new post" *ngIf="newImage" />
 <div>
   <input type="file" (change)="onFileSelected($event)" />
 </div>

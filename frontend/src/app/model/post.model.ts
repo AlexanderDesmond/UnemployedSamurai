@@ -10,7 +10,7 @@ export class PostModel implements Deserializable {
   postDate: string;
   reactions: Reaction[];
   version: number;
-  id: string;
+  _id: string;
 
   constructor() {}
 

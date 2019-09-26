@@ -60,12 +60,12 @@ describe("Users", () => {
       .request(server)
       .get("/users")
       .end((err, res) => {
-        should(res.status).be.equal(200);
-        should(res.body).be.a("array");
-        should(res.body.length).be.eql(0);
-        // res.should.have.status(200);
-        // res.body.should.be.a("array");
-        // res.body.length.should.be.eql(0);
+        // should(res.status).be.equal(200);
+        // should(res.body).be.a("array");
+        // should(res.body.length).be.eql(0);
+        res.should.have.status(200);
+        res.body.should.be.a("array");
+        res.body.length.should.be.eql(0);
         done();
       });
   });

@@ -1,1 +1,7 @@
-<p>post-container works!</p>
+<app-post *ngIf="post" [post]="post"></app-post>
+<div>
+  <textarea name="comment" id="" cols="50" rows="5"></textarea>
+  <button type="button">Comment</button>
+</div>
+
+<app-comments-container></app-comments-container>

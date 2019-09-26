@@ -23,6 +23,6 @@ export class PostsService {
   }
 
   getPost(id: string): Observable<Post> {
-    return this.http.get<Post>("/api/posts/" + id);
+    return this.http.get<Post>("/api/post/" + id);
   }
 }
