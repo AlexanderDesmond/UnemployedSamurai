@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from "./modules/error-pages/page-not-found/page
 import { NewPostComponent } from "./modules/posts/new-post/new-post.component";
 import { PostContainerComponent } from './modules/posts/view-post/post-container/post-container.component';
 import { PostComponent } from './modules/posts/view-post/post/post.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { PostComponent } from './modules/posts/view-post/post/post.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatPasswordStrengthModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {
