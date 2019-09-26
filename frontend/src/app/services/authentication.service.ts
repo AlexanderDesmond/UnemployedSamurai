@@ -42,18 +42,17 @@ export class AuthenticationService {
       .subscribe(
         response => {
           if (response["auth"] == true) {
-            console.log("refresh successful");
             localStorage.setItem("loginToken", response["token"]);
             localStorage.setItem("currentUser", response["user"].username);
             this.getLoggedIn.next(true);
           } else {
-            console.log("logging out");
+            alert("Your session has expired");
             this.logout();
           }
         },
         error => {
-          console.log("logging out");
           this.logout();
+          alert("Your session has expired");
         }
       );
   }
