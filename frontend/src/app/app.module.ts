@@ -18,12 +18,21 @@ import { MatPasswordStrengthModule } from "@angular-material-extensions/password
 
 import { AuthenticationInterceptor } from "./helpers/authentication-interceptor";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { PageNotFoundComponent } from './modules/error-pages/page-not-found/page-not-found.component';
-import { NewPostComponent } from './modules/posts/new-post/new-post.component';
-import { ViewPostComponent } from './modules/posts/view-post/view-post.component';
+import { PageNotFoundComponent } from "./modules/error-pages/page-not-found/page-not-found.component";
+import { NewPostComponent } from "./modules/posts/new-post/new-post.component";
+import { PostContainerComponent } from './modules/posts/view-post/post-container/post-container.component';
+import { PostComponent } from './modules/posts/view-post/post/post.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, PageNotFoundComponent, NewPostComponent, ViewPostComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    PageNotFoundComponent,
+    NewPostComponent,
+    PostContainerComponent,
+    PostComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,7 +47,11 @@ import { ViewPostComponent } from './modules/posts/view-post/view-post.component
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -24,5 +24,7 @@ export class TrendingComponent implements OnInit {
       console.log(this.posts);
       console.log(this.posts.length);
     });
+
+    console.log("Posts: " + typeof this.posts);
   }
 }

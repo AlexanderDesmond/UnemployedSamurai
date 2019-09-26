@@ -4,6 +4,7 @@ import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 
 import { Post } from "../post.interface";
+import { PostModel } from "../model/post.model";
 
 @Injectable({
   providedIn: "root"
@@ -12,17 +13,13 @@ export class PostsService {
   constructor(private http: HttpClient) {}
 
   createPost(formData: FormData) {
-    // https://www.freecodecamp.org/news/how-to-make-image-upload-easy-with-angular-1ed14cb2773b/
-    // attached images must be sent as form-data
-    //const formData = new FormData();
-    // "postImage" is the key which the backend is looking for
-    //formData.append("postImage", image);
-
     return this.http.post("/api/posts", formData);
   }
 
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>("/api/posts/");
+    //.pipe(map((post: Post) => new PostModel().deserialize(post)));
+    // .pipe(map((data: any[]) => data.map(item => this.adapter.adapt(item))));
   }
 
   getPost(id: string): Observable<Post> {

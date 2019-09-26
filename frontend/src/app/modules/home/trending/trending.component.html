@@ -10,5 +10,7 @@
 
   <span>{{ selected }} selected</span>
 </div>
-<p>{{ posts.length }}</p>
-<app-preview *ngFor="let post of posts" [post]="post"></app-preview>
+<ul *ngFor="let post of posts">
+  <app-preview [post]="post"></app-preview>
+</ul>
+<!-- <app-preview *ngFor="let post of posts" [post]="post"></app-preview> -->
