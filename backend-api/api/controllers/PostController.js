@@ -17,6 +17,18 @@ exports.list_all_posts = function(req, res) {
 };
 
 
+exports.get_post = function(req, res) {
+    if (!req.params.postid)
+        return res.status(400).send({error: "missing post id"});
+
+    Post.findById(req.params.postid, function(err, post) {
+        if (err)
+            return res.status(500).send({error: err});
+        return res.status(200).send(post);
+    });
+}
+
+
 exports.create_post = function(req, res) {
 
     // file is placed into req.file from

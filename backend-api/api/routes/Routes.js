@@ -26,6 +26,11 @@ module.exports = function(app) {
         .get(posts.list_all_posts)
         .post(auth.verifyToken, upload.single('postImage'), posts.create_post); // user auth required
 
+
+    app.route('/post/:postid')
+        .get(posts.get_post);
+
+
     app.route('/posts/:username')
         .get(posts.list_posts_for_user);
 
