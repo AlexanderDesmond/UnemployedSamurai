@@ -81,7 +81,15 @@ exports.create_comment = function(req, res) {
     if (!req.body.post_id)
         return res.status(400).send({error: "Missing post id"});
 
+    // convert string to object id
+    try {
+        var post_id = mongoose.Types.ObjectId(req.body.post_id);
+    }
+    catch {
+        return res.status(400).send({error: "Post id is incorrect"})
+    }
 
+    // path conversion during testing
     if (process.env.NODE_ENV == "test")
         var image_path = path.resolve(req.file.path);
     else
@@ -89,15 +97,18 @@ exports.create_comment = function(req, res) {
 
 
     // check if post exists
-    Post.findById(req.body.id, function(err, post) {
+    Post.findById(post_id, function(err, post) {
         if (err)
-            res.status(400).send({error: "Post does not exist"});
+            return res.status(500).send({error: err});
+
+        if (!post)
+            return res.status(400).send({error: "Post does not exist"});
 
         // create new comment
         Comment.create(
             {
                 author: req.username,
-                post_id: req.body.post_id,
+                post_id: post_id,
                 image_path: image_path
             },
             function(err, comment) {
