@@ -20,11 +20,22 @@ exports.list_all_posts = function(req, res) {
 
 exports.get_post = function(req, res) {
     if (!req.params.postid)
-        return res.status(400).send({error: "missing post id"});
+        return res.status(400).send({error: "Missing post id"});
 
-    Post.findById(req.params.postid, function(err, post) {
+    try {
+        var post_id = mongoose.Types.ObjectId(req.params.postid);
+    }
+    catch {
+        return res.status(400).send({error: "Post id is incorrect"})
+    }
+
+    Post.findById(post_id, function(err, post) {
         if (err)
             return res.status(500).send({error: err});
+
+        if (!post)
+            return res.status(400).send({error: "Post does not exist"})
+
         return res.status(200).send(post);
     });
 }
