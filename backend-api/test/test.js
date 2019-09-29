@@ -339,5 +339,57 @@ describe("Posts", () => {
 
 
 
+// Comments
+
+describe("Comments", () => {
+
+    // log in
+    var authToken = null;
+    var postId = null;
+
+    before((done) => {
+        chai.request(server)
+            .post('/login')
+            .send({username: testuser.username, password: testuser.password})
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.have.a.property("token").that.is.not.empty;
+                // save auth token for usage by the other tests
+                authToken = res.body.token;
+                done();
+            });
+    });
+
+    // clear all posts and create one to comment on
+    before((done) => {
+        Post.deleteMany({}, (err) => {
+
+            Post.create(
+                {
+                    author: testuser.username,
+                    image_path: "test/image.png"
+                },
+                (err, post) => {
+                    postId = post["_id"];
+                    done();
+            });
+
+        });
+    });
+
+    // create new comment on post
+    it('should create a new comment', (done) => {
+        chai.request(server)
+            .post('/comments')
+            .set('x-access-token', authToken)
+            .field('Content-Type', 'multipart/form-data')
+            .field('post_id', postId)
+            .attach('postImage', fs.readFileSync('test/image.png'), 'image.png')
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
+    });
 
 
+});

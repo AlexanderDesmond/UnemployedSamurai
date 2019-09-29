@@ -78,7 +78,7 @@ exports.create_comment = function(req, res) {
 
 
     // check if post id sent
-    if (!req.body.id)
+    if (!req.body.post_id)
         return res.status(400).send({error: "Missing post id"});
 
 
