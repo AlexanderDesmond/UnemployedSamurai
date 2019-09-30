@@ -1,12 +1,11 @@
-<div class="container">
+<div class="container" (click)="onClick()">
   <div>{{ post.author }}</div>
   <p>{{ post.image_path }}</p>
-  <img src="{{ post.image_path }}" alt="preview image" (click)="onClick()" />
+  <input type="image" src="{{ post.image_path }}" alt="Preview Image"/>
   <div class="interaction">
     <span>Reactions</span>
     <span>Comments</span>
   </div>
 </div>
-
 <!-- Placeholder image for testing purposes -->
 <!-- ../../../../assets/images/temp/Hide the Pain Harold.jpg -->
