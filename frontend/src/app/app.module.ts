@@ -24,6 +24,7 @@ import { PostContainerComponent } from './modules/posts/view-post/post-container
 import { PostComponent } from './modules/posts/view-post/post/post.component';
 import { CommentsContainerComponent } from './modules/posts/view-post/comments/comments-container/comments-container.component';
 import { CommentComponent } from './modules/posts/view-post/comments/comment/comment.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CommentComponent } from './modules/posts/view-post/comments/comment/com
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatPasswordStrengthModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {
