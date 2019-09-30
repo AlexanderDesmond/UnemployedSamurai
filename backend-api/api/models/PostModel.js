@@ -23,14 +23,15 @@ var PostSchema = new Schema( {
         default: null
     },
     children: [{
-        type: Array,
-        default: []
+        type: mongoose.Schema.Types.ObjectID,
+        ref: 'Posts'
     }],
     reactions: {
         type: mongoose.Schema.Types.ObjectID,
         ref: 'Reactions'
-    }
+    },
 
 });
+
 
 module.exports = mongoose.model('Posts', PostSchema);
