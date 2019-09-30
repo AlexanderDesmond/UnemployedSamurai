@@ -3,6 +3,7 @@
 var path = require('path');
 var mongoose = require('mongoose');
 var Post = mongoose.model('Posts');
+var Comment = mongoose.model('Comments');
 var upload = require('../../server').upload;
 
 
@@ -19,11 +20,22 @@ exports.list_all_posts = function(req, res) {
 
 exports.get_post = function(req, res) {
     if (!req.params.postid)
-        return res.status(400).send({error: "missing post id"});
+        return res.status(400).send({error: "Missing post id"});
 
-    Post.findById(req.params.postid, function(err, post) {
+    try {
+        var post_id = mongoose.Types.ObjectId(req.params.postid);
+    }
+    catch {
+        return res.status(400).send({error: "Post id is incorrect"})
+    }
+
+    Post.findById(post_id, function(err, post) {
         if (err)
             return res.status(500).send({error: err});
+
+        if (!post)
+            return res.status(400).send({error: "Post does not exist"})
+
         return res.status(200).send(post);
     });
 }
@@ -57,10 +69,72 @@ exports.create_post = function(req, res) {
             if (err)
                 return res.status(500).send({error: err});
 
-            return res.status(200).send({success: true, post: post});
+            return res.status(200).send(post);
         }
     );
 }
+
+
+exports.create_comment = function(req, res) {
+
+    /* required data
+        - post_id
+        - comment image
+        - username
+    */
+
+    // check if image exists
+    if (!req.file)
+        return res.status(400).send({error: "Image is missing"});
+
+
+    // check if post id sent
+    if (!req.body.post_id)
+        return res.status(400).send({error: "Missing post id"});
+
+    // convert string to object id
+    try {
+        var post_id = mongoose.Types.ObjectId(req.body.post_id);
+    }
+    catch {
+        return res.status(400).send({error: "Post id is incorrect"})
+    }
+
+    // path conversion during testing
+    if (process.env.NODE_ENV == "test")
+        var image_path = path.resolve(req.file.path);
+    else
+        var image_path = req.file.location;
+
+
+    // check if post exists
+    Post.findById(post_id, function(err, post) {
+        if (err)
+            return res.status(500).send({error: err});
+
+        if (!post)
+            return res.status(400).send({error: "Post does not exist"});
+
+        // create new comment
+        Comment.create(
+            {
+                author: req.username,
+                post_id: post_id,
+                image_path: image_path
+            },
+            function(err, comment) {
+                if (err)
+                    res.status(500).send({error: err});
+
+                return res.status(200).send(comment);
+            }
+        );
+
+    });
+
+}
+
+
 
 
 exports.list_posts_for_user = function(req, res) {
@@ -77,3 +151,4 @@ exports.list_posts_for_user = function(req, res) {
         res.send(400, {error: "username not found"});
     }
 }
+
