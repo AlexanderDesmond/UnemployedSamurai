@@ -3,7 +3,7 @@
 var path = require('path');
 var mongoose = require('mongoose');
 var Post = mongoose.model('Posts');
-var Comment = mongoose.model('Comments');
+var Reaction = mongoose.model('Reactions');
 var upload = require('../../server').upload;
 
 

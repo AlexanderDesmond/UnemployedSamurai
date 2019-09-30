@@ -12,7 +12,7 @@ var multerS3 = require('multer-s3');
 
 require('./api/models/UserModel');
 require('./api/models/PostModel');
-require('./api/models/CommentModel');
+require('./api/models/ReactionModel');
 
 var bodyParser = require('body-parser');
 

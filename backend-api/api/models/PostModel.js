@@ -17,15 +17,19 @@ var PostSchema = new Schema( {
         type: Date,
         default: Date.now
     },
-    comments: {
-        type: Array,
-        default: {}
+    parent: {
+        type: mongoose.Schema.Types.ObjectID,
+        ref: 'Posts',
+        default: null
     },
-    reactions: {
+    children: [{
         type: Array,
-        default: {}
+        default: []
+    }],
+    reactions: {
+        type: mongoose.Schema.Types.ObjectID,
+        ref: 'Reactions'
     }
-
 
 });
 
