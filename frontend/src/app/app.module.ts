@@ -24,6 +24,7 @@ import { PostContainerComponent } from './modules/posts/view-post/post-container
 import { PostComponent } from './modules/posts/view-post/post/post.component';
 import { CommentsContainerComponent } from './modules/posts/view-post/comments/comments-container/comments-container.component';
 import { CommentComponent } from './modules/posts/view-post/comments/comment/comment.component';
+import { AddCommentComponent } from './modules/posts/view-post/comments/add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CommentComponent } from './modules/posts/view-post/comments/comment/com
     PostContainerComponent,
     PostComponent,
     CommentsContainerComponent,
-    CommentComponent
+    CommentComponent,
+    AddCommentComponent
   ],
   imports: [
     BrowserModule,
