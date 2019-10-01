@@ -45,13 +45,17 @@ exports.get_post = function(req, res) {
         return res.status(400).send({error: "Post id is incorrect"})
     }
 
-    Post.findById(post_id, function(err, post) {
-        if (err)
-            return res.status(500).send({error: err});
-        if (!post)
-            return res.status(400).send({error: "Post does not exist"});
-        return res.status(200).send(post);
-    });
+    Post.findById(post_id)
+        .populate('reaction')
+        .exec(
+            function(err, post) {
+                if (err)
+                    return res.status(500).send({error: err});
+                if (!post)
+                    return res.status(400).send({error: "Post does not exist"});
+                return res.status(200).send(post);
+            }
+        );
 }
 
 

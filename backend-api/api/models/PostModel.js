@@ -49,6 +49,9 @@ PostSchema.post("save", function(post, next) {
             function(err, reaction) {
                 next(err);
                 post.reaction = reaction;
+                post.save(function(err) {
+                    next(err);
+                });
             }
         );
     }
