@@ -2,6 +2,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Reaction = mongoose.model('Reactions');
 
 var PostSchema = new Schema( {
 
@@ -22,15 +23,35 @@ var PostSchema = new Schema( {
         ref: 'Posts',
         default: null
     },
-    children: [{
+    comments: [{
         type: mongoose.Schema.Types.ObjectID,
         ref: 'Posts'
     }],
-    reactions: {
+    reaction: {
         type: mongoose.Schema.Types.ObjectID,
-        ref: 'Reactions'
+        ref: 'Reactions',
+        default: null
     },
 
+});
+
+
+PostSchema.post("save", function(post, next) {
+
+    // create empty reaction object for every
+    // new post
+    if (post.reaction != null) {
+        next();
+    }
+    else {
+        Reaction.create(
+            {parent: post._id},
+            function(err, reaction) {
+                next(err);
+                post.reaction = reaction;
+            }
+        );
+    }
 });
 
 

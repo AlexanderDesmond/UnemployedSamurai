@@ -18,6 +18,22 @@ exports.list_all_posts = function(req, res) {
 };
 
 
+exports.list_posts_for_user = function(req, res) {
+    try {
+        Post.find( {author: req.params.username},
+            function(err, result) {
+                if (err)
+                    res.send(err);
+
+                res.json(result);
+            });
+
+    } catch (TypeError) {
+        res.send(400, {error: "username not found"});
+    }
+}
+
+
 exports.get_post = function(req, res) {
     if (!req.params.postid)
         return res.status(400).send({error: "Missing post id"});
@@ -32,10 +48,8 @@ exports.get_post = function(req, res) {
     Post.findById(post_id, function(err, post) {
         if (err)
             return res.status(500).send({error: err});
-
         if (!post)
-            return res.status(400).send({error: "Post does not exist"})
-
+            return res.status(400).send({error: "Post does not exist"});
         return res.status(200).send(post);
     });
 }
@@ -51,7 +65,7 @@ exports.create_post = function(req, res) {
         return res.status(400).send({error: "Image is missing"});
     }
 
-    // ASSUMPTION: username will always be here from auth handler
+    // ASSUMPTION: username/author will always be here from auth handler
 
     // store filepath in 'test' environment
     // store public url path when image uploaded to aws
@@ -87,17 +101,12 @@ exports.create_comment = function(req, res) {
     if (!req.file)
         return res.status(400).send({error: "Image is missing"});
 
-
-    // check if post id sent
-    if (!req.body.post_id)
-        return res.status(400).send({error: "Missing post id"});
-
     // convert string to object id
     try {
-        var post_id = mongoose.Types.ObjectId(req.body.post_id);
+        var post_id = mongoose.Types.ObjectId(req.params.postid);
     }
     catch {
-        return res.status(400).send({error: "Post id is incorrect"})
+        return res.status(400).send({error: "Post ID is not valid"})
     }
 
     // path conversion during testing
@@ -116,17 +125,24 @@ exports.create_comment = function(req, res) {
             return res.status(400).send({error: "Post does not exist"});
 
         // create new comment
-        Comment.create(
+        Post.create(
             {
                 author: req.username,
-                post_id: post_id,
-                image_path: image_path
+                image_path: image_path,
+                parent: post._id
             },
             function(err, comment) {
                 if (err)
                     res.status(500).send({error: err});
 
-                return res.status(200).send(comment);
+                // save comment id to post
+                post.comments.push(comment._id);
+                post.save(function(err) {
+                    if (err)
+                        return res.status(500).send({error: err});
+                    return res.status(200).send(comment);
+                });
+
             }
         );
 
@@ -135,20 +151,27 @@ exports.create_comment = function(req, res) {
 }
 
 
+exports.add_reaction = function(req, res) {
 
-
-exports.list_posts_for_user = function(req, res) {
+    // convert string to object id
     try {
-        Post.find( {author: req.params.username},
-            function(err, result) {
-                if (err)
-                    res.send(err);
-
-                res.json(result);
-            });
-
-    } catch (TypeError) {
-        res.send(400, {error: "username not found"});
+        var post_id = mongoose.Types.ObjectId(req.params.postid);
     }
+    catch {
+        return res.status(400).send({error: "Post ID is not valid"})
+    }
+
+    // find post
+    Post.findById(post_id, function() {
+
+        // find reaction object
+
+    });
+
+
+
 }
+
+
+
 

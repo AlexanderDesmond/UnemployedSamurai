@@ -11,8 +11,8 @@ var aws = require('aws-sdk');
 var multerS3 = require('multer-s3');
 
 require('./api/models/UserModel');
-require('./api/models/PostModel');
 require('./api/models/ReactionModel');
+require('./api/models/PostModel');
 
 var bodyParser = require('body-parser');
 
