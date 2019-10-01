@@ -7,9 +7,9 @@ export class PostModel implements Deserializable {
   author: string;
   comments: Comment[];
   image_path: string;
-  postDate: string;
-  reactions: Reaction[];
-  version: number;
+  post_date: string;
+  reaction: Reaction[];
+  __v: number;
   _id: string;
 
   constructor() {}

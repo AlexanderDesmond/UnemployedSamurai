@@ -13,11 +13,19 @@ export class PostsService {
   constructor(private http: HttpClient) {}
 
   createPost(formData: FormData) {
-    return this.http.post("/api/posts", formData);
+    return this.http.post("/api/post/new", formData);
+  }
+
+  addComment(formData: FormData, postid: String) {
+    return this.http.post("/api/post/comment/" + postid, formData);
+  }
+
+  addReaction(reaction: String, postid: String) {
+    return this.http.post("/api/post/react/" + postid, {reaction: reaction});
   }
 
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>("/api/posts/");
+    return this.http.get<Post[]>("/api/posts/all");
     //.pipe(map((post: Post) => new PostModel().deserialize(post)));
     // .pipe(map((data: any[]) => data.map(item => this.adapter.adapt(item))));
   }
