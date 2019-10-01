@@ -1,5 +1,5 @@
 <div class="container">
   <app-post *ngIf="post" [post]="post"></app-post>
   <app-add-comment></app-add-comment>
-  <app-comments-container></app-comments-container>
+  <app-comments-container [comments]="post.comments"></app-comments-container>
 </div>
