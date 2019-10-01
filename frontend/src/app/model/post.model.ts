@@ -5,10 +5,10 @@ import { Deserializable } from "./deserializable.interface";
 
 export class PostModel implements Deserializable {
   author: string;
-  comments: Comment[];
+  comments: string[];
   image_path: string;
   post_date: string;
-  reaction: Reaction[];
+  reaction: Reaction;
   __v: number;
   _id: string;
 
