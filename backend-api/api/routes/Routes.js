@@ -21,7 +21,7 @@ module.exports = function(app) {
         .post(users.login_user);
 
     app.route('/refreshtoken')
-        .get(auth.verifyToken, users.refresh_token);
+        .get(auth.verifyToken, users.refresh_token); // auth required
 
     // helper function
     app.route('/unique_username')
@@ -31,6 +31,9 @@ module.exports = function(app) {
     // multiple posts
     app.route('/posts/all')
         .get(posts.list_all_posts)
+
+    app.route('/posts/trending')
+        .get(posts.list_all_posts) // TODO sort by trending
 
     app.route('/posts/:username')
         .get(posts.list_posts_for_user);
@@ -44,7 +47,7 @@ module.exports = function(app) {
 
     app.route('/post/react/:postid')
         .post(auth.verifyToken, posts.add_reaction) // auth required
-        .delete(auth.verifyToken, posts.remove_reaction);
+        .delete(auth.verifyToken, posts.remove_reaction); // auth required
 
 
     app.route('/post/:postid')

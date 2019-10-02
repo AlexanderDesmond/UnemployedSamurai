@@ -9,7 +9,11 @@ var upload = require('../../server').upload;
 
 exports.list_all_posts = function(req, res) {
 
-    Post.find({parent: null}, function(err, posts) {
+    Post.find(
+        {parent: null},
+        null,  // don't remove any fields from return data
+        {sort: {post_date: -1}},
+        function(err, posts) {
         if (err)
             res.send(err);
 
