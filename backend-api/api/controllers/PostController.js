@@ -166,16 +166,112 @@ exports.add_reaction = function(req, res) {
     }
 
     // find post
-    Post.findById(post_id, function() {
+    Post.findById(post_id, function(err, post) {
 
         // find reaction object
+        Reaction.findById(post.reaction, function(err, reaction) {
+
+            // check if user has already reacted to post
+            if ((reaction.r1.includes(req.username)) ||
+                (reaction.r2.includes(req.username)) ||
+                (reaction.r3.includes(req.username)) ||
+                (reaction.r4.includes(req.username)) ||
+                (reaction.r5.includes(req.username))) {
+                return res.status(409).send({error: "User has already reacted"});
+            }
+
+            // try apply reaction
+            var valid = false;
+            switch (req.body.reaction) {
+                case "r1": {
+                    reaction.r1.push(req.username);
+                    valid = true;
+                    break;
+                }
+                case "r2": {
+                    reaction.r2.push(req.username);
+                    valid = true;
+                    break;
+                }
+                case "r3": {
+                    reaction.r3.push(req.username);
+                    valid = true;
+                    break;
+                }
+                case "r4": {
+                    reaction.r4.push(req.username);
+                    valid = true;
+                    break;
+                }
+                case "r5": {
+                    reaction.r5.push(req.username);
+                    valid = true;
+                    break;
+                }
+            }
+
+            // save reaction
+            if (valid) {
+                reaction.save(function(err) {
+                    if (err)
+                        return res.status(500).send({error: err});
+                    return res.status(200).send({reaction: req.body.reaction});
+                });
+            } else
+                return res.status(400).send({error: "Reaction was invalid"});
+        });
+
+    });
+
+}
+
+
+var remove_from_array = function(array, element) {
+    var index = array.indexOf(element);
+    if (index > -1) {
+        array.splice(index, 1);
+    }
+}
+
+
+exports.remove_reaction = function(req, res) {
+
+    // convert string to object id
+    try {
+        var post_id = mongoose.Types.ObjectId(req.params.postid);
+    }
+    catch {
+        return res.status(400).send({error: "Post ID is not valid"})
+    }
+
+    Post.findById(post_id, function(err, post) {
+
+        if (err)
+            return res.status(500).send({error: err});
+
+        Reaction.findById(post.reaction, function(err, reaction) {
+            if (err)
+                return res.status(500).send({error: err});
+
+            // remove from all reactions
+            remove_from_array(reaction.r1, req.username);
+            remove_from_array(reaction.r2, req.username);
+            remove_from_array(reaction.r3, req.username);
+            remove_from_array(reaction.r4, req.username);
+            remove_from_array(reaction.r5, req.username);
+
+            reaction.save(function(err) {
+                if (err)
+                    res.status(500).send({error: err});
+                res.status(200).send({message: "Reaction successfuly removed"});
+            });
+
+        });
 
     });
 
 
-
 }
-
 
 
 

@@ -43,7 +43,9 @@ module.exports = function(app) {
         .post(auth.verifyToken, upload.single('postImage'), posts.create_comment); // auth required
 
     app.route('/post/react/:postid')
-        .post(auth.verifyToken, posts.add_reaction); // auth required
+        .post(auth.verifyToken, posts.add_reaction) // auth required
+        .delete(auth.verifyToken, posts.remove_reaction);
+
 
     app.route('/post/:postid')
         .get(posts.get_post);
