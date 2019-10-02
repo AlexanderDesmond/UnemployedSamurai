@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { PostsService } from "../../../../../services/posts.service";
 import { Router } from "@angular/router";
 import { Post } from "src/app/post.interface";
+import { AuthenticationService } from "../../../../../services/authentication.service";
 
 @Component({
   selector: "app-add-comment",
@@ -12,10 +13,19 @@ export class AddCommentComponent implements OnInit {
   @Input() post: Post;
   private selectedFile: File = null;
   public newImage: any;
+  isLoggedIn: boolean;
 
-  constructor(private postsService: PostsService, private router: Router) {}
+  constructor(
+    private postsService: PostsService,
+    private router: Router,
+    private authService: AuthenticationService
+    ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.getLoggedIn.subscribe(LoggedIn => {
+      this.isLoggedIn = LoggedIn == true;
+    });
+  }
 
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];

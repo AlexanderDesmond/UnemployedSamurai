@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="isLoggedIn" class="container">
   <h1>Add Comment</h1>
   <img [src]="newImage" alt="new post" *ngIf="newImage" />
   <div>
