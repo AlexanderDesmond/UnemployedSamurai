@@ -44,7 +44,7 @@ export class AddCommentComponent implements OnInit {
       console.log(res);
     });
 
-    // location.reload();
+    location.reload();
 
   }
 

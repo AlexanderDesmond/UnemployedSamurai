@@ -9,7 +9,7 @@ var upload = require('../../server').upload;
 
 exports.list_all_posts = function(req, res) {
 
-    Post.find({}, function(err, posts) {
+    Post.find({parent: null}, function(err, posts) {
         if (err)
             res.send(err);
 
