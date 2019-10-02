@@ -1,5 +1,5 @@
-<div *ngIf="post" style="border:1px solid black; width:95%;  margin: 1%">
-    <img src="{{ post.image_url }}" alt="post"/>
+<div *ngIf="post" style="border:1px solid black; width:98%;  margin: 1%">
+    <img src="{{ imageUrl }}" alt="post" style="width: 90%;"/>
     <p>{{ post.author }}</p>
 
     <div *ngIf="post.comments.length > 0">

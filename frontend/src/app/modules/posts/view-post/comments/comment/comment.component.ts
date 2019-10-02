@@ -10,6 +10,7 @@ import { PostsService } from "../../../../../services/posts.service";
 export class CommentComponent implements OnInit {
   @Input() id: string;
   post : Post;
+  imageUrl: string;
 
   constructor(private postsService: PostsService) { }
 
@@ -18,6 +19,7 @@ export class CommentComponent implements OnInit {
     // read post from database
     this.postsService.getPost(this.id).subscribe(data => {
       this.post = data;
+      this.imageUrl = this.post.image_path;
     });
 
   }

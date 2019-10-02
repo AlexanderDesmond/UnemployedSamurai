@@ -4,6 +4,6 @@
   <app-add-comment></app-add-comment>
 
   <h2>Comments</h2>
-  <app-comments-container *ngIf="comments" [comments]="comments"></app-comments-container>
+  <app-comments-container *ngIf="post && post.comments" [comments]="post.comments"></app-comments-container>
 
 </div>
