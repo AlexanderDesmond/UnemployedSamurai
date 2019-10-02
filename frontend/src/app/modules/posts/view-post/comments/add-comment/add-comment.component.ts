@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { PostsService } from "../../../../../services/posts.service";
 import { Router } from "@angular/router";
+import { Post } from "src/app/post.interface";
 
 @Component({
   selector: "app-add-comment",
@@ -8,6 +9,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./add-comment.component.scss"]
 })
 export class AddCommentComponent implements OnInit {
+  @Input() post: Post;
   private selectedFile: File = null;
   public newImage: any;
 
@@ -27,15 +29,13 @@ export class AddCommentComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     formData.append("postImage", this.selectedFile, this.selectedFile.name);
-    // this.postsService.createPost(formData).subscribe(res => {
-    //   console.log(res);
-    // });
 
-    // console.log("Submitted");
+    this.postsService.addComment(formData, this.post._id).subscribe(res => {
+      console.log(res);
+    });
 
-    // this.postsService.getPost("test").subscribe(res => {
-    //   console.log(res);
-    // });
+    // location.reload();
+
   }
 
   displayImage(event) {
