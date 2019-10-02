@@ -1,9 +1,9 @@
-<div *ngIf="post">
+<div *ngIf="post" style="border:1px solid black; width:95%">
     <img src="{{ post.image_url }}" alt="post"/>
     <p>{{ post.author }}</p>
 
     <div *ngIf="post.comments.length > 0">
-        <p>This post has comments</p>
+        <app-comments-container [comments]="post.comments"></app-comments-container>
     </div>
 
     <div *ngIf="!post.comments.length > 0">
