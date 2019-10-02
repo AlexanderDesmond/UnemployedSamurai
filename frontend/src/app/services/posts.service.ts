@@ -24,6 +24,10 @@ export class PostsService {
     return this.http.post("/api/post/react/" + postid, {reaction: reaction});
   }
 
+  removeReaction(postid: String) {
+    return this.http.delete("/api/post/react/" + postid);
+  }
+
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>("/api/posts/all");
     //.pipe(map((post: Post) => new PostModel().deserialize(post)));
