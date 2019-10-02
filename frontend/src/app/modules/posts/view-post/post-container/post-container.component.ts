@@ -12,6 +12,7 @@ import { Post } from "src/app/post.interface";
 export class PostContainerComponent implements OnInit {
   post: Post;
   id: string;
+  comments: string[];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +28,7 @@ export class PostContainerComponent implements OnInit {
   getPost() {
     this.postsService.getPost(this.id).subscribe(data => {
       this.post = data;
-      console.log(this.post);
+      this.comments = this.post.comments;
     });
   }
 }

@@ -9,22 +9,16 @@ import { PostsService } from "../../../../../services/posts.service";
 })
 export class CommentsContainerComponent implements OnInit {
   @Input() comments: string[];
-  post: Post;
-  test: string;
 
   constructor(private postsService: PostsService) { }
 
   ngOnInit() {
-    this.test = "hello world";
-    console.log(this.comments);
+    for (let i=0; i<this.comments.length; i++)
+      console.log(this.comments[i]);
 
-    this.postsService.getPost(this.comments[0].toString()).subscribe(data => {
+    /* this.postsService.getPost(this.comments[0].toString()).subscribe(data => {
       this.post = data;
-    });
-  }
-
-  getComments() {
-    return this.comments;
+    }); */
   }
 
 }

@@ -13,7 +13,7 @@ export class PostComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.post._id);
+    // console.log(this.post._id);
     this.imageUrl = this.post.image_path;
   }
 }

@@ -1,5 +1,11 @@
 <div>
     <h2>Comments</h2>
-    <p>{{ this.test }}</p>
-    <span>EOF</span>
+    <div *ngIf="!comments.length > 0">
+        <p>This post has no comments</p>
+    </div>
+    <div *ngIf="comments">
+        <div *ngFor="let c of comments">
+            {{ c }}
+        </div>
+    </div>
 </div>
