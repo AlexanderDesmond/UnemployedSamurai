@@ -12,13 +12,6 @@ export class CommentsContainerComponent implements OnInit {
 
   constructor(private postsService: PostsService) { }
 
-  ngOnInit() {
-    for (let i=0; i<this.comments.length; i++)
-      console.log(this.comments[i]);
-
-    /* this.postsService.getPost(this.comments[0].toString()).subscribe(data => {
-      this.post = data;
-    }); */
-  }
+  ngOnInit() {}
 
 }

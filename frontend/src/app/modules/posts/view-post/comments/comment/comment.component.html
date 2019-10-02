@@ -1,1 +1,13 @@
-<p>comment works!</p>
+<div *ngIf="post">
+    <img src="{{ post.image_url }}" alt="post"/>
+    <p>{{ post.author }}</p>
+
+    <div *ngIf="post.comments.length > 0">
+        <p>This post has comments</p>
+    </div>
+
+    <div *ngIf="!post.comments.length > 0">
+        <p>This comment has no additional comments</p>
+    </div>
+
+</div>
