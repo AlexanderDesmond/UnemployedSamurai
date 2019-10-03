@@ -6,6 +6,7 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  }
 
   input {
     width: 300px;
@@ -16,5 +17,10 @@
   .interaction {
     display: flex;
     justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
   }
-}
+
+  .authorName {
+    margin-bottom: 5px;
+  }

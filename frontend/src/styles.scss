@@ -13,6 +13,26 @@ button {
     font-size: 20px;
 }
 
+.submitButton {
+    margin-bottom: 3%;
+}
+
 h1 {
     font-size: 36px;
+}
+
+.imageUpload {
+    font-size: 16px;
+    margin-left: 15%;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+.imageComment{
+    max-height: 60%;
+    max-width: 60%;
+}
+
+.authorName {
+    text-decoration: underline;
 }

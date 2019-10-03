@@ -14,6 +14,7 @@ export class CommentComponent implements OnInit {
   post : Post;
   imageUrl: string;
   isLoggedIn: boolean;
+  replyText: string;
 
   constructor(
     private postsService: PostsService,
@@ -31,7 +32,6 @@ export class CommentComponent implements OnInit {
       this.post = data;
       this.imageUrl = this.post.image_path;
     });
-
   }
 
 }

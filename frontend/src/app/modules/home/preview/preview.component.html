@@ -1,6 +1,6 @@
 <div class="container" (click)="onClick()">
-  <div>{{ post.author }}</div>
-  <p>{{ post.image_path }}</p>
+  <p class="authorName"><b>{{ post.author }}</b></p>
+  <!-- <p>{{ post.image_path }}</p> -->
   <input type="image" src="{{ post.image_path }}" alt="Preview Image"/>
   <div class="interaction">
     <span>Reactions</span>

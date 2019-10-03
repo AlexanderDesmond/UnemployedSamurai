@@ -1,16 +1,16 @@
 <div *ngIf="post" style="border:1px solid black; width:98%;  margin: 1%">
-    <img src="{{ imageUrl }}" alt="post" style="width: 90%;"/>
-    <p>{{ post.author }}</p>
-
+    <p class="author"><b>{{ post.author }}</b>: </p>
+    <img src="{{ imageUrl }}" alt="post" style="width: 90%;" class="imageComment"/>
+    
     <div *ngIf="post.comments.length > 0">
         <app-comments-container [comments]="post.comments"></app-comments-container>
     </div>
 
     <div *ngIf="!post.comments.length > 0">
-        <p>This comment has no additional comments</p>
+        <p>This comment has no additional comments.</p>
+        <h3>Be the first person to reply...</h3>
     </div>
 
-    <h3>Reply</h3>
+    <h3 *ngIf="!post.comments.length == 0">Add A Reply...</h3>
     <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
-
 </div>
