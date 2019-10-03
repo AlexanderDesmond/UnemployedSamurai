@@ -75,12 +75,7 @@ exports.create_post = function(req, res) {
 
     // ASSUMPTION: username/author will always be here from auth handler
 
-    // store filepath in 'test' environment
-    // store public url path when image uploaded to aws
-    if (process.env.NODE_ENV == "test")
-        var image_path = path.resolve(req.file.path);
-    else
-        var image_path = req.file.location;
+    var image_path = req.file.location;
 
     Post.create(
         {
@@ -117,12 +112,7 @@ exports.create_comment = function(req, res) {
         return res.status(400).send({error: "Post ID is not valid"})
     }
 
-    // path conversion during testing
-    if (process.env.NODE_ENV == "test")
-        var image_path = path.resolve(req.file.path);
-    else
-        var image_path = req.file.location;
-
+    var image_path = req.file.location;
 
     // check if post exists
     Post.findById(post_id, function(err, post) {

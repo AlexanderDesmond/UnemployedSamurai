@@ -11,6 +11,9 @@
   <span>{{ selected }} selected</span>
 </div>
 <ul *ngFor="let post of posts">
+    <button type="button" *ngIf="isLoggedIn" (click)="redirectToHome()">
+        New Post
+      </button>
   <app-preview [post]="post"></app-preview>
 </ul>
 <!-- <app-preview *ngFor="let post of posts" [post]="post"></app-preview> -->
