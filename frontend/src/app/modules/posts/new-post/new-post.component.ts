@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { PostsService } from "../../../services/posts.service";
 import { AuthenticationService } from "../../../services/authentication.service";
 import { Router } from "@angular/router";
+import { Post } from "src/app/post.interface";
 
 @Component({
   selector: "app-new-post",
@@ -12,6 +13,8 @@ import { Router } from "@angular/router";
 export class NewPostComponent implements OnInit {
   private selectedFile: File = null;
   public newImage: any;
+  private id: string;
+  private post: Post;
 
   constructor(
     private postsService: PostsService,
@@ -37,15 +40,11 @@ export class NewPostComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     formData.append("postImage", this.selectedFile, this.selectedFile.name);
-    this.postsService.createPost(formData).subscribe(res => {
-      console.log(res);
+    this.postsService.createPost(formData).subscribe(data => {
+      console.log("Data: " + data);
     });
 
-    console.log("Submitted");
-
-    this.postsService.getPost("test").subscribe(res => {
-      console.log(res);
-    });
+    this.router.navigate(["/"]);
   }
 
   displayImage(event) {
