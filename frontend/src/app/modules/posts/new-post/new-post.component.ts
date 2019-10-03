@@ -42,9 +42,9 @@ export class NewPostComponent implements OnInit {
     formData.append("postImage", this.selectedFile, this.selectedFile.name);
     this.postsService.createPost(formData).subscribe(data => {
       console.log("Data: " + data);
+      this.router.navigate(["/"]);
     });
 
-    this.router.navigate(["/"]);
   }
 
   displayImage(event) {
