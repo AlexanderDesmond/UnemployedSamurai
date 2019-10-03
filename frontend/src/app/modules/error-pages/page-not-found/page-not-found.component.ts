@@ -12,7 +12,7 @@ export class PageNotFoundComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.image = "assets/images/website/Farquaad Muffin Man.jpg";
+    this.image = "assets/images/website/farquaad2.gif";
 
     setTimeout(() => {
       this.router.navigate(['/']);
