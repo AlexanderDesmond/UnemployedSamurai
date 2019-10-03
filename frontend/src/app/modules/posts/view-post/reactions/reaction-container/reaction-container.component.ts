@@ -14,6 +14,7 @@ export class ReactionContainerComponent implements OnInit {
   @Input() post: Post;
   isLoggedIn: boolean;
   reacting: boolean;
+  current: string; // current reaction
 
   constructor(
     private postsSerivce: PostsService,
@@ -30,7 +31,7 @@ export class ReactionContainerComponent implements OnInit {
   GetReaction() {
     if (this.isLoggedIn) {
       this.postsSerivce.getReaction(this.post._id, this.authService.getCurrentUser()).subscribe(res => {
-        console.log(res["reaction"]);
+        this.current = res["reaction"];
       },
       err => {
         console.log("User has not reacted to post");
@@ -42,12 +43,16 @@ export class ReactionContainerComponent implements OnInit {
     console.log("Remove reaction");
     this.postsSerivce.removeReaction(this.post._id).subscribe(res => {
       console.log(res);
+      this.current = "";
     });
   }
 
-  SelectReaction(reaction: String) {
-    if (!this.reacting) { // used to stop spamming reactions
+  SelectReaction(reaction: string) {
+    if (!this.reacting && this.current != reaction) { // used to stop spamming reactions
       this.reacting = true;
+      // set reaction early for less input delay
+      // and reset reaction if there was an error
+      this.current = reaction;
 
       this.postsSerivce.removeReaction(this.post._id).subscribe(res => {
         this.postsSerivce.addReaction(reaction, this.post._id).subscribe(res => {
@@ -56,11 +61,13 @@ export class ReactionContainerComponent implements OnInit {
         },
         err => {
           alert("Could not react to post. Please try again later");
+          this.current = "";
           this.reacting = false;
         });
       },
       err => {
         alert("Could not react to post. Please try again later");
+        this.current = "";
         this.reacting = false;
       });
     }

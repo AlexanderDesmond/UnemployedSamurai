@@ -1,26 +1,26 @@
 <div *ngIf="isLoggedIn" class="reaction-container">
   <!-- smile -->
-  <span class="reaction" (click)="SelectReaction('r1')">
+  <span class="reaction" [ngClass]="{'selected': current == 'r1'}" (click)="SelectReaction('r1')">
     😃
   </span>
 
   <!-- laugh -->
-  <span class="reaction" (click)="SelectReaction('r2')">
+  <span class="reaction" [ngClass]="{'selected': current == 'r2'}" (click)="SelectReaction('r2')">
     😆
   </span>
 
   <!-- confused -->
-  <span class="reaction" (click)="SelectReaction('r3')">
+  <span class="reaction" [ngClass]="{'selected': current == 'r3'}" (click)="SelectReaction('r3')">
     😕
   </span>
 
   <!-- unamused -->
-  <span class="reaction" (click)="SelectReaction('r4')">
+  <span class="reaction" [ngClass]="{'selected': current == 'r4'}" (click)="SelectReaction('r4')">
     😒
   </span>
 
   <!-- angry -->
-  <span class="reaction" (click)="SelectReaction('r5')">
+  <span class="reaction" [ngClass]="{'selected': current == 'r5'}" (click)="SelectReaction('r5')">
     😠
   </span>
 
