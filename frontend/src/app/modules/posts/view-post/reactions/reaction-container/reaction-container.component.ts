@@ -13,6 +13,7 @@ export class ReactionContainerComponent implements OnInit {
 
   @Input() post: Post;
   isLoggedIn: boolean;
+  reacting: boolean;
 
   constructor(
     private postsSerivce: PostsService,
@@ -25,18 +26,32 @@ export class ReactionContainerComponent implements OnInit {
     });
   }
 
-  SelectReaction(reaction: String) {
-    console.log("Reaction selected");
-    this.postsSerivce.addReaction(reaction, this.post._id).subscribe(res => {
-      console.log(res);
-    })
-  }
-
   RemoveReaction() {
     console.log("Remove reaction");
     this.postsSerivce.removeReaction(this.post._id).subscribe(res => {
       console.log(res);
     });
+  }
+
+  SelectReaction(reaction: String) {
+    if (!this.reacting) { // used to stop spamming reactions
+      this.reacting = true;
+
+      this.postsSerivce.removeReaction(this.post._id).subscribe(res => {
+        this.postsSerivce.addReaction(reaction, this.post._id).subscribe(res => {
+          console.log(res);
+          this.reacting = false;
+        },
+        err => {
+          alert("Could not react to post. Please try again later");
+          this.reacting = false;
+        });
+      },
+      err => {
+        alert("Could not react to post. Please try again later");
+        this.reacting = false;
+      });
+    }
   }
 
 }
