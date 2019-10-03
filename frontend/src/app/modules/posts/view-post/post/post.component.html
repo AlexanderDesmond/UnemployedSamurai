@@ -1,8 +1,8 @@
 <h1>Post</h1>
-<!-- <p>{{ imageUrl }}</p> -->
+
 <img src="{{ imageUrl }}" alt="post" />
+
 <div>
-<span>By: <b class="authorName">{{ this.post.author }}</b></span>
-<!-- <span>Reactions: {{ this.post.reactions.length }}</span> -->
-<span>Comments: {{ this.post.comments.length }}</span>
+    <span>By: <b class="authorName">{{ this.post.author }}</b></span>
+    <app-reaction-container></app-reaction-container>
 </div>

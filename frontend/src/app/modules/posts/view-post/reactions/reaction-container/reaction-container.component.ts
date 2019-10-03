@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Reaction } from '../../../../../../app/model/reaction.model';
 
 @Component({
   selector: 'app-reaction-container',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReactionContainerComponent implements OnInit {
 
+  @Input() reaction: Reaction;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  SelectReaction(type: String) {
+    switch (type) {
+      case "r1":
+        console.log("Smiley");
+        break;
+    }
+    console.log("Reaction selected");
   }
 
 }
