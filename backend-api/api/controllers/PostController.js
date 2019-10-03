@@ -209,7 +209,7 @@ exports.add_reaction = function(req, res) {
                 reaction.save(function(err) {
                     if (err)
                         return res.status(500).send({error: err});
-                    return res.status(200).send({reaction: req.body.reaction});
+                    return res.status(200).send({message: "Reaction was successful", reaction: req.body.reaction});
                 });
             } else
                 return res.status(400).send({error: "Reaction was invalid"});
