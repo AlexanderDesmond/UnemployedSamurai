@@ -23,7 +23,19 @@ export class ReactionContainerComponent implements OnInit {
   ngOnInit() {
     this.authService.getLoggedIn.subscribe(LoggedIn => {
       this.isLoggedIn = LoggedIn == true;
+      this.GetReaction();
     });
+  }
+
+  GetReaction() {
+    if (this.isLoggedIn) {
+      this.postsSerivce.getReaction(this.post._id, this.authService.getCurrentUser()).subscribe(res => {
+        console.log(res["reaction"]);
+      },
+      err => {
+        console.log("User has not reacted to post");
+      });
+    }
   }
 
   RemoveReaction() {

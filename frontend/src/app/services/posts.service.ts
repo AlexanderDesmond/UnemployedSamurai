@@ -20,6 +20,10 @@ export class PostsService {
     return this.http.post("/api/post/comment/" + postid, formData);
   }
 
+  getReaction(postid: String, username: String) {
+    return this.http.post("/api/post/react/get/" + postid, { username: username });
+  }
+
   addReaction(reaction: String, postid: String) {
     return this.http.post("/api/post/react/" + postid, { reaction: reaction });
   }

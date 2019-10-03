@@ -148,6 +148,54 @@ exports.create_comment = function(req, res) {
 
 }
 
+exports.get_reaction = function(req, res) {
+    // requires post_id and username
+
+    // convert string to object id
+    try {
+        var post_id = mongoose.Types.ObjectId(req.params.postid);
+    }
+    catch {
+        return res.status(400).send({error: "Post ID is not valid"})
+    }
+
+    // check if username exists
+    if (!req.body.username) {
+        return res.status(400).send({error: "Username not provided"})
+    }
+
+    // get post
+    Post.findById(post_id, function(err, post) {
+        if (err)
+            return res.status(500).send({error: err});
+
+        // get reaction
+        Reaction.findById(post.reaction, function(err, reaction) {
+            if (err)
+                return res.status(500).send({error: err});
+
+            if (!reaction)
+                return res.status(500).send({error: "Reactions could not be found"});
+
+            var reaction;
+            if (reaction.r1.includes(req.body.username))
+                reaction = "r1";
+            else if (reaction.r2.includes(req.body.username))
+                reaction = "r2";
+            else if (reaction.r3.includes(req.body.username))
+                reaction = "r3";
+            else if (reaction.r4.includes(req.body.username))
+                reaction = "r4";
+            else if (reaction.r5.includes(req.body.username))
+                reaction = "r5";
+            else
+                return res.status(404).send({message: "Reaction not found"});
+
+            return res.status(200).send({reaction: reaction});
+        });
+    });
+
+}
 
 exports.add_reaction = function(req, res) {
 
