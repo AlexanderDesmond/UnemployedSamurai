@@ -12,8 +12,8 @@ import { PostModel } from "../model/post.model";
 export class PostsService {
   constructor(private http: HttpClient) {}
 
-  createPost(formData: FormData) {
-    return this.http.post("/api/post/new", formData);
+  createPost(formData: FormData): Observable<Post> {
+    return this.http.post<Post>("/api/post/new", formData);
   }
 
   addComment(formData: FormData, postid: String) {
@@ -21,7 +21,7 @@ export class PostsService {
   }
 
   addReaction(reaction: String, postid: String) {
-    return this.http.post("/api/post/react/" + postid, {reaction: reaction});
+    return this.http.post("/api/post/react/" + postid, { reaction: reaction });
   }
 
   removeReaction(postid: String) {
