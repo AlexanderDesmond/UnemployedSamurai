@@ -1,6 +1,8 @@
 <div class="container">
   <app-post *ngIf="post" [post]="post"></app-post>
 
+  <app-reaction-container></app-reaction-container>
+
   <h2>Add A Comment...</h2>
   <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
 

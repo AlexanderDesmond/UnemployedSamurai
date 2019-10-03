@@ -1,4 +1,4 @@
-<div style="margin-top: 10px;">
+<div *ngIf="isLoggedIn" class="reaction-container">
   <span class="reaction" (click)="SelectReaction('r1')">
     😃
   </span>
@@ -19,4 +19,7 @@
     😠
   </span>
 
+  <span class="reaction" (click)="RemoveReaction()">
+    ❌
+  </span>
 </div>

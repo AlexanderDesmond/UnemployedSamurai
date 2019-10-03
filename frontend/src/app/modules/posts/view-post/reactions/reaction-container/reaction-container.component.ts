@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Reaction } from '../../../../../../app/model/reaction.model';
+import { PostsService } from '../../../../../services/posts.service';
+import { AuthenticationService } from "../../../../../services/authentication.service";
 
 @Component({
   selector: 'app-reaction-container',
@@ -9,10 +11,17 @@ import { Reaction } from '../../../../../../app/model/reaction.model';
 export class ReactionContainerComponent implements OnInit {
 
   @Input() reaction: Reaction;
+  isLoggedIn: boolean;
 
-  constructor() { }
+  constructor(
+    private postsSerivce: PostsService,
+    private authService: AuthenticationService
+  ) { }
 
   ngOnInit() {
+    this.authService.getLoggedIn.subscribe(LoggedIn => {
+      this.isLoggedIn = LoggedIn == true;
+    });
   }
 
   SelectReaction(type: String) {
@@ -22,6 +31,10 @@ export class ReactionContainerComponent implements OnInit {
         break;
     }
     console.log("Reaction selected");
+  }
+
+  RemoveReaction() {
+    console.log("Remove reaction");
   }
 
 }
