@@ -11,6 +11,9 @@ html, body {
 
 button {
     font-size: 20px;
+    padding: 7px;
+    border-radius: 6px;
+    background-color: rgb(187, 148, 255);
 }
 
 .submitButton {
@@ -31,8 +34,4 @@ h1 {
 .imageComment{
     max-height: 60%;
     max-width: 60%;
-}
-
-.authorName {
-    text-decoration: underline;
 }

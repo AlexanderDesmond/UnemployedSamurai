@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-page-not-found",
@@ -8,9 +9,13 @@ import { Component, OnInit } from "@angular/core";
 export class PageNotFoundComponent implements OnInit {
   image: string;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.image = "assets/images/website/Farquaad Muffin Man.jpg";
+    this.image = "assets/images/website/farquaad2.gif";
+
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 10000);
   }
 }
