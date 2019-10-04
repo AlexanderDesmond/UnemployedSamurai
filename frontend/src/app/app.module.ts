@@ -26,7 +26,7 @@ import { CommentsContainerComponent } from "./modules/posts/view-post/comments/c
 import { CommentComponent } from "./modules/posts/view-post/comments/comment/comment.component";
 import { AddCommentComponent } from "./modules/posts/view-post/comments/add-comment/add-comment.component";
 import { FormsModule } from "@angular/forms";
-import { ReactionContainerComponent } from './modules/posts/view-post/reactions/reaction-container/reaction-container.component';
+import { ReactionContainerComponent } from "./modules/posts/view-post/reactions/reaction-container/reaction-container.component";
 
 @NgModule({
   declarations: [

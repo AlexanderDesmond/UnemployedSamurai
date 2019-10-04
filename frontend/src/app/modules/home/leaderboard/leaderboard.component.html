@@ -1,6 +1,6 @@
 <p>Leaderboard</p>
-<span>
-  <app-leaderboard-item></app-leaderboard-item>
-  <app-leaderboard-item></app-leaderboard-item>
-  <app-leaderboard-item></app-leaderboard-item>
-</span>
+<div class="container">
+  <div *ngFor="let user of users">
+    <app-leaderboard-item [username]="user.username"></app-leaderboard-item>
+  </div>
+</div>
