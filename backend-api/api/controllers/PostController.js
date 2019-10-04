@@ -312,8 +312,35 @@ exports.remove_reaction = function(req, res) {
 
     });
 
-
 }
 
+exports.delete_post = function(req, res) {
 
+    // convert string to object id
+    try {
+        var post_id = mongoose.Types.ObjectId(req.params.postid);
+    }
+    catch {
+        return res.status(400).send({error: "Post ID is not valid"})
+    }
 
+    // get post
+    Post.findById(post_id, function(err, post) {
+
+        if (!post)
+            return res.status(404).send({error: "Post could not be found"});
+
+        // check if author is same as authenticated user
+        if (post.author != req.username)
+            return res.status(403).send({error: "You are not authorised to delete this post"});
+
+        post.remove(function(err) {
+            if (err)
+                return res.status(500).send({error: err});
+
+            return res.status(200).send({message: "Post deleted successfully"});
+        });
+
+    });
+
+}

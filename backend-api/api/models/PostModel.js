@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Reaction = mongoose.model('Reactions');
+// var Post = mongoose.model('Posts');
 
 var PostSchema = new Schema( {
 
@@ -55,6 +56,22 @@ PostSchema.post("save", function(post, next) {
             }
         );
     }
+});
+
+
+PostSchema.pre("remove", function(next) {
+    console.log("remove called on post " + this._id);
+
+    // remove reaction
+    Reaction.find({"_id": mongoose.Types.ObjectId(this.reaction)}).remove( function(err) {});
+
+    // remove comments
+    let Post = mongoose.model('Posts');
+    this.comments.forEach(element => {
+        Post.find({"_id": mongoose.Types.ObjectId(element)}).remove(function(err) {});
+    });
+
+    next();
 });
 
 
