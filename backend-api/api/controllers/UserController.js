@@ -152,6 +152,9 @@ exports.refresh_token = function(req, res) {
         if (err)
             return res.status(401).send({auth: false});
 
+        if (!user)
+            return res.status(401).send({auth: false, message: "User could not be found"});
+
         // send new token if old token was still valid
         var token = jwt.sign({username: user.username}, config.secret, {
             expiresIn: '1h'
