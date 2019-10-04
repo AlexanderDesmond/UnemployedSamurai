@@ -5,7 +5,7 @@
   </div>
   <div *ngIf="comments">
     <div *ngFor="let c of comments">
-      <app-comment [id]="c"></app-comment>
+      <app-comment [id]="c" [level]="level"></app-comment>
     </div>
   </div>
 </div>
