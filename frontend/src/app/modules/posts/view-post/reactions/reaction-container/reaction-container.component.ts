@@ -36,17 +36,15 @@ export class ReactionContainerComponent implements OnInit {
             this.current = res["reaction"];
           },
           err => {
-            console.log("User has not reacted to post");
           }
         );
     }
   }
 
   RemoveReaction() {
-    console.log("Remove reaction");
     this.postsSerivce.removeReaction(this.post._id).subscribe(res => {
-      console.log(res);
       this.current = "";
+      this.UpdatePost();
     });
   }
 
@@ -62,7 +60,7 @@ export class ReactionContainerComponent implements OnInit {
         res => {
           this.postsSerivce.addReaction(reaction, this.post._id).subscribe(
             res => {
-              console.log(res);
+              this.UpdatePost();
               this.reacting = false;
             },
             err => {
@@ -80,4 +78,11 @@ export class ReactionContainerComponent implements OnInit {
       );
     }
   }
+
+  UpdatePost() {
+    this.postsSerivce.getPost(this.post._id).subscribe(res => {
+      this.post = res;
+    });
+  }
+
 }

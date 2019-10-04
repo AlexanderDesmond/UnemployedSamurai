@@ -189,7 +189,7 @@ exports.get_reaction = function(req, res) {
             else if (reaction.r5.includes(req.body.username))
                 reaction = "r5";
             else
-                return res.status(404).send({message: "Reaction not found"});
+                reaction = "";
 
             return res.status(200).send({reaction: reaction});
         });
