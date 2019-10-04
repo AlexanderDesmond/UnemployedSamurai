@@ -42,6 +42,11 @@ export class ReactionContainerComponent implements OnInit {
   }
 
   RemoveReaction() {
+    if (!this.isLoggedIn) {
+      this.AskLogin();
+      return;
+    }
+
     this.postsSerivce.removeReaction(this.post._id).subscribe(res => {
       this.current = "";
       this.UpdatePost();
@@ -49,6 +54,11 @@ export class ReactionContainerComponent implements OnInit {
   }
 
   SelectReaction(reaction: string) {
+    if (!this.isLoggedIn) {
+      this.AskLogin();
+      return;
+    }
+
     if (!this.reacting && this.current != reaction) {
       // used to stop spamming reactions
       this.reacting = true;
@@ -84,5 +94,10 @@ export class ReactionContainerComponent implements OnInit {
       this.post = res;
     });
   }
+
+  AskLogin() {
+    alert("Please login with an account in order to react to posts! :D");
+  }
+
 
 }
