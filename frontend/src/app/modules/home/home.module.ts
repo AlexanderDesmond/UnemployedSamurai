@@ -6,13 +6,15 @@ import { HomeContainerComponent } from "./home-container/home-container.componen
 
 import { MaterialModule } from "../../material.module";
 import { PreviewComponent } from './preview/preview.component';
+import { LeaderboardItemComponent } from './leaderboard/leaderboard-item/leaderboard-item.component';
 
 @NgModule({
   declarations: [
     LeaderboardComponent,
     TrendingComponent,
     HomeContainerComponent,
-    PreviewComponent
+    PreviewComponent,
+    LeaderboardItemComponent
   ],
   imports: [CommonModule, MaterialModule]
 })

@@ -1,4 +1,5 @@
 <div class="container">
-    <button *ngIf="isLoggedIn" (click)="redirectToHome()"> New Post </button>
+  <app-leaderboard></app-leaderboard>
+  <button *ngIf="isLoggedIn" (click)="redirectToHome()">New Post</button>
   <app-trending></app-trending>
 </div>
