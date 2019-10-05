@@ -53,7 +53,8 @@ module.exports = function(app) {
         .post(posts.get_reaction);
 
     app.route('/post/:postid')
-        .get(posts.get_post);
+        .get(posts.get_post)
+        .delete(auth.verifyToken, posts.delete_post); // auth required
 
 };
 

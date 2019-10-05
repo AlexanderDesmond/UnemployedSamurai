@@ -1,12 +1,16 @@
 <div class="container">
-  <app-post *ngIf="post" [post]="post"></app-post>
 
-  <app-reaction-container *ngIf="post" [post]="post"></app-reaction-container>
+  <div *ngIf="post">
+    <app-post *ngIf="post" [post]="post"></app-post>
 
-  <h2>Add A Comment...</h2>
-  <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
+    <app-reaction-container *ngIf="post" [post]="post"></app-reaction-container>
+    <a *ngIf="isLoggedIn" (click)="DeletePost()">Delete</a>
 
-  <h2>Comments</h2>
-  <app-comments-container *ngIf="post && post.comments" [comments]="post.comments" [level]=1></app-comments-container>
+    <h2>Add A Comment...</h2>
+    <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
+
+    <h2>Comments</h2>
+    <app-comments-container *ngIf="post && post.comments" [comments]="post.comments" [level]=1></app-comments-container>
+  </div>
 
 </div>

@@ -45,4 +45,9 @@ export class PostsService {
   getPost(id: string): Observable<Post> {
     return this.http.get<Post>("/api/post/" + id);
   }
+
+  deletePost(id: string) {
+    return this.http.delete("/api/post/" + id);
+  }
+
 }

@@ -1,4 +1,6 @@
 <div *ngIf="post" class="main" [ngClass]="{shaded: level % 2 == 0}">
+    <a *ngIf="isLoggedIn" (click)="DeleteComment()">Delete</a>
+
     <p class="author"><b>{{ post.author }}</b>: </p>
     <img src="{{ imageUrl }}" alt="post" style="width: 90%;" class="imageComment"/>
 
