@@ -4,6 +4,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var Post = mongoose.model('Posts');
 var Reaction = mongoose.model('Reactions');
+var User = mongoose.model('Users');
 var upload = require('../../server').upload;
 
 
@@ -86,7 +87,7 @@ exports.create_post = function(req, res) {
 
     // ASSUMPTION: username/author will always be here from auth handler
 
-    var image_path = req.file.location;
+    var image_path = req.file.location || req.file.path;
 
     Post.create(
         {
@@ -96,6 +97,12 @@ exports.create_post = function(req, res) {
         function(err, post) {
             if (err)
                 return res.status(500).send({error: err});
+
+            // increment user post count
+            User.findOne({username: post.author}, function(err, user) {
+                user.post_count += 1;
+                user.save(function(err) {});
+            });
 
             return res.status(200).send(post);
         }
@@ -123,7 +130,7 @@ exports.create_comment = function(req, res) {
         return res.status(400).send({error: "Post ID is not valid"})
     }
 
-    var image_path = req.file.location;
+    var image_path = req.file.location || req.file.path;
 
     // check if post exists
     Post.findById(post_id, function(err, post) {
@@ -149,6 +156,13 @@ exports.create_comment = function(req, res) {
                 post.save(function(err) {
                     if (err)
                         return res.status(500).send({error: err});
+
+                    // increment user post count
+                    User.findOne({username: comment.author}, function(err, user) {
+                        user.post_count += 1;
+                        user.save(function(err) {});
+                    });
+
                     return res.status(200).send(comment);
                 });
 
