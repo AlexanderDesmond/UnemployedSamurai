@@ -27,6 +27,10 @@ var UserSchema = new Schema( {
     is_admin: {
         type: Boolean,
         default: false
+    },
+    post_count: {
+        type: Number,
+        default: 0
     }
 
 });

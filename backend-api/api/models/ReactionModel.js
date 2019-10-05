@@ -32,7 +32,6 @@ var ReactionSchema = new Schema({
         type: Array,
         default: []
     }
-
 });
 
 module.exports = mongoose.model('Reactions', ReactionSchema);

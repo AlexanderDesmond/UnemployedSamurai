@@ -17,6 +17,16 @@ exports.list_all_users = function(req, res) {
     });
 };
 
+exports.get_user_leaderboard = function(req, res) {
+    User.find({})
+        .sort({'post_count': -1}) // number of posts, decending order
+        .limit(5)
+        .exec(function(err, users) {
+            if (err)
+                return res.status(500).send({error: err});
+            return res.status(200).send(users);
+        });
+};
 
 exports.is_username_unique = function(req, res) {
     if (!req.body.username)

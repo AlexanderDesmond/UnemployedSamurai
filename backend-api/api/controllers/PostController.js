@@ -4,6 +4,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var Post = mongoose.model('Posts');
 var Reaction = mongoose.model('Reactions');
+var User = mongoose.model('Users');
 var upload = require('../../server').upload;
 
 
@@ -20,6 +21,17 @@ exports.list_all_posts = function(req, res) {
         res.json(posts);
     });
 };
+
+exports.list_all_posts_trending = function(req, res) {
+    Post.find({parent: null})
+        .sort({'reaction_count': -1})
+        .exec(function(err, posts) {
+            if (err)
+                return res.status(500).send({error: err});
+
+            return res.status(200).send(posts);
+        });
+}
 
 
 exports.list_posts_for_user = function(req, res) {
@@ -75,7 +87,7 @@ exports.create_post = function(req, res) {
 
     // ASSUMPTION: username/author will always be here from auth handler
 
-    var image_path = req.file.location;
+    var image_path = req.file.location || req.file.path;
 
     Post.create(
         {
@@ -85,6 +97,12 @@ exports.create_post = function(req, res) {
         function(err, post) {
             if (err)
                 return res.status(500).send({error: err});
+
+            // increment user post count
+            User.findOne({username: post.author}, function(err, user) {
+                user.post_count += 1;
+                user.save(function(err) {});
+            });
 
             return res.status(200).send(post);
         }
@@ -112,7 +130,7 @@ exports.create_comment = function(req, res) {
         return res.status(400).send({error: "Post ID is not valid"})
     }
 
-    var image_path = req.file.location;
+    var image_path = req.file.location || req.file.path;
 
     // check if post exists
     Post.findById(post_id, function(err, post) {
@@ -138,6 +156,13 @@ exports.create_comment = function(req, res) {
                 post.save(function(err) {
                     if (err)
                         return res.status(500).send({error: err});
+
+                    // increment user post count
+                    User.findOne({username: comment.author}, function(err, user) {
+                        user.post_count += 1;
+                        user.save(function(err) {});
+                    });
+
                     return res.status(200).send(comment);
                 });
 
@@ -257,7 +282,14 @@ exports.add_reaction = function(req, res) {
                 reaction.save(function(err) {
                     if (err)
                         return res.status(500).send({error: err});
-                    return res.status(200).send({message: "Reaction was successful", reaction: req.body.reaction});
+
+                    post.reaction_count += 1;
+                    post.save(function(err) {
+                        if (err)
+                            return res.status(500).send({error: err});
+
+                        return res.status(200).send({message: "Reaction was successful", reaction: req.body.reaction});
+                    });
                 });
             } else
                 return res.status(400).send({error: "Reaction was invalid"});
@@ -272,7 +304,9 @@ var remove_from_array = function(array, element) {
     var index = array.indexOf(element);
     if (index > -1) {
         array.splice(index, 1);
+        return true;
     }
+    return false;
 }
 
 
@@ -296,16 +330,30 @@ exports.remove_reaction = function(req, res) {
                 return res.status(500).send({error: err});
 
             // remove from all reactions
-            remove_from_array(reaction.r1, req.username);
-            remove_from_array(reaction.r2, req.username);
-            remove_from_array(reaction.r3, req.username);
-            remove_from_array(reaction.r4, req.username);
-            remove_from_array(reaction.r5, req.username);
+            let removed = false;
+            let reaction_lists = [
+                reaction.r1, reaction.r2, reaction.r3,
+                reaction.r4, reaction.r5
+            ];
+            for (let i=0; i<reaction_lists.length; i++) {
+                if (remove_from_array(reaction_lists[i], req.username))
+                    removed = true;
+            }
 
             reaction.save(function(err) {
                 if (err)
-                    res.status(500).send({error: err});
-                res.status(200).send({message: "Reaction successfuly removed"});
+                    return res.status(500).send({error: err});
+
+                if (removed) {
+                    post.reaction_count -= 1;
+                    post.save(function(err) {
+                        if (err)
+                            return res.status(500).send({error: err});
+                        return res.status(200).send({message: "Reaction successfuly removed"});
+                    });
+                }
+                else
+                    return res.status(200).send({message: "No Reaction to remove"});
             });
 
         });

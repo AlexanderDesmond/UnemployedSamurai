@@ -8,7 +8,7 @@ module.exports = function(app) {
 
     // user
     app.route('/users')
-        .get(users.list_all_users)
+        .get(users.get_user_leaderboard)
         .post(users.create_user);
 
     app.route('/users/:username')
@@ -33,7 +33,7 @@ module.exports = function(app) {
         .get(posts.list_all_posts)
 
     app.route('/posts/trending')
-        .get(posts.list_all_posts) // TODO sort by trending
+        .get(posts.list_all_posts_trending) // TODO sort by trending
 
     app.route('/posts/:username')
         .get(posts.list_posts_for_user);

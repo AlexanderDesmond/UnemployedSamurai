@@ -21,7 +21,9 @@ export class PostsService {
   }
 
   getReaction(postid: String, username: String) {
-    return this.http.post("/api/post/react/get/" + postid, { username: username });
+    return this.http.post("/api/post/react/get/" + postid, {
+      username: username
+    });
   }
 
   addReaction(reaction: String, postid: String) {
@@ -34,8 +36,10 @@ export class PostsService {
 
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>("/api/posts/all");
-    //.pipe(map((post: Post) => new PostModel().deserialize(post)));
-    // .pipe(map((data: any[]) => data.map(item => this.adapter.adapt(item))));
+  }
+
+  getPostsTrending(): Observable<Post[]> {
+    return this.http.get<Post[]>("/api/posts/trending");
   }
 
   getPost(id: string): Observable<Post> {
