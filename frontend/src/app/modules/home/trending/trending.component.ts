@@ -9,7 +9,7 @@ import { Post } from "src/app/post.interface";
   styleUrls: ["./trending.component.scss"]
 })
 export class TrendingComponent implements OnInit {
-  selected = "trending";
+  selected = "recent";
   posts: Post[] = [];
 
   constructor(private postsService: PostsService) {}
@@ -19,12 +19,14 @@ export class TrendingComponent implements OnInit {
   }
 
   getPosts() {
-    this.postsService.getPosts().subscribe(data => {
-      this.posts = data;
-      console.log(this.posts);
-      console.log(this.posts.length);
-    });
-
-    console.log("Posts: " + typeof this.posts);
+    if (this.selected === "recent") {
+      this.postsService.getPosts().subscribe(data => {
+        this.posts = data;
+      });
+    } else if (this.selected === "trending") {
+      this.postsService.getPostsTrending().subscribe(data => {
+        this.posts = data;
+      });
+    }
   }
 }
