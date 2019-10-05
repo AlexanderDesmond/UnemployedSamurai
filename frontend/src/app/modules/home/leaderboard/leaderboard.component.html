@@ -1,6 +1,7 @@
 <p>Leaderboard</p>
 <div class="container">
-  <div *ngFor="let user of users">
-    <app-leaderboard-item [username]="user.username"></app-leaderboard-item>
+  <div *ngFor="let user of uniqueUsers">
+    <!-- <app-leaderboard-item [username]="user.username"></app-leaderboard-item> -->
+    <app-leaderboard-item [uniqueUsers]="uniqueUsers"></app-leaderboard-item>
   </div>
 </div>

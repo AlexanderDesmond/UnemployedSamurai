@@ -16,7 +16,7 @@ export class LeaderboardComponent implements OnInit {
   uniqueUsers: {
     uniqueUser: string;
     postCount: number;
-  }[];
+  }[] = [];
 
   constructor(
     private userService: UsersService,
@@ -25,6 +25,8 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+
+    this.populateLeaderboard();
   }
 
   getUsers() {
@@ -37,6 +39,8 @@ export class LeaderboardComponent implements OnInit {
 
   populateLeaderboard() {
     this.getPosts();
+    console.log("Post list: " + this.posts);
+    console.log("User list: " + this.users);
 
     for (let i = 0; i < this.users.length; i++) {
       for (let j = 0; j < this.posts.length; j++) {
@@ -50,5 +54,6 @@ export class LeaderboardComponent implements OnInit {
         this.uniqueUsers.push({ uniqueUser, postCount });
       }
     }
+    console.log("Leaderboard items " + this.uniqueUsers.toString());
   }
 }
