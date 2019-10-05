@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { User } from "src/app/user.interface";
 
 @Component({
   selector: "app-leaderboard-item",
@@ -6,11 +7,8 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./leaderboard-item.component.scss"]
 })
 export class LeaderboardItemComponent implements OnInit {
-  @Input() username: string;
-  @Input() uniqueUser: {
-    uniqueUser: string;
-    postCount: number;
-  };
+  //@Input() username: string;
+  @Input() user: User;
 
   constructor() {}
 

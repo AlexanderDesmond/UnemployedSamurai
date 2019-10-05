@@ -13,10 +13,10 @@ import { PostsService } from "src/app/services/posts.service";
 export class LeaderboardComponent implements OnInit {
   users: User[];
   posts: Post[];
-  uniqueUsers: {
+  /* uniqueUsers: {
     uniqueUser: string;
     postCount: number;
-  }[] = [];
+  }[] = []; */
 
   constructor(
     private userService: UsersService,
@@ -33,35 +33,25 @@ export class LeaderboardComponent implements OnInit {
     this.userService.getUsers().subscribe(
       data => {
         this.users = data;
-        console.log("async users: " + this.users);
       },
-      error => console.log("error"),
-      () => {
-        console.log("hello users");
-        this.getPosts();
-      }
+      error => console.log(error),
+      () => console.log(this.users)
     );
   }
 
-  getPosts() {
+  /* getPosts() {
     this.postService.getPosts().subscribe(
       data => {
         this.posts = data;
-        console.log("async posts: " + this.posts);
       },
       error => console.log("error"),
       () => {
-        console.log("hello posts");
         this.populateLeaderboard();
       }
     );
   }
 
   populateLeaderboard() {
-    //this.getPosts();
-    console.log("Post list: " + this.posts);
-    console.log("User list: " + this.users);
-
     for (let i = 0; i < this.users.length; i++) {
       for (let j = 0; j < this.posts.length; j++) {
         let uniqueUser = this.users[i].username.toString();
@@ -74,6 +64,5 @@ export class LeaderboardComponent implements OnInit {
         this.uniqueUsers.push({ uniqueUser, postCount });
       }
     }
-    console.log("Leaderboard items " + this.uniqueUsers.toString());
-  }
+  } */
 }

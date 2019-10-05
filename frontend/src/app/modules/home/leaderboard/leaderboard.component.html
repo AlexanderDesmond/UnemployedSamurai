@@ -1,7 +1,6 @@
 <p>Leaderboard</p>
 <div class="container">
-  <div *ngFor="let user of uniqueUsers; index as i">
-    <!-- <app-leaderboard-item [username]="user.username"></app-leaderboard-item> -->
-    <app-leaderboard-item [uniqueUser]="uniqueUsers[i]"></app-leaderboard-item>
+  <div *ngFor="let user of users">
+    <app-leaderboard-item [user]="user"></app-leaderboard-item>
   </div>
 </div>
