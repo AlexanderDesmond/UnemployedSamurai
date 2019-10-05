@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { PostsService } from "../../../../services/posts.service";
 import { Post } from "src/app/post.interface";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-post-container",
@@ -15,7 +16,8 @@ export class PostContainerComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class PostContainerComponent implements OnInit {
   DeletePost() {
     if (confirm("Are you sure you want to delete this post? It cannot be recovered once deleted") == true) {
       this.postsService.deletePost(this.post._id).subscribe( res => {
-        location.reload();
+        this.router.navigate(['/']);
       },
       err => {
         alert("Post could not be deleted");
