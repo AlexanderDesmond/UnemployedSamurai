@@ -68,10 +68,30 @@ PostSchema.pre("remove", function(next) {
     // remove reaction
     Reaction.deleteOne({"_id": mongoose.Types.ObjectId(this.reaction)}, function(err) {});
 
-    // remove comments
+    // delete comment id from parent comments array
+    if (this.parent != null) {
+
+        // the id's are being stored as 'this' does not correctly reference the current obj
+        // in the callback functions
+        let parentid = this.parent;
+        let myid = this._id;
+        mongoose.model('Posts').findById(mongoose.Types.ObjectId(parentid), function(err, post) {
+            if (!post || err)
+                return;
+            let index = post.comments.indexOf(myid);
+            if (index > -1) {
+                post.comments.splice(index, 1);
+                post.save(function(err) {});
+            }
+        });
+    }
+
+    // remove child comments
     mongoose.model('Posts').find(
         {parent: mongoose.Types.ObjectId(this._id)},
         function(err, posts) {
+            if (err)
+                return;
             for (let i=0; i<posts.length; i++)
                 posts[i].remove(function(err) {});
         }
