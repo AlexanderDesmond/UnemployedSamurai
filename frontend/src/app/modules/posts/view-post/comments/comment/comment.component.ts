@@ -35,4 +35,16 @@ export class CommentComponent implements OnInit {
     });
   }
 
+  DeleteComment() {
+    if (this.isLoggedIn && confirm("Are you sure you want to delete this comment? It cannot be recovered once deleted") == true) {
+      this.postsService.deletePost(this.post._id).subscribe( res => {
+        location.reload();
+      },
+      err => {
+        alert("Comment could not be deleted");
+        console.log(err);
+      });
+    }
+  }
+
 }

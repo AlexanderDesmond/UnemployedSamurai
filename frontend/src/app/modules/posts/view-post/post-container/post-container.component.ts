@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { PostsService } from "../../../../services/posts.service";
 import { Post } from "src/app/post.interface";
 import { Router } from "@angular/router";
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: "app-post-container",
@@ -13,12 +14,18 @@ import { Router } from "@angular/router";
 export class PostContainerComponent implements OnInit {
   post: Post;
   id: string;
+  isLoggedIn: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthenticationService
+  ) {
+    this.authService.getLoggedIn.subscribe(LoggedIn => {
+      this.isLoggedIn = LoggedIn == true;
+    });
+  }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("_id");
@@ -33,7 +40,7 @@ export class PostContainerComponent implements OnInit {
   }
 
   DeletePost() {
-    if (confirm("Are you sure you want to delete this post? It cannot be recovered once deleted") == true) {
+    if (this.isLoggedIn && confirm("Are you sure you want to delete this post? It cannot be recovered once deleted") == true) {
       this.postsService.deletePost(this.post._id).subscribe( res => {
         this.router.navigate(['/']);
       },
