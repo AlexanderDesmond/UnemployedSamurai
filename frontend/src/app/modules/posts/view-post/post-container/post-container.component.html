@@ -1,14 +1,20 @@
 <div class="container">
 
-  <app-post *ngIf="post" [post]="post"></app-post>
+  <div *ngIf="post">
+    <app-post *ngIf="post" [post]="post"></app-post>
 
-  <app-reaction-container *ngIf="post" [post]="post"></app-reaction-container>
-  <a (click)="DeletePost()">Delete</a>
+    <app-reaction-container *ngIf="post" [post]="post"></app-reaction-container>
+    <a (click)="DeletePost()">Delete</a>
 
-  <h2>Add A Comment...</h2>
-  <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
+    <h2>Add A Comment...</h2>
+    <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
 
-  <h2>Comments</h2>
-  <app-comments-container *ngIf="post && post.comments" [comments]="post.comments" [level]=1></app-comments-container>
+    <h2>Comments</h2>
+    <app-comments-container *ngIf="post && post.comments" [comments]="post.comments" [level]=1></app-comments-container>
+  </div>
+
+  <h1 *ngIf="!post">
+    Oh no! Looks like this post does not exist anymore!
+  </h1>
 
 </div>

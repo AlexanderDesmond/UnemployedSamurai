@@ -31,14 +31,14 @@ export class PostContainerComponent implements OnInit {
   }
 
   DeletePost() {
-    console.log("Delete Post");
-    this.postsService.deletePost(this.post._id).subscribe( res => {
-      alert("Post has been deleted");
-      // TODO: go back to home page
-    },
-    err => {
-      alert("Post could not be deleted");
-      console.log(err);
-    });
+    if (confirm("Are you sure you want to delete this post? It cannot be recovered once deleted") == true) {
+      this.postsService.deletePost(this.post._id).subscribe( res => {
+        location.reload();
+      },
+      err => {
+        alert("Post could not be deleted");
+        console.log(err);
+      });
+    }
   }
 }
