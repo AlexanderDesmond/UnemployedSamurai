@@ -31,10 +31,6 @@ var ReactionSchema = new Schema({
     r5: {
         type: Array,
         default: []
-    },
-    total: {
-        type: Number,
-        default: 0
     }
 });
 

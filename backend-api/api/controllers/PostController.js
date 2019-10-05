@@ -23,8 +23,7 @@ exports.list_all_posts = function(req, res) {
 
 exports.list_all_posts_trending = function(req, res) {
     Post.find({parent: null})
-        .populate('reaction')
-        .sort({'total': -1})
+        .sort({'reaction_count': -1})
         .exec(function(err, posts) {
             if (err)
                 return res.status(500).send({error: err});
@@ -266,11 +265,17 @@ exports.add_reaction = function(req, res) {
 
             // save reaction
             if (valid) {
-                reaction.total += 1;
                 reaction.save(function(err) {
                     if (err)
                         return res.status(500).send({error: err});
-                    return res.status(200).send({message: "Reaction was successful", reaction: req.body.reaction});
+
+                    post.reaction_count += 1;
+                    post.save(function(err) {
+                        if (err)
+                            return res.status(500).send({error: err});
+
+                        return res.status(200).send({message: "Reaction was successful", reaction: req.body.reaction});
+                    });
                 });
             } else
                 return res.status(400).send({error: "Reaction was invalid"});
@@ -311,21 +316,32 @@ exports.remove_reaction = function(req, res) {
                 return res.status(500).send({error: err});
 
             // remove from all reactions
+            let removed = false;
             if (remove_from_array(reaction.r1, req.username))
-                reaction.total -= 1;
+                removed = true;
             if (remove_from_array(reaction.r2, req.username))
-                reaction.total -= 1;
+                removed = true;
             if (remove_from_array(reaction.r3, req.username))
-                reaction.total -= 1;
+                removed = true;
             if (remove_from_array(reaction.r4, req.username))
-                reaction.total -= 1;
+                removed = true;
             if (remove_from_array(reaction.r5, req.username))
-                reaction.total -= 1;
+                removed = true;
 
             reaction.save(function(err) {
                 if (err)
-                    res.status(500).send({error: err});
-                res.status(200).send({message: "Reaction successfuly removed"});
+                    return res.status(500).send({error: err});
+
+                if (removed) {
+                    post.reaction_count -= 1;
+                    post.save(function(err) {
+                        if (err)
+                            return res.status(500).send({error: err});
+                        return res.status(200).send({message: "Reaction successfuly removed"});
+                    });
+                }
+                else
+                    return res.status(200).send({message: "No Reaction to remove"});
             });
 
         });
