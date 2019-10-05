@@ -8,7 +8,7 @@ module.exports = function(app) {
 
     // user
     app.route('/users')
-        .get(users.list_all_users)
+        .get(users.get_user_leaderboard)
         .post(users.create_user);
 
     app.route('/users/:username')
