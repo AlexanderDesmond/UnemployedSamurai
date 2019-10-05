@@ -7,10 +7,10 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class LeaderboardItemComponent implements OnInit {
   @Input() username: string;
-  @Input() uniqueUsers: {
+  @Input() uniqueUser: {
     uniqueUser: string;
     postCount: number;
-  }[];
+  };
 
   constructor() {}
 

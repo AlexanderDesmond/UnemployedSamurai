@@ -26,19 +26,39 @@ export class LeaderboardComponent implements OnInit {
   ngOnInit() {
     this.getUsers();
 
-    this.populateLeaderboard();
+    //this.populateLeaderboard();
   }
 
   getUsers() {
-    this.userService.getUsers().subscribe(data => (this.users = data));
+    this.userService.getUsers().subscribe(
+      data => {
+        this.users = data;
+        console.log("async users: " + this.users);
+      },
+      error => console.log("error"),
+      () => {
+        console.log("hello users");
+        this.getPosts();
+      }
+    );
   }
 
   getPosts() {
-    this.postService.getPosts().subscribe(data => (this.posts = data));
+    this.postService.getPosts().subscribe(
+      data => {
+        this.posts = data;
+        console.log("async posts: " + this.posts);
+      },
+      error => console.log("error"),
+      () => {
+        console.log("hello posts");
+        this.populateLeaderboard();
+      }
+    );
   }
 
   populateLeaderboard() {
-    this.getPosts();
+    //this.getPosts();
     console.log("Post list: " + this.posts);
     console.log("User list: " + this.users);
 
