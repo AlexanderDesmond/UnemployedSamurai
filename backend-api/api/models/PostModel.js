@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Reaction = mongoose.model('Reactions');
+var User = mongoose.model('Users');
 // var Post = mongoose.model('Posts');
 
 var PostSchema = new Schema( {
@@ -64,18 +65,26 @@ PostSchema.post("save", function(post, next) {
 
 
 PostSchema.pre("remove", function(next) {
-    console.log("remove called on post " + this._id);
-
     // remove reaction
-    Reaction.find({"_id": mongoose.Types.ObjectId(this.reaction)}).remove( function(err) {});
+    Reaction.deleteOne({"_id": mongoose.Types.ObjectId(this.reaction)}, function(err) {});
 
     // remove comments
-    let Post = mongoose.model('Posts');
-    this.comments.forEach(element => {
-        Post.find({"_id": mongoose.Types.ObjectId(element)}).remove(function(err) {});
+    mongoose.model('Posts').find(
+        {parent: mongoose.Types.ObjectId(this._id)},
+        function(err, posts) {
+            for (let i=0; i<posts.length; i++)
+                posts[i].remove(function(err) {});
+        }
+    );
+
+    // decrement user post count
+    User.findOne({username: this.author}, function(err, user) {
+        user.post_count -= 1;
+        user.save(function(err) {});
     });
 
     next();
+
 });
 
 

@@ -1,7 +1,9 @@
 <div class="container">
+
   <app-post *ngIf="post" [post]="post"></app-post>
 
   <app-reaction-container *ngIf="post" [post]="post"></app-reaction-container>
+  <a (click)="DeletePost()">Delete</a>
 
   <h2>Add A Comment...</h2>
   <app-add-comment *ngIf="post" [post]="post"></app-add-comment>

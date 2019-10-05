@@ -29,4 +29,16 @@ export class PostContainerComponent implements OnInit {
       this.post = data;
     });
   }
+
+  DeletePost() {
+    console.log("Delete Post");
+    this.postsService.deletePost(this.post._id).subscribe( res => {
+      alert("Post has been deleted");
+      // TODO: go back to home page
+    },
+    err => {
+      alert("Post could not be deleted");
+      console.log(err);
+    });
+  }
 }
