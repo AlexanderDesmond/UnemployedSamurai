@@ -34,9 +34,12 @@ export class PostsService {
 
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>("/api/posts/all");
-    //.pipe(map((post: Post) => new PostModel().deserialize(post)));
-    // .pipe(map((data: any[]) => data.map(item => this.adapter.adapt(item))));
   }
+
+  getPostsTrending(): Observable<Post[]> {
+    return this.http.get<Post[]>("/api/posts/trending");
+  }
+
 
   getPost(id: string): Observable<Post> {
     return this.http.get<Post>("/api/post/" + id);
