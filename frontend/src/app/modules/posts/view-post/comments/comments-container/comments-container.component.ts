@@ -9,6 +9,7 @@ import { PostsService } from "../../../../../services/posts.service";
 })
 export class CommentsContainerComponent implements OnInit {
   @Input() comments: string[];
+  @Input() level: number;
 
   constructor(private postsService: PostsService) {}
 

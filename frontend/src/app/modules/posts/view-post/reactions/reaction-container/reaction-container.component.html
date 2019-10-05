@@ -1,4 +1,4 @@
-<div *ngIf="isLoggedIn" class="reaction-container">
+<div *ngIf="post" class="reaction-container">
   <!-- smile -->
   <span
     class="reaction"
@@ -6,6 +6,9 @@
     (click)="SelectReaction('r1')"
   >
     😃
+    <span *ngIf="post.reaction.r1.length > 0">
+      {{ post.reaction.r1.length }}
+    </span>
   </span>
 
   <!-- laugh -->
@@ -15,6 +18,9 @@
     (click)="SelectReaction('r2')"
   >
     😆
+    <span *ngIf="post.reaction.r2.length > 0">
+      {{ post.reaction.r2.length }}
+    </span>
   </span>
 
   <!-- confused -->
@@ -24,6 +30,9 @@
     (click)="SelectReaction('r3')"
   >
     😕
+    <span *ngIf="post.reaction.r3.length > 0">
+      {{ post.reaction.r3.length }}
+    </span>
   </span>
 
   <!-- unamused -->
@@ -33,6 +42,9 @@
     (click)="SelectReaction('r4')"
   >
     😒
+    <span *ngIf="post.reaction.r4.length > 0">
+      {{ post.reaction.r4.length }}
+    </span>
   </span>
 
   <!-- angry -->
@@ -42,6 +54,9 @@
     (click)="SelectReaction('r5')"
   >
     😠
+    <span *ngIf="post.reaction.r5.length > 0">
+      {{ post.reaction.r5.length }}
+    </span>
   </span>
 
   <span class="reaction" (click)="RemoveReaction()">

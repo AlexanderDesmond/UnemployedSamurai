@@ -32,7 +32,14 @@ var PostSchema = new Schema( {
         ref: 'Reactions',
         default: null
     },
-
+    post_count: {
+        type: Number,
+        default: 0
+    },
+    reaction_count: {
+        type: Number,
+        default: 0
+    }
 });
 
 

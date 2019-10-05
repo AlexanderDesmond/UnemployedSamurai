@@ -36,21 +36,29 @@ export class ReactionContainerComponent implements OnInit {
             this.current = res["reaction"];
           },
           err => {
-            console.log("User has not reacted to post");
           }
         );
     }
   }
 
   RemoveReaction() {
-    console.log("Remove reaction");
+    if (!this.isLoggedIn) {
+      this.AskLogin();
+      return;
+    }
+
     this.postsSerivce.removeReaction(this.post._id).subscribe(res => {
-      console.log(res);
       this.current = "";
+      this.UpdatePost();
     });
   }
 
   SelectReaction(reaction: string) {
+    if (!this.isLoggedIn) {
+      this.AskLogin();
+      return;
+    }
+
     if (!this.reacting && this.current != reaction) {
       // used to stop spamming reactions
       this.reacting = true;
@@ -62,7 +70,7 @@ export class ReactionContainerComponent implements OnInit {
         res => {
           this.postsSerivce.addReaction(reaction, this.post._id).subscribe(
             res => {
-              console.log(res);
+              this.UpdatePost();
               this.reacting = false;
             },
             err => {
@@ -80,4 +88,16 @@ export class ReactionContainerComponent implements OnInit {
       );
     }
   }
+
+  UpdatePost() {
+    this.postsSerivce.getPost(this.post._id).subscribe(res => {
+      this.post = res;
+    });
+  }
+
+  AskLogin() {
+    alert("Please login with an account in order to react to posts! :D");
+  }
+
+
 }

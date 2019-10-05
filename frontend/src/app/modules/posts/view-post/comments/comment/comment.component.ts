@@ -11,6 +11,7 @@ import { AuthenticationService } from "../../../../../services/authentication.se
 
 export class CommentComponent implements OnInit {
   @Input() id: string;
+  @Input() level: number;
   post : Post;
   imageUrl: string;
   isLoggedIn: boolean;
