@@ -21,6 +21,18 @@ exports.list_all_posts = function(req, res) {
     });
 };
 
+exports.list_all_posts_trending = function(req, res) {
+    Post.find({parent: null})
+        .populate('reaction')
+        .sort({'total': -1})
+        .exec(function(err, posts) {
+            if (err)
+                return res.status(500).send({error: err});
+
+            return res.status(200).send(posts);
+        });
+}
+
 
 exports.list_posts_for_user = function(req, res) {
     try {
@@ -254,6 +266,7 @@ exports.add_reaction = function(req, res) {
 
             // save reaction
             if (valid) {
+                reaction.total += 1;
                 reaction.save(function(err) {
                     if (err)
                         return res.status(500).send({error: err});
@@ -272,7 +285,9 @@ var remove_from_array = function(array, element) {
     var index = array.indexOf(element);
     if (index > -1) {
         array.splice(index, 1);
+        return true;
     }
+    return false;
 }
 
 
@@ -296,11 +311,16 @@ exports.remove_reaction = function(req, res) {
                 return res.status(500).send({error: err});
 
             // remove from all reactions
-            remove_from_array(reaction.r1, req.username);
-            remove_from_array(reaction.r2, req.username);
-            remove_from_array(reaction.r3, req.username);
-            remove_from_array(reaction.r4, req.username);
-            remove_from_array(reaction.r5, req.username);
+            if (remove_from_array(reaction.r1, req.username))
+                reaction.total -= 1;
+            if (remove_from_array(reaction.r2, req.username))
+                reaction.total -= 1;
+            if (remove_from_array(reaction.r3, req.username))
+                reaction.total -= 1;
+            if (remove_from_array(reaction.r4, req.username))
+                reaction.total -= 1;
+            if (remove_from_array(reaction.r5, req.username))
+                reaction.total -= 1;
 
             reaction.save(function(err) {
                 if (err)

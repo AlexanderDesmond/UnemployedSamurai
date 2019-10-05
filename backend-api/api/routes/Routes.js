@@ -33,7 +33,7 @@ module.exports = function(app) {
         .get(posts.list_all_posts)
 
     app.route('/posts/trending')
-        .get(posts.list_all_posts) // TODO sort by trending
+        .get(posts.list_all_posts_trending) // TODO sort by trending
 
     app.route('/posts/:username')
         .get(posts.list_posts_for_user);
