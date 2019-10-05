@@ -194,6 +194,9 @@ exports.get_reaction = function(req, res) {
         if (err)
             return res.status(500).send({error: err});
 
+        if (!post)
+            return res.status(500).send({error: err});
+
         // get reaction
         Reaction.findById(post.reaction, function(err, reaction) {
             if (err)

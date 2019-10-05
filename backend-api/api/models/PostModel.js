@@ -77,12 +77,6 @@ PostSchema.pre("remove", function(next) {
         }
     );
 
-    // decrement user post count
-    User.findOne({username: this.author}, function(err, user) {
-        user.post_count -= 1;
-        user.save(function(err) {});
-    });
-
     next();
 
 });
