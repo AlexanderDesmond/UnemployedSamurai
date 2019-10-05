@@ -19,25 +19,25 @@ var bodyParser = require('body-parser');
 // moongose instance
 mongoose.Promise = global.Promise;
 
-// if (process.env.NODE_ENV == "test") {
+if (process.env.NODE_ENV == "test") {
 
-//     // database connection uri different for testing
-//     mongoose.connect(process.env.TEST_MONGO_URI, {useNewUrlParser: true});
+    // database connection uri different for testing
+    mongoose.connect(process.env.TEST_MONGO_URI, {useNewUrlParser: true});
 
-//     // setup image storage in local 'uploads' folder
-//     var upload = multer({storage: multer.diskStorage({
-//             destination: function(req, file, cb) {
-//                 // store files in the uploads directory
-//                 cb(null, "uploads");
-//             },
-//             filename: function(req, file, cb) {
-//                 // create filename with default request image fieldname + current datetime + provided extension
-//                 cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-//             }
-//         })
-//     });
+    // setup image storage in local 'uploads' folder
+    var upload = multer({storage: multer.diskStorage({
+            destination: function(req, file, cb) {
+                // store files in the uploads directory
+                cb(null, "uploads");
+            },
+            filename: function(req, file, cb) {
+                // create filename with default request image fieldname + current datetime + provided extension
+                cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+            }
+        })
+    });
 
-// } else {
+} else {
 
     // setup s3 instance
     var s3 = new aws.S3({
@@ -69,7 +69,7 @@ mongoose.Promise = global.Promise;
         })
     }); // multer
 
-// } // else
+} // else
 
 module.exports.upload = upload;
 
