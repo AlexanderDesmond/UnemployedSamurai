@@ -317,16 +317,14 @@ exports.remove_reaction = function(req, res) {
 
             // remove from all reactions
             let removed = false;
-            if (remove_from_array(reaction.r1, req.username))
-                removed = true;
-            if (remove_from_array(reaction.r2, req.username))
-                removed = true;
-            if (remove_from_array(reaction.r3, req.username))
-                removed = true;
-            if (remove_from_array(reaction.r4, req.username))
-                removed = true;
-            if (remove_from_array(reaction.r5, req.username))
-                removed = true;
+            let reaction_lists = [
+                reaction.r1, reaction.r2, reaction.r3,
+                reaction.r4, reaction.r5
+            ];
+            for (let i=0; i<reaction_lists.length; i++) {
+                if (remove_from_array(reaction_lists[i], req.username))
+                    removed = true;
+            }
 
             reaction.save(function(err) {
                 if (err)
