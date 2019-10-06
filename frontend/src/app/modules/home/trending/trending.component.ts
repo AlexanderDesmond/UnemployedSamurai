@@ -18,6 +18,10 @@ export class TrendingComponent implements OnInit {
     this.getPosts();
   }
 
+  /* 
+    Returns an observable array of Post objects.
+    Sorted either by recent or trending, depending on the option selected.
+   */
   getPosts() {
     if (this.selected === "recent") {
       this.postsService.getPosts().subscribe(data => {
