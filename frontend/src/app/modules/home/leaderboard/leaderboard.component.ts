@@ -13,10 +13,6 @@ import { PostsService } from "src/app/services/posts.service";
 export class LeaderboardComponent implements OnInit {
   users: User[];
   posts: Post[];
-  /* uniqueUsers: {
-    uniqueUser: string;
-    postCount: number;
-  }[] = []; */
 
   constructor(
     private userService: UsersService,
@@ -25,14 +21,19 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
-
-    //this.populateLeaderboard();
   }
 
+  /* 
+    Returns an observable array of User objects sorted by post count in descending order.
+   */
   getUsers() {
     this.userService.getUsers().subscribe(
       data => {
         this.users = data;
+        /* 
+          Sort array of objects:
+          https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
+         */
         this.users.sort((a, b) => {
           if (a.post_count < b.post_count) {
             return 1;
@@ -42,34 +43,11 @@ export class LeaderboardComponent implements OnInit {
         });
       },
       error => console.log(error),
+      /* 
+         Do something when observable has been resolved:
+        https://aigeec.com/angularjs-2-do-something-when-my-observable-is-complete/
+       */
       () => console.log(this.users)
     );
   }
-
-  /* getPosts() {
-    this.postService.getPosts().subscribe(
-      data => {
-        this.posts = data;
-      },
-      error => console.log("error"),
-      () => {
-        this.populateLeaderboard();
-      }
-    );
-  }
-
-  populateLeaderboard() {
-    for (let i = 0; i < this.users.length; i++) {
-      for (let j = 0; j < this.posts.length; j++) {
-        let uniqueUser = this.users[i].username.toString();
-        let postCount = 0;
-
-        if (this.posts[j].author === this.users[i].username) {
-          postCount++;
-        }
-
-        this.uniqueUsers.push({ uniqueUser, postCount });
-      }
-    }
-  } */
 }
