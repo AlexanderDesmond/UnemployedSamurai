@@ -28,11 +28,13 @@ export class LoginFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     // restrict access if user already logged in
-    if (this.authService.getCurrentUser())
-      this.router.navigate(['/']);
+    if (this.authService.getCurrentUser()) this.router.navigate(["/"]);
 
+    /* 
+      Angular Material forms:
+      https://angularfirebase.com/lessons/basics-reactive-forms-in-angular/
+    */
     this.loginForm = this.fb.group({
       username: ["", Validators.required],
       password: ["", Validators.required]
@@ -51,24 +53,22 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService
-      .login(this.username.value, this.password.value)
-      .subscribe(
-        response => {
-          // console.log(response);
+    this.authService.login(this.username.value, this.password.value).subscribe(
+      response => {
+        // console.log(response);
 
-          // show alert to user
-          // alert("Login Successful :)");
-          this.isError = false;
+        // show alert to user
+        // alert("Login Successful :)");
+        this.isError = false;
 
-          // redirect to homepage
-          this.router.navigate(["/"]);
-        },
-        error => {
-          // alert("Login Unsuccessful :(");
-          this.isError = true;
-        }
-      );
+        // redirect to homepage
+        this.router.navigate(["/"]);
+      },
+      error => {
+        // alert("Login Unsuccessful :(");
+        this.isError = true;
+      }
+    );
   }
 
   // Test
