@@ -33,6 +33,13 @@ export class LeaderboardComponent implements OnInit {
     this.userService.getUsers().subscribe(
       data => {
         this.users = data;
+        this.users.sort((a, b) => {
+          if (a.post_count < b.post_count) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
       },
       error => console.log(error),
       () => console.log(this.users)
