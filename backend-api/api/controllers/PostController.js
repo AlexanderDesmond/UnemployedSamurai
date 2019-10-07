@@ -16,7 +16,7 @@ exports.list_all_posts = function(req, res) {
         {
             sort: {post_date: -1},
             page: req.params.page,
-            limit: 5,
+            limit: 10,
         },
         function(err, results) {
             if (err)
@@ -32,7 +32,7 @@ exports.list_all_posts_trending = function(req, res) {
         {
             sort: {reaction_count: -1},
             page: req.params.page,
-            limit: 5,
+            limit: 10,
         },
         function(err, results) {
             if (err)
