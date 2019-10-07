@@ -12,7 +12,7 @@ export class TrendingComponent implements OnInit {
   selected = "recent";
   posts: Post[] = [];
   currentPage: number = 0;
-  hideNext: boolean;
+  hideNext: boolean = false;
 
   constructor(private postsService: PostsService) {}
 
@@ -37,7 +37,13 @@ export class TrendingComponent implements OnInit {
       });
     } else if (this.selected === "trending") {
       this.postsService.getPostsTrending().subscribe(data => {
-        this.posts = data;
+        if (data.length > 0) {
+          this.posts = data;
+          this.hideNext = false;
+        } else {
+          this.currentPage--;
+          this.hideNext = true;
+        }
       });
     }
   }

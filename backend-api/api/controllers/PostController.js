@@ -10,17 +10,6 @@ var upload = require('../../server').upload;
 
 exports.list_all_posts = function(req, res) {
 
-    // Post.find(
-    //     {parent: null},
-    //     null,  // don't remove any fields from return data
-    //     {sort: {post_date: -1}},
-    //     function(err, posts) {
-    //     if (err)
-    //         res.send(err);
-
-    //     res.json(posts);
-    // });
-
     try {
         var current_page = req.params.page;
     } catch {
@@ -46,14 +35,28 @@ exports.list_all_posts = function(req, res) {
 };
 
 exports.list_all_posts_trending = function(req, res) {
-    Post.find({parent: null})
-        .sort({'reaction_count': -1})
-        .exec(function(err, posts) {
+    try {
+        var current_page = req.params.page;
+    } catch {
+        var current_page = 0;
+    }
+
+    var limit = 5;
+
+    Post.find(
+        {parent: null},
+        null,
+        {
+            sort: {reaction_count: -1},
+            skip: current_page * limit,
+            limit: limit
+        },
+        function(err, posts) {
             if (err)
                 return res.status(500).send({error: err});
-
             return res.status(200).send(posts);
-        });
+        }
+    );
 }
 
 
