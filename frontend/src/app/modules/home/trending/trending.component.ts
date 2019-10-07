@@ -34,4 +34,14 @@ export class TrendingComponent implements OnInit {
       });
     }
   }
+
+  nextPage() {
+    this.currentPage++;
+    this.getPosts();
+  }
+
+  previousPage() {
+    this.currentPage--;
+    this.getPosts();
+  }
 }
