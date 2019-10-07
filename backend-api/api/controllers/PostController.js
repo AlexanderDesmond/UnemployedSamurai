@@ -2,6 +2,8 @@
 'use strict';
 var path = require('path');
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate-v2');
+
 var Post = mongoose.model('Posts');
 var Reaction = mongoose.model('Reactions');
 var User = mongoose.model('Users');
@@ -9,52 +11,33 @@ var upload = require('../../server').upload;
 
 
 exports.list_all_posts = function(req, res) {
-
-    try {
-        var current_page = req.params.page;
-    } catch {
-        var current_page = 0;
-    }
-
-    var limit = 5;
-
-    Post.find(
-        {parent:null},
-        null,
+    Post.paginate(
+        {parent: null},
         {
             sort: {post_date: -1},
-            skip: current_page * limit,
-            limit: limit
+            page: req.params.page,
+            limit: 5,
         },
-        function(err, posts) {
+        function(err, results) {
             if (err)
-                res.status(200).send({error: err});
-            res.status(200).send(posts);
-        });
-
+                return res.status(500).send({error: err});
+            return res.status(200).send(results);
+        }
+    );
 };
 
 exports.list_all_posts_trending = function(req, res) {
-    try {
-        var current_page = req.params.page;
-    } catch {
-        var current_page = 0;
-    }
-
-    var limit = 5;
-
-    Post.find(
+    Post.paginate(
         {parent: null},
-        null,
         {
             sort: {reaction_count: -1},
-            skip: current_page * limit,
-            limit: limit
+            page: req.params.page,
+            limit: 5,
         },
-        function(err, posts) {
+        function(err, results) {
             if (err)
                 return res.status(500).send({error: err});
-            return res.status(200).send(posts);
+            return res.status(200).send(results);
         }
     );
 }

@@ -1,6 +1,8 @@
 
 'use strict';
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate-v2');
+
 var Schema = mongoose.Schema;
 var Reaction = mongoose.model('Reactions');
 var User = mongoose.model('Users');
@@ -101,5 +103,6 @@ PostSchema.pre("remove", function(next) {
 
 });
 
+PostSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Posts', PostSchema);
