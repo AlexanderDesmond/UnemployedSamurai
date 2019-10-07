@@ -29,10 +29,10 @@ module.exports = function(app) {
 
 
     // multiple posts
-    app.route('/posts/all')
+    app.route('/posts/all/:page')
         .get(posts.list_all_posts)
 
-    app.route('/posts/trending')
+    app.route('/posts/trending/:page')
         .get(posts.list_all_posts_trending) // TODO sort by trending
 
     app.route('/posts/:username')
