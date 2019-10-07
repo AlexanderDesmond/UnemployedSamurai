@@ -27,13 +27,15 @@ exports.list_all_posts = function(req, res) {
         var current_page = 0;
     }
 
+    var limit = 5;
+
     Post.find(
         {parent:null},
         null,
         {
             sort: {post_date: -1},
-            skip: current_page * 10,
-            limit: 10
+            skip: current_page * limit,
+            limit: limit
         },
         function(err, posts) {
             if (err)

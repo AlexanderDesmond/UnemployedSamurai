@@ -12,6 +12,7 @@ export class TrendingComponent implements OnInit {
   selected = "recent";
   posts: Post[] = [];
   currentPage: number = 0;
+  hideNext: boolean;
 
   constructor(private postsService: PostsService) {}
 
@@ -19,14 +20,20 @@ export class TrendingComponent implements OnInit {
     this.getPosts();
   }
 
-  /* 
+  /*
     Returns an observable array of Post objects.
     Sorted either by recent or trending, depending on the option selected.
    */
   getPosts() {
     if (this.selected === "recent") {
       this.postsService.getPosts(this.currentPage).subscribe(data => {
-        this.posts = data;
+        if (data.length > 0) {
+          this.posts = data;
+          this.hideNext = false;
+        } else {
+          this.currentPage--;
+          this.hideNext = true;
+        }
       });
     } else if (this.selected === "trending") {
       this.postsService.getPostsTrending().subscribe(data => {
