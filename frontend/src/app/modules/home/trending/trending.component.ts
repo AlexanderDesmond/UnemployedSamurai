@@ -11,6 +11,7 @@ import { Post } from "src/app/post.interface";
 export class TrendingComponent implements OnInit {
   selected = "recent";
   posts: Post[] = [];
+  currentPage: number = 0;
 
   constructor(private postsService: PostsService) {}
 
