@@ -25,7 +25,7 @@ export class TrendingComponent implements OnInit {
    */
   getPosts() {
     if (this.selected === "recent") {
-      this.postsService.getPosts().subscribe(data => {
+      this.postsService.getPosts(this.currentPage).subscribe(data => {
         this.posts = data;
       });
     } else if (this.selected === "trending") {
