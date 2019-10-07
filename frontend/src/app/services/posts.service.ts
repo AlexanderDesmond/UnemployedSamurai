@@ -34,12 +34,12 @@ export class PostsService {
     return this.http.delete("/api/post/react/" + postid);
   }
 
-  getPosts(page: number): Observable<Post[]> {
+  getPosts(page: number) {
     return this.http.get<Post[]>("/api/posts/all/" + page);
   }
 
-  getPostsTrending(): Observable<Post[]> {
-    return this.http.get<Post[]>("/api/posts/trending");
+  getPostsTrending(page: number) {
+    return this.http.get<Post[]>("/api/posts/trending/" + page);
   }
 
   getPost(id: string): Observable<Post> {

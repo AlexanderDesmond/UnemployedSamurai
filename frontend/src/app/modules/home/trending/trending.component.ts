@@ -11,12 +11,24 @@ import { Post } from "src/app/post.interface";
 export class TrendingComponent implements OnInit {
   selected = "recent";
   posts: Post[] = [];
-  currentPage: number = 0;
-  hideNext: boolean = false;
+  currentPage: number = 1;
+
+  hideNext: boolean = true;
+  hidePrevious: boolean = true;
 
   constructor(private postsService: PostsService) {}
 
   ngOnInit() {
+    this.getPosts();
+  }
+
+  UpdatePageCount(data) {
+    this.hidePrevious = !data["hasPrevPage"];
+    this.hideNext = !data["hasNextPage"];
+  }
+
+  Reset() {
+    this.currentPage = 1;
     this.getPosts();
   }
 
@@ -27,23 +39,13 @@ export class TrendingComponent implements OnInit {
   getPosts() {
     if (this.selected === "recent") {
       this.postsService.getPosts(this.currentPage).subscribe(data => {
-        if (data.length > 0) {
-          this.posts = data;
-          this.hideNext = false;
-        } else {
-          this.currentPage--;
-          this.hideNext = true;
-        }
+        this.posts = data["docs"];
+        this.UpdatePageCount(data);
       });
     } else if (this.selected === "trending") {
-      this.postsService.getPostsTrending().subscribe(data => {
-        if (data.length > 0) {
-          this.posts = data;
-          this.hideNext = false;
-        } else {
-          this.currentPage--;
-          this.hideNext = true;
-        }
+      this.postsService.getPostsTrending(this.currentPage).subscribe(data => {
+        this.posts = data["docs"];
+        this.UpdatePageCount(data);
       });
     }
   }
