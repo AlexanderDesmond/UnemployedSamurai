@@ -34,8 +34,8 @@ export class PostsService {
     return this.http.delete("/api/post/react/" + postid);
   }
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>("/api/posts/all");
+  getPosts(page: number): Observable<Post[]> {
+    return this.http.get<Post[]>("/api/posts/all/" + page);
   }
 
   getPostsTrending(): Observable<Post[]> {
