@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
-  <span>
-    <nav>
-      <a routerLink="">Image Board</a>
-    </nav>
-  </span>
+  <img
+    src="assets/images/website/image board logo.png"
+    alt="logo"
+    routerLink=""
+  />
   <span *ngIf="isLoggedIn">{{ currentUser }}</span>
   <button class="header-button" type="button" (click)="logout()">
     {{ isLoggedIn ? "Logout" : "Login" }}
