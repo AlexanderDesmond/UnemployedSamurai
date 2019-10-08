@@ -1,5 +1,9 @@
-.container {
+.leaderboard {
+  border: 1px solid black;
+}
+
+.flex-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
 }
