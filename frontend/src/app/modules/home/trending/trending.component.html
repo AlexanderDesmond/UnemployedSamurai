@@ -13,12 +13,14 @@
   </button>
   <app-preview [post]="post"></app-preview>
 </ul>
-<span>
+<span class="pagination">
   <button type="button" *ngIf="!hidePrevious" (click)="previousPage()">
-    Previous
+    &lt; Previous
   </button>
-  <span>{{ currentPage }}</span>
-  <button type="button" *ngIf="!hideNext" (click)="nextPage()">Next</button>
+  <span class="underlined">{{ currentPage }}</span>
+  <button type="button" *ngIf="!hideNext" (click)="nextPage()">
+    Next &gt;
+  </button>
 </span>
 
 <!-- <app-preview *ngFor="let post of posts" [post]="post"></app-preview> -->
