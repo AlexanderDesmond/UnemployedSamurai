@@ -1,21 +1,31 @@
-<div *ngIf="post" class="main" [ngClass]="{shaded: level % 2 == 0}">
-    <a *ngIf="isLoggedIn" (click)="DeleteComment()">Delete</a>
+<div *ngIf="post" class="main" [ngClass]="{ shaded: level % 2 == 0 }">
+  <a *ngIf="isLoggedIn" (click)="DeleteComment()">Delete</a>
 
-    <p class="author"><b>{{ post.author }}</b>: </p>
-    <img src="{{ imageUrl }}" alt="post" style="width: 90%;" class="imageComment"/>
+  <p class="author">
+    <b>{{ post.author }}</b
+    >:
+  </p>
+  <img
+    src="{{ imageUrl }}"
+    alt="post"
+    style="width: 90%;"
+    class="imageComment"
+  />
 
-    <app-reaction-container *ngIf="post" [post]="post"></app-reaction-container>
+  <app-reaction-container *ngIf="post" [post]="post"></app-reaction-container>
 
-    <div *ngIf="post.comments.length > 0">
-        <app-comments-container [comments]="post.comments" [level]="level + 1"></app-comments-container>
-    </div>
+  <div *ngIf="post.comments.length > 0">
+    <app-comments-container
+      [comments]="post.comments"
+      [level]="level + 1"
+    ></app-comments-container>
+  </div>
 
-    <div *ngIf="!post.comments.length > 0">
-        <p><i>This comment has no replies.</i></p>
-        <h3>Be the first person to reply...</h3>
-    </div>
+  <div *ngIf="!post.comments.length > 0">
+    <h3>Be the first person to reply...</h3>
+  </div>
 
-    <!-- TODO: hide this if not logged in -->
-    <h3 *ngIf="!post.comments.length == 0">Add A Reply...</h3>
-    <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
+  <!-- TODO: hide this if not logged in -->
+  <h3 *ngIf="!post.comments.length == 0">Add A Reply...</h3>
+  <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
 </div>
