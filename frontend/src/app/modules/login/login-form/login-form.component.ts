@@ -40,8 +40,8 @@ export class LoginFormComponent implements OnInit {
       password: ["", Validators.required]
     });
 
-    this.getUsers();
-    this.getUser();
+    //this.getUsers();
+    //this.getUser();
   }
 
   get username() {
@@ -73,15 +73,6 @@ export class LoginFormComponent implements OnInit {
 
   // Test
   getUsers() {
-    // this.userService.getUsers().subscribe(
-    //   response => {
-    //     console.log("response is ", response);
-    //   },
-    //   error => {
-    //     console.log("error is", error);
-    //   }
-    // );
-
     this.userService.getUsers().subscribe(data => (this.users = data));
   }
 
