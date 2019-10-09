@@ -20,19 +20,9 @@
     Username or password incorrect.
   </div>
 
-  <button
-    mat-raised-button
-    [disabled]="loginForm.invalid || loading"
-    color="primary"
-  >
+  <button mat-raised-button [disabled]="loginForm.invalid" color="primary">
     Login
   </button>
 
   <p>Don't have an account? <a routerLink="../register">Sign Up</a>!</p>
 </form>
-
-<div>
-  <ul *ngFor="let user of users">
-    <li>{{ user.username }}</li>
-  </ul>
-</div>

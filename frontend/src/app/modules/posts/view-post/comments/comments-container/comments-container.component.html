@@ -1,0 +1,11 @@
+<!-- <div style="border:1px solid red; width:98%; margin: 1%"> -->
+<div>
+  <div *ngIf="comments.length === 0">
+    <p>This post has no comments.</p>
+  </div>
+  <div *ngIf="comments">
+    <div *ngFor="let c of comments">
+      <app-comment [id]="c" [level]="level"></app-comment>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.reaction-container {
+    // border: 1px solid red;
+    padding: 10px;
+}
+
+.reaction {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.selected {
+    background-color: aquamarine;
+    border: 1px solid red;
+    border-radius: 50px;
+}

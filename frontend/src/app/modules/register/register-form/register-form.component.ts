@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { UsersService } from "../../../services/users.service";
-import { AuthenticationService } from '../../../services/authentication.service';
+import { AuthenticationService } from "../../../services/authentication.service";
 
 @Component({
   selector: "app-register-form",
@@ -21,11 +21,13 @@ export class RegisterFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     // restrict access to registration if user already logged in
-    if (this.authService.getCurrentUser())
-      this.router.navigate(['/']);
+    if (this.authService.getCurrentUser()) this.router.navigate(["/"]);
 
+    /* 
+      Angular Material forms:
+      https://angularfirebase.com/lessons/basics-reactive-forms-in-angular/
+    */
     this.registerForm = this.fb.group({
       username: ["", Validators.required],
       email: ["", [Validators.required, Validators.email]],

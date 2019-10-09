@@ -16,10 +16,32 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 
-import { HttpClientModule } from "@angular/common/http";
+import { AuthenticationInterceptor } from "./helpers/authentication-interceptor";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { PageNotFoundComponent } from "./modules/error-pages/page-not-found/page-not-found.component";
+import { NewPostComponent } from "./modules/posts/new-post/new-post.component";
+import { PostContainerComponent } from "./modules/posts/view-post/post-container/post-container.component";
+import { PostComponent } from "./modules/posts/view-post/post/post.component";
+import { CommentsContainerComponent } from "./modules/posts/view-post/comments/comments-container/comments-container.component";
+import { CommentComponent } from "./modules/posts/view-post/comments/comment/comment.component";
+import { AddCommentComponent } from "./modules/posts/view-post/comments/add-comment/add-comment.component";
+import { FormsModule } from "@angular/forms";
+import { ReactionContainerComponent } from "./modules/posts/view-post/reactions/reaction-container/reaction-container.component";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    PageNotFoundComponent,
+    NewPostComponent,
+    PostContainerComponent,
+    PostComponent,
+    CommentsContainerComponent,
+    CommentComponent,
+    AddCommentComponent,
+    ReactionContainerComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,9 +53,16 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatPasswordStrengthModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

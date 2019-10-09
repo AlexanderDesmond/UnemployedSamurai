@@ -1,1 +1,5 @@
-<app-trending></app-trending>
+<div class="container">
+  <app-leaderboard></app-leaderboard>
+  <button *ngIf="isLoggedIn" (click)="redirectToHome()">New Post</button>
+  <app-trending></app-trending>
+</div>

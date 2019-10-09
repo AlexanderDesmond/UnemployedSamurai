@@ -1,10 +1,14 @@
 .container {
-  width: 310px;
-  margin: 0;
+  width: 410px;
   background-color: lightgray;
 
-  img {
-    width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  }
+
+  input {
+    width: 400px;
     margin: auto;
     display: block;
   }
@@ -12,5 +16,10 @@
   .interaction {
     display: flex;
     justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
   }
-}
+
+  .authorName {
+    margin-bottom: 5px;
+  }

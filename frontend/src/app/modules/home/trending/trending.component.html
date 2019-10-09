@@ -1,13 +1,26 @@
 <div class="container">
-  <span>Sort</span>
   <mat-form-field>
-    <!-- <mat-label>Sort</mat-label> -->
-    <mat-select [(value)]="selected">
-      <mat-option value="trending">Trending</mat-option>
+    <mat-label>Sort by:</mat-label>
+    <mat-select [(value)]="selected" (selectionChange)="Reset()">
       <mat-option value="recent">Recent</mat-option>
+      <mat-option value="trending">Trending</mat-option>
     </mat-select>
   </mat-form-field>
-
-  <span>{{ selected }} selected</span>
 </div>
-<app-preview></app-preview>
+<ul *ngFor="let post of posts">
+  <button type="button" *ngIf="isLoggedIn" (click)="redirectToHome()">
+    New Post
+  </button>
+  <app-preview [post]="post"></app-preview>
+</ul>
+<span class="pagination">
+  <button class="pagination-element" type="button" *ngIf="!hidePrevious" (click)="previousPage()">
+    &lt; Previous
+  </button>
+  <span class="underlined pagination-element">{{ currentPage }}</span>
+  <button class="pagination-element" type="button" *ngIf="!hideNext" (click)="nextPage()">
+    Next &gt;
+  </button>
+</span>
+
+<!-- <app-preview *ngFor="let post of posts" [post]="post"></app-preview> -->

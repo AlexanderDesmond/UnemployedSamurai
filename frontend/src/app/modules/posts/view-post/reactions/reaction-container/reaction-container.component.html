@@ -1,0 +1,65 @@
+<div *ngIf="post" class="reaction-container">
+  <!-- smile -->
+  <span
+    class="reaction"
+    [ngClass]="{ selected: current == 'r1' }"
+    (click)="SelectReaction('r1')"
+  >
+    😃
+    <span *ngIf="post.reaction.r1.length > 0">
+      {{ post.reaction.r1.length }}
+    </span>
+  </span>
+
+  <!-- laugh -->
+  <span
+    class="reaction"
+    [ngClass]="{ selected: current == 'r2' }"
+    (click)="SelectReaction('r2')"
+  >
+    😆
+    <span *ngIf="post.reaction.r2.length > 0">
+      {{ post.reaction.r2.length }}
+    </span>
+  </span>
+
+  <!-- confused -->
+  <span
+    class="reaction"
+    [ngClass]="{ selected: current == 'r3' }"
+    (click)="SelectReaction('r3')"
+  >
+    😕
+    <span *ngIf="post.reaction.r3.length > 0">
+      {{ post.reaction.r3.length }}
+    </span>
+  </span>
+
+  <!-- unamused -->
+  <span
+    class="reaction"
+    [ngClass]="{ selected: current == 'r4' }"
+    (click)="SelectReaction('r4')"
+  >
+    😒
+    <span *ngIf="post.reaction.r4.length > 0">
+      {{ post.reaction.r4.length }}
+    </span>
+  </span>
+
+  <!-- angry -->
+  <span
+    class="reaction"
+    [ngClass]="{ selected: current == 'r5' }"
+    (click)="SelectReaction('r5')"
+  >
+    😠
+    <span *ngIf="post.reaction.r5.length > 0">
+      {{ post.reaction.r5.length }}
+    </span>
+  </span>
+
+  <span class="reaction" (click)="RemoveReaction()">
+    ❌
+  </span>
+</div>

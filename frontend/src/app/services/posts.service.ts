@@ -4,6 +4,7 @@ import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 
 import { Post } from "../post.interface";
+import { PostModel } from "../model/post.model";
 
 @Injectable({
   providedIn: "root"
@@ -11,15 +12,42 @@ import { Post } from "../post.interface";
 export class PostsService {
   constructor(private http: HttpClient) {}
 
-  createPost(imageUrl: string, username: string): Observable<Post> {
-    return this.http.post<Post>("/api/posts", { imageUrl, username });
+  createPost(formData: FormData): Observable<Post> {
+    return this.http.post<Post>("/api/post/new", formData);
   }
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>("/api/posts/");
+  addComment(formData: FormData, postid: String) {
+    return this.http.post("/api/post/comment/" + postid, formData);
+  }
+
+  getReaction(postid: String, username: String) {
+    return this.http.post("/api/post/react/get/" + postid, {
+      username: username
+    });
+  }
+
+  addReaction(reaction: String, postid: String) {
+    return this.http.post("/api/post/react/" + postid, { reaction: reaction });
+  }
+
+  removeReaction(postid: String) {
+    return this.http.delete("/api/post/react/" + postid);
+  }
+
+  getPosts(page: number) {
+    return this.http.get<Post[]>("/api/posts/all/" + page);
+  }
+
+  getPostsTrending(page: number) {
+    return this.http.get<Post[]>("/api/posts/trending/" + page);
   }
 
   getPost(id: string): Observable<Post> {
-    return this.http.get<Post>("/api/posts/" + id);
+    return this.http.get<Post>("/api/post/" + id);
   }
+
+  deletePost(id: string) {
+    return this.http.delete("/api/post/" + id);
+  }
+
 }

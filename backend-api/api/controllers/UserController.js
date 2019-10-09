@@ -17,6 +17,16 @@ exports.list_all_users = function(req, res) {
     });
 };
 
+exports.get_user_leaderboard = function(req, res) {
+    User.find({})
+        .sort({'post_count': -1}) // number of posts, decending order
+        .limit(5)
+        .exec(function(err, users) {
+            if (err)
+                return res.status(500).send({error: err});
+            return res.status(200).send(users);
+        });
+};
 
 exports.is_username_unique = function(req, res) {
     if (!req.body.username)
@@ -131,15 +141,37 @@ exports.login_user = function(req, res) {
 
                 // create token
                 var token = jwt.sign({username: user.username}, config.secret, {
-                    expiresIn: 86400
+                    //expiresIn: 86400 = 24h
+                    expiresIn: '1h'
                 });
 
                 return res.status(200).send({auth: true, token: token, user: {username: user.username}});
             }
 
             // if no user found or incorrect password
-            return res.status(404).send({message: "Invalid credentials"});
+            return res.status(400).send({message: "Invalid credentials"});
         }
     );
 };
+
+
+
+exports.refresh_token = function(req, res) {
+
+    User.findOne({username: req.username}, function (err, user) {
+        if (err)
+            return res.status(401).send({auth: false});
+
+        if (!user)
+            return res.status(401).send({auth: false, message: "User could not be found"});
+
+        // send new token if old token was still valid
+        var token = jwt.sign({username: user.username}, config.secret, {
+            expiresIn: '1h'
+        });
+
+        return res.status(200).send({auth: true, token: token, user: {username: user.username}});
+
+    });
+}
 

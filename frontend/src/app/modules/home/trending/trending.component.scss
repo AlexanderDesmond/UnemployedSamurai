@@ -1,6 +1,22 @@
 .container {
   width: 25%;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  justify-content: center;
+
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.pagination {
+  margin: 5px;
+}
+
+.pagination-element {
+  margin-right: 5px;
 }
