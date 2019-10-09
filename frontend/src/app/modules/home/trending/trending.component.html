@@ -14,11 +14,11 @@
   <app-preview [post]="post"></app-preview>
 </ul>
 <span class="pagination">
-  <button type="button" *ngIf="!hidePrevious" (click)="previousPage()">
+  <button class="pagination-element" type="button" *ngIf="!hidePrevious" (click)="previousPage()">
     &lt; Previous
   </button>
-  <span class="underlined">{{ currentPage }}</span>
-  <button type="button" *ngIf="!hideNext" (click)="nextPage()">
+  <span class="underlined pagination-element">{{ currentPage }}</span>
+  <button class="pagination-element" type="button" *ngIf="!hideNext" (click)="nextPage()">
     Next &gt;
   </button>
 </span>
