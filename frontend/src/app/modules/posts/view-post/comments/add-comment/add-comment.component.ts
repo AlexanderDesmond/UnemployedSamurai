@@ -43,6 +43,9 @@ export class AddCommentComponent implements OnInit {
     this.postsService.addComment(formData, this.post._id).subscribe(res => {
       console.log(res);
       location.reload();
+    },
+    err => {
+      alert("Your image could not be posted. Please try again later");
     });
 
   }

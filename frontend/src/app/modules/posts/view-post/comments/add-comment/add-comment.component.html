@@ -1,14 +1,16 @@
 <div *ngIf="isLoggedIn" class="container">
-  <img [src]="newImage" alt="new post" *ngIf="newImage" />
   <div class="file-picker">
-    <input
-      type="file"
-      accept="image/*"
-      (change)="onFileSelected($event)"
-      class="imageUpload"
-    />
+    <img [src]="newImage" alt="new post" *ngIf="newImage" />
+    <div>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        class="imageUpload"
+      />
+    </div>
+    <button type="button" (click)="onSubmit()" class="submitButton">
+      Submit
+    </button>
   </div>
-  <button type="button" (click)="onSubmit()" class="submitButton">
-    Submit
-  </button>
 </div>
