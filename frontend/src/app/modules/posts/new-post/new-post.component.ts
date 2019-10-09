@@ -43,6 +43,9 @@ export class NewPostComponent implements OnInit {
     this.postsService.createPost(formData).subscribe(data => {
       console.log("Data: " + data);
       this.router.navigate(["/"]);
+    },
+    err => {
+      alert("Your image could not be posted. Please try again later");
     });
 
   }
