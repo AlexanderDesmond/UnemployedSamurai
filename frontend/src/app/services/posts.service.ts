@@ -4,7 +4,6 @@ import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 
 import { Post } from "../post.interface";
-import { PostModel } from "../model/post.model";
 
 @Injectable({
   providedIn: "root"
@@ -49,5 +48,4 @@ export class PostsService {
   deletePost(id: string) {
     return this.http.delete("/api/post/" + id);
   }
-
 }
