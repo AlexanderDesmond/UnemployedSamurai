@@ -1,8 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-
 import { User } from "../user.interface";
+
+/**
+ * References:
+ * https://www.youtube.com/watch?v=_05v0mrNLh0
+ * https://angular.io/tutorial/toh-pt6
+ */
 
 @Injectable({
   providedIn: "root"

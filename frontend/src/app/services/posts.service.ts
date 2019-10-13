@@ -2,8 +2,13 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
-
 import { Post } from "../post.interface";
+
+/**
+ * References:
+ * https://www.youtube.com/watch?v=_05v0mrNLh0
+ * https://angular.io/tutorial/toh-pt6
+ */
 
 @Injectable({
   providedIn: "root"
