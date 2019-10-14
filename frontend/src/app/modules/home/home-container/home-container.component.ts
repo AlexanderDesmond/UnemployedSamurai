@@ -18,7 +18,7 @@ export class HomeContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Handle logging-on of user if they are already logged-in.
+    // Check to see if a user is logged-in.
     this.authService.getLoggedIn.subscribe(LoggedIn => {
       this.isLoggedIn = LoggedIn == true;
     });
