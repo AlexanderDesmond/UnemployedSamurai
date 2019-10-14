@@ -28,6 +28,8 @@ export class RegisterFormComponent implements OnInit {
       Angular Material forms:
       https://angularfirebase.com/lessons/basics-reactive-forms-in-angular/
     */
+
+    // Initialise form.
     this.registerForm = this.fb.group({
       username: ["", Validators.required],
       email: ["", [Validators.required, Validators.email]],
@@ -43,6 +45,8 @@ export class RegisterFormComponent implements OnInit {
       ]
     });
   }
+
+  // Get fields from form:
 
   get username() {
     return this.registerForm.get("username");
@@ -64,6 +68,7 @@ export class RegisterFormComponent implements OnInit {
     console.log("password strength = ", strength);
   }
 
+  // Attempt to create a new account when the Sign In button is pressed.
   onSubmit() {
     this.userService
       .registerUser(this.username.value, this.email.value, this.password.value)
