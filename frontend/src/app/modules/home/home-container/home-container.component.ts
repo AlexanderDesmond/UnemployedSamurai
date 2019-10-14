@@ -18,11 +18,13 @@ export class HomeContainerComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Handle logging-on of user if they are already logged-in.
     this.authService.getLoggedIn.subscribe(LoggedIn => {
       this.isLoggedIn = LoggedIn == true;
     });
   }
 
+  // Redirect to new post page.
   redirectToHome() {
     this.router.navigate(["/new"]);
   }
