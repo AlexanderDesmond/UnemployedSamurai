@@ -10,11 +10,14 @@ var User = mongoose.model('Users');
 var upload = require('../../server').upload;
 
 
+// return a list of posts, paginated
+// requires the page number to be sent in the request
+// as a param
 exports.list_all_posts = function(req, res) {
     Post.paginate(
         {parent: null},
         {
-            sort: {post_date: -1},
+            sort: {post_date: -1}, // decending
             page: req.params.page,
             limit: 10,
         },
@@ -26,11 +29,13 @@ exports.list_all_posts = function(req, res) {
     );
 };
 
+// return a list of posts based on number of reactions
+// requires the page number to be sent in the request
 exports.list_all_posts_trending = function(req, res) {
     Post.paginate(
         {parent: null},
         {
-            sort: {reaction_count: -1},
+            sort: {reaction_count: -1}, // decending
             page: req.params.page,
             limit: 10,
         },
@@ -42,27 +47,36 @@ exports.list_all_posts_trending = function(req, res) {
     );
 }
 
-
+// returns all posts for a specifc user
+// username must be sent as param in url request
 exports.list_posts_for_user = function(req, res) {
     try {
         Post.find( {author: req.params.username},
             function(err, result) {
                 if (err)
-                    res.send(err);
+                    res.status(500).send(err);
 
-                res.json(result);
+                res.status(200).send(result);
             });
 
     } catch (TypeError) {
-        res.send(400, {error: "username not found"});
+        res.status(400).send({error: "username not found"});
     }
 }
 
 
+// return data for a specific post
+// post id must be sent through param in link
+
+// returns post data, including populated
+// reaction field data.
+// To get each comment, must use this function to
+// retrieve it using the commentid (postid).
 exports.get_post = function(req, res) {
     if (!req.params.postid)
         return res.status(400).send({error: "Missing post id"});
 
+    // try convert string id to object id
     try {
         var post_id = mongoose.Types.ObjectId(req.params.postid);
     }
@@ -71,7 +85,7 @@ exports.get_post = function(req, res) {
     }
 
     Post.findById(post_id)
-        .populate('reaction')
+        .populate('reaction') // add reaction data from reactionid
         .exec(
             function(err, post) {
                 if (err)
@@ -96,12 +110,13 @@ exports.create_post = function(req, res) {
 
     // ASSUMPTION: username/author will always be here from auth handler
 
+    // get public location from multer-s3 OR file path from multer disk storage
     var image_path = req.file.location || req.file.path;
 
     Post.create(
         {
             author:  req.username,
-            image_path: image_path
+            image_path: image_path // parent is null to mark as 'top' level post
         },
         function(err, post) {
             if (err)
@@ -110,7 +125,7 @@ exports.create_post = function(req, res) {
             // increment user post count
             User.findOne({username: post.author}, function(err, user) {
                 user.post_count += 1;
-                user.save(function(err) {});
+                user.save(function(err) {}); // no error catch as this is an unimportant update
             });
 
             return res.status(200).send(post);
@@ -154,7 +169,7 @@ exports.create_comment = function(req, res) {
             {
                 author: req.username,
                 image_path: image_path,
-                parent: post._id
+                parent: post._id // set the parent to mark as comment
             },
             function(err, comment) {
                 if (err)
@@ -214,6 +229,8 @@ exports.get_reaction = function(req, res) {
             if (!reaction)
                 return res.status(500).send({error: "Reactions could not be found"});
 
+            // check under which reaction type array the current username
+            // is stored
             var reaction;
             if (reaction.r1.includes(req.body.username))
                 reaction = "r1";
@@ -311,7 +328,9 @@ exports.add_reaction = function(req, res) {
 
 }
 
-
+// helper function to remove a single element
+// from an array
+// Reference: https://stackoverflow.com/questions/5767325/how-do-i-remove-a-particular-element-from-an-array-in-javascript
 var remove_from_array = function(array, element) {
     var index = array.indexOf(element);
     if (index > -1) {
@@ -341,7 +360,7 @@ exports.remove_reaction = function(req, res) {
             if (err)
                 return res.status(500).send({error: err});
 
-            // remove from all reactions
+            // remove current username from all reaction arrays
             let removed = false;
             let reaction_lists = [
                 reaction.r1, reaction.r2, reaction.r3,
@@ -394,6 +413,8 @@ exports.delete_post = function(req, res) {
         if (post.author != req.username)
             return res.status(403).send({error: "You are not authorised to delete this post"});
 
+        // multiple middlewares are called in PostModel.js
+        // to remove the post and children posts/comments
         post.remove(function(err) {
             if (err)
                 return res.status(500).send({error: err});
