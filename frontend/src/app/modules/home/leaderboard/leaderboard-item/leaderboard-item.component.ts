@@ -7,7 +7,7 @@ import { User } from "src/app/user.interface";
   styleUrls: ["./leaderboard-item.component.scss"]
 })
 export class LeaderboardItemComponent implements OnInit {
-  //@Input() username: string;
+  // Input user object from leaderboard component.
   @Input() user: User;
 
   constructor() {}

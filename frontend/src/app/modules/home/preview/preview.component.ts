@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./preview.component.scss"]
 })
 export class PreviewComponent implements OnInit {
+  // Input post from trending component.
   @Input() post: Post;
 
   // Until we have S3 set up.
