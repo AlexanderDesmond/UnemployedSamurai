@@ -25,12 +25,13 @@ export class UsersService {
     return this.http.post("/api/users/", { username, email, password });
   }
 
-  // Returns a list of users.
+  // retrieves from the api and returns an array of
+  // observable User objects
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>("/api/users/");
   }
 
-  // Returns a user based on username.
+  // Returns a single User observable based on username.
   getUser(username: string): Observable<User> {
     return this.http.get<User>("/api/users/" + username);
   }

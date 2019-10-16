@@ -19,14 +19,18 @@ export class AuthenticationService {
     this.getLoggedIn.next(localStorage.getItem("currentUser") != null);
   }
 
+  // returns current username
   getCurrentUser(): String {
     return localStorage.getItem("currentUser");
   }
 
+  // returns current login token
   getToken(): String {
     return localStorage.getItem("loginToken");
   }
 
+  // calls login endpoint, and stores token from returned
+  // request into local storage
   login(username: string, password: string) {
     return this.http.post("/api/login/", { username, password })
       .pipe(map(response => {
@@ -37,6 +41,8 @@ export class AuthenticationService {
       }));
   }
 
+  // call refreshtoken endpoint in order to retrieive and
+  // update token and prolong expiration time
   refreshLogin() {
     return this.http.get("/api/refreshtoken/")
       .subscribe(
@@ -44,7 +50,7 @@ export class AuthenticationService {
           if (response["auth"] == true) {
             localStorage.setItem("loginToken", response["token"]);
             localStorage.setItem("currentUser", response["user"].username);
-            this.getLoggedIn.next(true);
+            this.getLoggedIn.next(true); // to update listeners
           } else {
             alert("Your session has expired");
             this.logout();
@@ -57,11 +63,11 @@ export class AuthenticationService {
       );
   }
 
-
+  // remove token from localstorage to mark logout
   logout() {
     localStorage.removeItem("loginToken");
     localStorage.removeItem("currentUser");
-    this.getLoggedIn.next(false);
+    this.getLoggedIn.next(false); // to update listeners
   }
 
 }
