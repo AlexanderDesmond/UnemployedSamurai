@@ -46,7 +46,7 @@ if (process.env.NODE_ENV == "test") {
         region: process.env.AWS_REGION
     });
 
-    // mongo atlas
+    // different uri for normal / can be changed in .env file
     mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
 
     var upload = multer({storage: multerS3({
@@ -64,14 +64,15 @@ if (process.env.NODE_ENV == "test") {
                 );
             },
             key: function (req, file, cb) {
+                // filename/key uses fieldName (postImage), current date and extension from original file
                 cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
             }
         })
     }); // multer
 
-} // else
+} // end else
 
-module.exports.upload = upload;
+module.exports.upload = upload; // reference to the multer object
 
 
 app.use(bodyParser.urlencoded( {extended: true} ));

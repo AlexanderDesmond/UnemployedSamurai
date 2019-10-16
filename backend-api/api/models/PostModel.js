@@ -6,7 +6,6 @@ var mongoosePaginate = require('mongoose-paginate-v2');
 var Schema = mongoose.Schema;
 var Reaction = mongoose.model('Reactions');
 var User = mongoose.model('Users');
-// var Post = mongoose.model('Posts');
 
 var PostSchema = new Schema( {
 
@@ -44,6 +43,10 @@ var PostSchema = new Schema( {
 });
 
 
+// ---- MIDDLEWARE FUNCTIONS FOR SAVING/DELETING POSTS ----
+
+// called AFTER a post is saved to
+// create and link a 'reaction' to it
 PostSchema.post("save", function(post, next) {
 
     // create empty reaction object for every
@@ -66,6 +69,10 @@ PostSchema.post("save", function(post, next) {
 });
 
 
+// called BEFORE a post is deleted to
+// remove its child posts (comments) recursively
+// it also removes the post_id's from the parent
+// comments to remove all traces of it
 PostSchema.pre("remove", function(next) {
     // remove reaction
     Reaction.deleteOne({"_id": mongoose.Types.ObjectId(this.reaction)}, function(err) {});
@@ -88,7 +95,8 @@ PostSchema.pre("remove", function(next) {
         });
     }
 
-    // remove child comments
+    // remove child comments (causes recusive delete
+    // as 'comments' are also post objects being 'deleted')
     mongoose.model('Posts').find(
         {parent: mongoose.Types.ObjectId(this._id)},
         function(err, posts) {

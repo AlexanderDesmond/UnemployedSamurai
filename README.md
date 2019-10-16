@@ -3,22 +3,25 @@
 Advanced Internet Programming
 <i>UTS Spring 2019</i>
 
+## Before you Run
+1. Create a `.env` file in the `backend-api` folder
+2. Add following keys and their values into the .env file
+    ```
+    SECRET (a secret key for jwt token generation)
+    MONGO_URI
+    TEST_MONGO_URI
+    PORT
+    AWS_BUCKET_NAME
+    AWS_REGION
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
+    ```
 
 ## How to Run
-The following commands assume you are already in the project root folder and have already run `npm install` in the frontend and backend folders.
-
-### Front-End (Angular)
-```
-cd Assignment3
-npm start
-
-# view frontend on browser at link:
-# http://localhost:4200
-```
-
-*Make sure to run the Database before running the API*
+The following commands assume you are already in the project root folder and have already run `npm install` in the frontend and backend-api folders.
 
 ### Database (MongoDB)
+Optional if running a local database.
 ```
 # create database directory
 mkdir database
@@ -27,7 +30,17 @@ mkdir database
 mongod --dbpath ./database
 ```
 
+### Front-End (Angular)
+```
+cd frontend
+npm start
+
+# view frontend on browser at link:
+# http://localhost:4200
+```
+
 ### Rest API (Expressjs)
+*Make sure to run the Database before running the API*
 ```
 cd backend-api
 npm start
@@ -48,7 +61,7 @@ npm start
 #### Coding
 - Always comment code reasonings and any required knowledge / information to help readers understand the piece of code being described.
 - Code blocks should be indented inside the brackets.
-- Variable names should start with lowercase characters and follow the camel case convention (ie. newVariableName). 
+- Variable names should start with lowercase characters and follow the camel case convention (ie. newVariableName).
 - Class names should start with uppercase and follow camel case convention. Constant variables should be in all capital letters.
 - Lines should not be more than 80 characters.
 - Variable names should not be single characters (except when these are expressive/meet convention - ie. for loop index = i). They should be descriptive for anyone reading the code to follow.
