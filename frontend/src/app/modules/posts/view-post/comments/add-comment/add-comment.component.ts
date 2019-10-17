@@ -30,9 +30,6 @@ export class AddCommentComponent implements OnInit {
   // When a file has been selected for upload.
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
-    console.log(event);
-
-    console.log(typeof this.selectedFile);
 
     this.displayImage(event);
   }

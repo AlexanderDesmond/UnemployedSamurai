@@ -18,10 +18,7 @@ export class PreviewComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    console.log(this.post.image_path);
-    console.log(this.post.author);
-  }
+  ngOnInit() {}
 
   // Redirect to relevant post page when preview post is clicked.
   onClick() {

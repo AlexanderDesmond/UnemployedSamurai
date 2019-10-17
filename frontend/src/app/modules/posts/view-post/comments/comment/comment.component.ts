@@ -48,7 +48,6 @@ export class CommentComponent implements OnInit {
         },
         err => {
           alert("Comment could not be deleted");
-          console.log(err);
         }
       );
     }

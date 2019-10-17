@@ -30,7 +30,6 @@ export class PostContainerComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("_id");
-    console.log("Post:" + this.route.snapshot.paramMap.get("_id"));
     this.getPost();
   }
 
@@ -55,7 +54,6 @@ export class PostContainerComponent implements OnInit {
         },
         err => {
           alert("Post could not be deleted");
-          console.log(err);
         }
       );
     }
