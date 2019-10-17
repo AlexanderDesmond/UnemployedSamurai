@@ -60,7 +60,7 @@ export class RegisterFormComponent implements OnInit {
     return this.registerForm.get("password");
   }
 
-  getConfirmPassword() {
+  get ConfirmPassword() {
     return this.registerForm.get("confirmPassword");
   }
 
