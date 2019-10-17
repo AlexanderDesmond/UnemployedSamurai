@@ -14,9 +14,6 @@ import { Router } from "@angular/router";
 })
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
-
-  // temp
-  //user: User;
   users: User[];
   isError: boolean;
 
@@ -39,50 +36,31 @@ export class LoginFormComponent implements OnInit {
       username: ["", Validators.required],
       password: ["", Validators.required]
     });
-
-    //this.getUsers();
-    //this.getUser();
   }
 
+  // Return username field from login form.
   get username() {
     return this.loginForm.get("username");
   }
 
+  // Return password field from login field.
   get password() {
     return this.loginForm.get("password");
   }
 
+  // Handles login. Shows error message on login fail.
   onSubmit() {
     this.authService.login(this.username.value, this.password.value).subscribe(
       response => {
-        // console.log(response);
-
-        // show alert to user
-        // alert("Login Successful :)");
+        // Hide error message.
         this.isError = false;
 
-        // redirect to homepage
+        // Redirect to homepage
         this.router.navigate(["/"]);
       },
       error => {
-        // alert("Login Unsuccessful :(");
+        // Show error message.
         this.isError = true;
-      }
-    );
-  }
-
-  // Test
-  getUsers() {
-    this.userService.getUsers().subscribe(data => (this.users = data));
-  }
-
-  getUser() {
-    this.userService.getUser("admin").subscribe(
-      response => {
-        console.log("response is ", response);
-      },
-      error => {
-        console.log("error is", error);
       }
     );
   }
