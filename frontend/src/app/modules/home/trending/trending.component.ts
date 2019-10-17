@@ -22,11 +22,13 @@ export class TrendingComponent implements OnInit {
     this.getPosts();
   }
 
+  // Handle updating of page count number for pagination.
   UpdatePageCount(data) {
     this.hidePrevious = !data["hasPrevPage"];
     this.hideNext = !data["hasNextPage"];
   }
 
+  // Reset pagination of posts to the first page.
   Reset() {
     this.currentPage = 1;
     this.getPosts();
@@ -50,11 +52,13 @@ export class TrendingComponent implements OnInit {
     }
   }
 
+  // Go to the next page.
   nextPage() {
     this.currentPage++;
     this.getPosts();
   }
 
+  // Go to the previous page.
   previousPage() {
     this.currentPage--;
     this.getPosts();

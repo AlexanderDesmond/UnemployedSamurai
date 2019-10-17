@@ -23,6 +23,7 @@ export class PreviewComponent implements OnInit {
     console.log(this.post.author);
   }
 
+  // Redirect to relevant post page when preview post is clicked.
   onClick() {
     this.router.navigate(["/view", this.post._id]);
   }
