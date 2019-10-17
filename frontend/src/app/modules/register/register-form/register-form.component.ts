@@ -37,7 +37,7 @@ export class RegisterFormComponent implements OnInit {
         "",
         [
           Validators.required,
-          //Validators.pattern("^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$")
+          // Regex expression to require 8 characters (including an upper case, lower case, symbol, and number)
           Validators.pattern(
             "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
           )
@@ -62,10 +62,6 @@ export class RegisterFormComponent implements OnInit {
 
   get ConfirmPassword() {
     return this.registerForm.get("confirmPassword");
-  }
-
-  onStrengthChanged(strength: number) {
-    console.log("password strength = ", strength);
   }
 
   // Attempt to create a new account when the Sign In button is pressed.
