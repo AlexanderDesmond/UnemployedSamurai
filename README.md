@@ -4,24 +4,28 @@ Advanced Internet Programming
 <i>UTS Spring 2019</i>
 
 ## Before you Run
+
 1. Create a `.env` file in the `backend-api` folder
 2. Add following keys and their values into the .env file
-    ```
-    SECRET (a secret key for jwt token generation)
-    MONGO_URI
-    TEST_MONGO_URI
-    PORT
-    AWS_BUCKET_NAME
-    AWS_REGION
-    AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY
-    ```
+   ```
+   SECRET (a secret key for jwt token generation)
+   MONGO_URI
+   TEST_MONGO_URI
+   PORT
+   AWS_BUCKET_NAME
+   AWS_REGION
+   AWS_ACCESS_KEY_ID
+   AWS_SECRET_ACCESS_KEY
+   ```
 
 ## How to Run
+
 The following commands assume you are already in the project root folder and have already run `npm install` in the frontend and backend-api folders.
 
 ### Database (MongoDB)
+
 Optional if running a local database.
+
 ```
 # create database directory
 mkdir database
@@ -31,6 +35,7 @@ mongod --dbpath ./database
 ```
 
 ### Front-End (Angular)
+
 ```
 cd frontend
 npm start
@@ -40,7 +45,9 @@ npm start
 ```
 
 ### Rest API (Expressjs)
-*Make sure to run the Database before running the API*
+
+_Make sure to run the Database before running the API_
+
 ```
 cd backend-api
 npm start
@@ -50,11 +57,13 @@ npm start
 ```
 
 ## Known Issues / How to Fix
+
 Frontend `npm install` failure due to Angular Material Dependencies
 
-
 ## Project Guidelines
+
 #### Version Control
+
 - When developing new feature, always create your own branch. Only merge branch with master when all changes have been completed and tested.
 - Make sure to let team members know on the group chat when a branch has been merged and what features have been added.
 - Do not commit any files that are auto-generated and do not need to be version controlled (such as node_modules, etc..).
@@ -62,6 +71,7 @@ Frontend `npm install` failure due to Angular Material Dependencies
 - Make sure you pull latest changes before merging / pushing your branch.
 
 #### Coding
+
 - Always comment code reasonings and any required knowledge / information to help readers understand the piece of code being described.
 - Code blocks should be indented inside the brackets.
 - Variable names should start with lowercase characters and follow the camel case convention (ie. newVariableName).
@@ -70,19 +80,18 @@ Frontend `npm install` failure due to Angular Material Dependencies
 - Variable names should not be single characters (except when these are expressive/meet convention - ie. for loop index = i). They should be descriptive for anyone reading the code to follow.
 
 #### Project Structure
-- Application logic should be separated into their own files. For example: routes should be separate from controller logic and separate from database models.
 
+- Application logic should be separated into their own files. For example: routes should be separate from controller logic and separate from database models.
 
 ## Major Libraries
 
-**Front-end Framework**: Angular<br>
-**Back-end Framework**: Expressjs<br>
+**JavaScript Front-end Framework**: Angular<br>
+**JavaScript Back-end Framework**: Express.js<br>
+**JavaScript Runtime Environment**: Node.js<br>
 **Database**: MongoDB
-
 
 ## Developers
 
 12879779 Yat Ho Kwok<br>
 12544502 Alex Desmond<br>
 12582072 Jaspreet Panesar<br>
-
