@@ -4,8 +4,20 @@ var jwt = require('jsonwebtoken');
 var config = require('../config');
 
 
-// middleware
-// adds username (TODO: change to userid) to request on successful decoding of token
+// PRE-REQUEST MIDDLEWARE
+
+// this function is called in order to authenticate tokens before
+// certain resources can be accessed.
+// the function checks the provided token is not expired
+// and relates to a username on the database
+
+// on successful authentication, the username is stored
+// inside the request body and can be accessed by the request
+// function (such as create_post)
+// on error, a 403 forbidden status is returned
+
+// Reference: https://www.freecodecamp.org/news/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52/
+
 exports.verifyToken = function(req, res, next) {
 
     var token = req.headers['x-access-token'];
@@ -24,7 +36,7 @@ exports.verifyToken = function(req, res, next) {
                         message: "Failed to verify token"
                     });
 
-                req.username = decoded.username; // TODO: change here
+                req.username = decoded.username;
                 next();
             }
         );

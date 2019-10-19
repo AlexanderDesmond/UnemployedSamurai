@@ -27,6 +27,7 @@ export class ReactionContainerComponent implements OnInit {
     });
   }
 
+  // Get reaction.
   GetReaction() {
     if (this.isLoggedIn) {
       this.postsSerivce
@@ -35,12 +36,12 @@ export class ReactionContainerComponent implements OnInit {
           res => {
             this.current = res["reaction"];
           },
-          err => {
-          }
+          err => {}
         );
     }
   }
 
+  // Remove reaction.
   RemoveReaction() {
     if (!this.isLoggedIn) {
       this.AskLogin();
@@ -53,6 +54,7 @@ export class ReactionContainerComponent implements OnInit {
     });
   }
 
+  // Select reaction.
   SelectReaction(reaction: string) {
     if (!this.isLoggedIn) {
       this.AskLogin();
@@ -89,15 +91,15 @@ export class ReactionContainerComponent implements OnInit {
     }
   }
 
+  // Update post.
   UpdatePost() {
     this.postsSerivce.getPost(this.post._id).subscribe(res => {
       this.post = res;
     });
   }
 
+  // If a user is not logged in display message.
   AskLogin() {
     alert("Please login with an account in order to react to posts! :D");
   }
-
-
 }

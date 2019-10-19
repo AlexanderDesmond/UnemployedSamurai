@@ -42,12 +42,12 @@ export class LeaderboardComponent implements OnInit {
           }
         });
       },
-      error => console.log(error),
+      error => {},
       /* 
          Do something when observable has been resolved:
         https://aigeec.com/angularjs-2-do-something-when-my-observable-is-complete/
        */
-      () => console.log(this.users)
+      () => {}
     );
   }
 }

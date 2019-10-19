@@ -35,12 +35,17 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  // Handles logging in and logging out.
   logout() {
+    // Checks to see if the user is logged in.
     if (this.isLoggedIn) {
+      // Confirm and log out.
       if (confirm("Are you sure you want to log out?")) {
         this.authService.logout();
       }
-    } else {
+    }
+    // If the user is not logged in, navigate to the logon page.
+    else {
       this.router.navigate(["/login"]);
     }
   }

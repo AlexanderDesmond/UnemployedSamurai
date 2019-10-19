@@ -1,4 +1,3 @@
-import { Comment } from "./model/comment.model";
 import { Reaction } from "./model/reaction.model";
 
 export interface Post {

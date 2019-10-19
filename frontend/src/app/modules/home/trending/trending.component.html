@@ -8,19 +8,24 @@
   </mat-form-field>
 </div>
 <ul *ngFor="let post of posts">
-  <button type="button" *ngIf="isLoggedIn" (click)="redirectToHome()">
-    New Post
-  </button>
   <app-preview [post]="post"></app-preview>
 </ul>
 <span class="pagination">
-  <button class="pagination-element" type="button" *ngIf="!hidePrevious" (click)="previousPage()">
+  <button
+    class="pagination-element"
+    type="button"
+    *ngIf="!hidePrevious"
+    (click)="previousPage()"
+  >
     &lt; Previous
   </button>
   <span class="underlined pagination-element">{{ currentPage }}</span>
-  <button class="pagination-element" type="button" *ngIf="!hideNext" (click)="nextPage()">
+  <button
+    class="pagination-element"
+    type="button"
+    *ngIf="!hideNext"
+    (click)="nextPage()"
+  >
     Next &gt;
   </button>
 </span>
-
-<!-- <app-preview *ngFor="let post of posts" [post]="post"></app-preview> -->

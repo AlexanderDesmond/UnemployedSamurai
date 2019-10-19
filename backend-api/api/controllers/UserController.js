@@ -8,6 +8,8 @@ var bcrypt = require('bcryptjs');
 var config = require('../config');
 
 
+// return a list of all the users
+// in no specific order
 exports.list_all_users = function(req, res) {
     User.find({},
         function(err, users) {
@@ -17,6 +19,9 @@ exports.list_all_users = function(req, res) {
     });
 };
 
+// return a list of users based on their post score in
+// decending order
+// the returned list is limited to 5 users
 exports.get_user_leaderboard = function(req, res) {
     User.find({})
         .sort({'post_count': -1}) // number of posts, decending order
@@ -28,6 +33,10 @@ exports.get_user_leaderboard = function(req, res) {
         });
 };
 
+// helper endpoint
+// returns a boolean to represent whether the
+// provided username is unique or has already
+// been created.
 exports.is_username_unique = function(req, res) {
     if (!req.body.username)
         return res.status(400).send({error: "Username not provided"});
@@ -90,7 +99,7 @@ exports.create_user = function(req, res) {
     );
 };
 
-
+// return the user object
 exports.get_user = function(req, res) {
 
     if (!req.params.username)
@@ -107,17 +116,6 @@ exports.get_user = function(req, res) {
         }
     );
 }
-
-
-exports.update_user = function(req, res) {
-    res.status(501).send();
-}
-
-
-exports.delete_user = function(req, res) {
-    res.status(501).send();
-}
-
 
 exports.login_user = function(req, res) {
 
@@ -155,7 +153,10 @@ exports.login_user = function(req, res) {
 };
 
 
-
+// help endpoint
+// used to return a new token to the authenticated user
+// with a refreshed expiration time to prolong the
+// authentication time
 exports.refresh_token = function(req, res) {
 
     User.findOne({username: req.username}, function (err, user) {
@@ -165,7 +166,7 @@ exports.refresh_token = function(req, res) {
         if (!user)
             return res.status(401).send({auth: false, message: "User could not be found"});
 
-        // send new token if old token was still valid
+        // create new token if old token was still valid
         var token = jwt.sign({username: user.username}, config.secret, {
             expiresIn: '1h'
         });

@@ -14,8 +14,9 @@ export class PageNotFoundComponent implements OnInit {
   ngOnInit() {
     this.image = "assets/images/website/farquaad2.gif";
 
+    // Navigate back to home page after 10 second delay.
     setTimeout(() => {
-      this.router.navigate(['/']);
+      this.router.navigate(["/"]);
     }, 10000);
   }
 }

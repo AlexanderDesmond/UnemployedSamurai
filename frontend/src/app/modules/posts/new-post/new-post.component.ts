@@ -28,28 +28,27 @@ export class NewPostComponent implements OnInit {
     }
   }
 
+  // When a file has been selected for upload,
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
-    console.log(event);
-
-    console.log(typeof this.selectedFile);
-
     this.displayImage(event);
   }
 
+  // When an image has been uploaded redirect the user back to the homepage.
   onSubmit() {
     const formData = new FormData();
     formData.append("postImage", this.selectedFile, this.selectedFile.name);
-    this.postsService.createPost(formData).subscribe(data => {
-      console.log("Data: " + data);
-      this.router.navigate(["/"]);
-    },
-    err => {
-      alert("Your image could not be posted. Please try again later");
-    });
-
+    this.postsService.createPost(formData).subscribe(
+      data => {
+        this.router.navigate(["/"]);
+      },
+      err => {
+        alert("Your image could not be posted. Please try again later");
+      }
+    );
   }
 
+  // When an image has been selected for upload, display a preview of it.
   displayImage(event) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
