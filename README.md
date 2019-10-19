@@ -58,7 +58,7 @@ npm start
 
 ## Known Issues / How to Fix
 
-**Failure due to Missing Angular Material Dependencies**
+**Failure due to Missing Angular Material Module**
 
 There was an issue all three of us had at different points in time.
 When trying to run the program, an error prevented us from doing so claiming that the Angular Material module was missing.
