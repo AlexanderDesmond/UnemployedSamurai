@@ -49,6 +49,9 @@ npm start
 # http://localhost:3000
 ```
 
+## Known Issues / How to Fix
+Frontend `npm install` failure due to Angular Material Dependencies
+
 
 ## Project Guidelines
 #### Version Control
@@ -70,7 +73,7 @@ npm start
 - Application logic should be separated into their own files. For example: routes should be separate from controller logic and separate from database models.
 
 
-## Libraries
+## Major Libraries
 
 **Front-end Framework**: Angular<br>
 **Back-end Framework**: Expressjs<br>
