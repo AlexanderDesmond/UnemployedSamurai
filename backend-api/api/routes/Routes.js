@@ -12,9 +12,7 @@ module.exports = function(app) {
         .post(users.create_user);
 
     app.route('/users/:username')
-        .get(users.get_user)
-        .put(users.update_user) // auth required
-        .delete(users.delete_user); // auth required
+        .get(users.get_user);
 
     // login
     app.route('/login')

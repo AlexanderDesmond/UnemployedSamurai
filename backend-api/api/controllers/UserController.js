@@ -117,19 +117,6 @@ exports.get_user = function(req, res) {
     );
 }
 
-// not implemented in the current scope
-// returns a not implemented error
-exports.update_user = function(req, res) {
-    res.status(501).send();
-}
-
-// not implemented in the current scope
-// returns a not implemented error
-exports.delete_user = function(req, res) {
-    res.status(501).send();
-}
-
-
 exports.login_user = function(req, res) {
 
     // if a credential is not provided
