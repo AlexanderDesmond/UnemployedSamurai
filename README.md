@@ -58,7 +58,16 @@ npm start
 
 ## Known Issues / How to Fix
 
-Frontend `npm install` failure due to Angular Material Dependencies
+**Failure due to Missing Angular Material Dependencies**
+
+There was an issue all three of us had at different points in time.
+When trying to run the program, an error prevented us from doing so claiming that the Angular Material module was missing.
+
+It turned out that we had an incorrect version of Angular Material installed from somewhere other than NPM.
+To fix it we reinstalled it from NPM and updated other Angular dependencies to match it and made sure to save the new dependencies.
+
+If this error is encountered (it shouldn't, we fixed it) make sure you update your dependencies.
+Run `npm install`, then update the dependencies listed to the required versions. It should now.
 
 ## Project Guidelines
 
