@@ -7,16 +7,17 @@ Advanced Internet Programming
 
 1. Create a `.env` file in the `backend-api` folder
 2. Add following keys and their values into the .env file
-   ```
-   SECRET (a secret key for jwt token generation)
-   MONGO_URI
-   TEST_MONGO_URI
-   PORT
-   AWS_BUCKET_NAME
-   AWS_REGION
-   AWS_ACCESS_KEY_ID
-   AWS_SECRET_ACCESS_KEY
-   ```
+    ```
+    SECRET                  (a random string for jwt token generation)
+    MONGO_URI
+    TEST_MONGO_URI
+    PORT                    (custom port for api)
+    AWS_BUCKET_NAME
+    AWS_REGION
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
+    ```
+3. Please ensure that all AWS_* keys are correctly filled with a public S3 bucket for image storage as without that the images will not be correctly stored or displayed.
 
 ## How to Run
 
@@ -34,8 +35,17 @@ mkdir database
 mongod --dbpath ./database
 ```
 
-### Front-End (Angular)
+### Rest API
+*Make sure to run the Database before running the API*
+```
+cd backend-api
+npm start
 
+# call api at link:
+# http://localhost:3000
+```
+
+### Front-End
 ```
 cd frontend
 npm start
@@ -44,17 +54,6 @@ npm start
 # http://localhost:4200
 ```
 
-### Rest API (Expressjs)
-
-_Make sure to run the Database before running the API_
-
-```
-cd backend-api
-npm start
-
-# call api at link:
-# http://localhost:3000
-```
 
 ## Known Issues / How to Fix
 
@@ -66,8 +65,8 @@ When trying to run the program, an error prevented us from doing so claiming tha
 It turned out that we had an incorrect version of Angular Material installed from somewhere other than NPM.
 To fix it we reinstalled it from NPM and updated other Angular dependencies to match it and made sure to save the new dependencies.
 
-If this error is encountered (it shouldn't, we fixed it) make sure you update your dependencies.
-Run `npm install`, then update the dependencies listed to the required versions. It should now.
+If this error is encountered (it shouldn't, we fixed it) make sure to update your dependencies.
+Run `npm install`, then update the dependencies listed in the error message to the required versions. It should work correctly after this.
 
 ## Project Guidelines
 
