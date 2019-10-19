@@ -67,7 +67,7 @@ It turned out that we had an incorrect version of Angular Material installed fro
 To fix it we reinstalled it from NPM and updated other Angular dependencies to match it and made sure to save the new dependencies.
 
 If this error is encountered (it shouldn't, we fixed it) make sure you update your dependencies.
-Run `npm install`, then update the dependencies listed to the required versions. It should now.
+Run `npm install`, then update the dependencies listed to the required versions. It should work now.
 
 ## Project Guidelines
 
