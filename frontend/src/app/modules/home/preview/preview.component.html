@@ -1,9 +1,6 @@
-<div class="container" (click)="onClick()">
-  <p>
-    <b>{{ post.author }}</b>
-  </p>
-  <!-- <p>{{ post.image_path }}</p> -->
-  <input type="image" src="{{ post.image_path }}" alt="Preview Image" />
-</div>
-<!-- Placeholder image for testing purposes -->
-<!-- ../../../../assets/images/temp/Hide the Pain Harold.jpg -->
+<mat-card class="preview-card" (click)="onClick()">
+  <mat-card-header>
+    <mat-card-title>{{ post.author }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{ post.image_path }}" alt="Preview Image" />
+</mat-card>

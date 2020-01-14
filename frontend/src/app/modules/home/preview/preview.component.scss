@@ -1,25 +1,13 @@
-.container {
+.preview-card {
   width: 410px;
-  background-color: lightgray;
 
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
-  }
 
-  input {
-    width: 400px;
-    margin: auto;
-    display: block;
-  }
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 
-  .interaction {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  .authorName {
-    margin-bottom: 5px;
-  }
+.preview-card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
