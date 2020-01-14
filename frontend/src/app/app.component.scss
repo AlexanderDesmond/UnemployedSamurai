@@ -10,15 +10,3 @@ router-outlet {
   display: inline-block;
   margin-top: 5%;
 }
-
-app-footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  height: 5%;
-
-  background-color: white;
-  border: 1px solid black;
-}
