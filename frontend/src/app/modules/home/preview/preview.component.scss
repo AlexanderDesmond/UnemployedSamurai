@@ -1,11 +1,15 @@
 .preview-card {
-  width: 410px;
+  width: 30vh;
 
   margin-left: auto;
   margin-right: auto;
-
+  border-radius: 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  .preview-image {
+    height: 30vh;
+  }
 }
 
 .preview-card:hover {

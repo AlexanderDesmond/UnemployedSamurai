@@ -6,26 +6,30 @@
       <mat-option value="trending">Trending</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <div class="preview-list">
+    <ul *ngFor="let post of posts">
+      <app-preview [post]="post"></app-preview>
+    </ul>
+  </div>
+
+  <span class="pagination">
+    <button
+      class="button pagination-element"
+      type="button"
+      *ngIf="!hidePrevious"
+      (click)="previousPage()"
+    >
+      &lt; Previous
+    </button>
+    <span class="underlined pagination-element">{{ currentPage }}</span>
+    <button
+      class="button pagination-element"
+      type="button"
+      *ngIf="!hideNext"
+      (click)="nextPage()"
+    >
+      Next &gt;
+    </button>
+  </span>
 </div>
-<ul *ngFor="let post of posts">
-  <app-preview [post]="post"></app-preview>
-</ul>
-<span class="pagination">
-  <button
-    class="button pagination-element"
-    type="button"
-    *ngIf="!hidePrevious"
-    (click)="previousPage()"
-  >
-    &lt; Previous
-  </button>
-  <span class="underlined pagination-element">{{ currentPage }}</span>
-  <button
-    class="button pagination-element"
-    type="button"
-    *ngIf="!hideNext"
-    (click)="nextPage()"
-  >
-    Next &gt;
-  </button>
-</span>

@@ -2,5 +2,10 @@
   <mat-card-header>
     <mat-card-title>{{ post.author }}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{ post.image_path }}" alt="Preview Image" />
+  <img
+    class="preview-image"
+    mat-card-image
+    src="{{ post.image_path }}"
+    alt="Preview Image"
+  />
 </mat-card>
