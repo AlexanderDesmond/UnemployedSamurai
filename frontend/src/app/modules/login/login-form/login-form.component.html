@@ -1,28 +1,32 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <h1>Sign In</h1>
+<div class="form-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h1>Sign In</h1>
 
-  <mat-form-field>
-    <input matInput placeholder="username" formControlName="username" />
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="username" formControlName="username" />
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
-    <input
-      matInput
-      #password
-      [type]="toggle.type"
-      placeholder="password"
-      formControlName="password"
-    />
-  </mat-form-field>
+    <mat-form-field>
+      <mat-pass-toggle-visibility
+        #toggle
+        matSuffix
+      ></mat-pass-toggle-visibility>
+      <input
+        matInput
+        #password
+        [type]="toggle.type"
+        placeholder="password"
+        formControlName="password"
+      />
+    </mat-form-field>
 
-  <div class="error-message" *ngIf="isError">
-    Username or password incorrect.
-  </div>
+    <button mat-raised-button [disabled]="loginForm.invalid || isError">
+      Login
+    </button>
 
-  <button mat-raised-button [disabled]="loginForm.invalid" color="primary">
-    Login
-  </button>
-
+    <div class="error-message" *ngIf="isError">
+      Username or password incorrect.
+    </div>
+  </form>
   <p>Don't have an account? <a routerLink="../register">Sign Up</a>!</p>
-</form>
+</div>
