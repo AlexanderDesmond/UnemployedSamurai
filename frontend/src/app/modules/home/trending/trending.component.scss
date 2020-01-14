@@ -1,22 +1,22 @@
 .container {
-  width: 25%;
   display: flex;
   justify-content: center;
 
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  margin-top: 20px;
-}
 
-.underlined {
-  text-decoration: underline;
+  mat-form-field {
+    font-size: 1.2rem;
+  }
 }
 
 .pagination {
-  margin: 5px;
+  padding: 2vh;
+
+  font-size: 2rem;
 }
 
 .pagination-element {
-  margin-right: 5px;
+  margin-right: 1em;
 }
