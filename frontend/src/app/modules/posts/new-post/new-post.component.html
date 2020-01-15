@@ -1,8 +1,12 @@
 <div class="container">
-  <h1>Upload</h1>
+  <h1>Upload an Image</h1>
   <img [src]="newImage" alt="new post" *ngIf="newImage" />
-  <div class="file-picker">
-    <input type="file" (change)="onFileSelected($event)" class="imageUpload" />
-  </div>
-  <button type="button" (click)="onSubmit()">Submit</button>
+  <input
+    type="file"
+    (change)="onFileSelected($event)"
+    id="file"
+    class="uploadImg"
+  />
+  <label for="file" class="uploadBtn button inverted-button">Upload</label>
+  <button type="button" (click)="onSubmit()" class="button">Submit</button>
 </div>
