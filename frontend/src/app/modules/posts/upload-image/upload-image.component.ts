@@ -1,34 +1,22 @@
 import { Component, OnInit } from "@angular/core";
-
-import { PostsService } from "../../../services/posts.service";
-import { AuthenticationService } from "../../../services/authentication.service";
 import { Router } from "@angular/router";
+import { PostsService } from "src/app/services/posts.service";
 import { Post } from "src/app/post.interface";
 
 @Component({
-  selector: "app-new-post",
-  templateUrl: "./new-post.component.html",
-  styleUrls: ["./new-post.component.scss"]
+  selector: "app-upload-image",
+  templateUrl: "./upload-image.component.html",
+  styleUrls: ["./upload-image.component.scss"]
 })
-export class NewPostComponent implements OnInit {
+export class UploadImageComponent implements OnInit {
   private selectedFile: File = null;
   public newImage: any;
-  private id: string;
   private post: Post;
 
-  constructor(
-    private postsService: PostsService,
-    private authService: AuthenticationService,
-    private router: Router
-  ) {}
+  constructor(private postsService: PostsService, private router: Router) {}
 
-  ngOnInit() {
-    if (!this.authService.getCurrentUser()) {
-      this.router.navigate(["/"]);
-    }
-  }
+  ngOnInit() {}
 
-  /*
   // When a file has been selected for upload,
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
@@ -58,5 +46,4 @@ export class NewPostComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  */
 }

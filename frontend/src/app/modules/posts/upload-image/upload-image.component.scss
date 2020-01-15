@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 75vw;
+    max-height: 60vh;
+  }
+
+  .uploadImg {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .uploadBtn {
+    font-size: 1.2rem;
+  }
+}
+
+.container > * {
+  margin: 1rem;
+}

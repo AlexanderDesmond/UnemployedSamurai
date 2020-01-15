@@ -28,6 +28,8 @@ import { AddCommentComponent } from "./modules/posts/view-post/comments/add-comm
 import { FormsModule } from "@angular/forms";
 import { ReactionContainerComponent } from "./modules/posts/view-post/reactions/reaction-container/reaction-container.component";
 
+import { PostsModule } from "./modules/posts/posts.module";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,8 @@ import { ReactionContainerComponent } from "./modules/posts/view-post/reactions/
     FlexLayoutModule,
     MatPasswordStrengthModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    PostsModule
   ],
   providers: [
     {

@@ -1,35 +1,9 @@
 .container {
   width: 75vw;
   margin: auto;
+  text-align: center;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  h1 {
+  h2 {
     font-size: 2.4rem;
   }
-
-  img {
-    max-width: 75vw;
-    max-height: 60vh;
-  }
-
-  .uploadImg {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
-
-  .uploadBtn {
-    font-size: 1.2rem;
-  }
-}
-
-.container > * {
-  margin: 1rem;
 }
