@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { PostsService } from "src/app/services/posts.service";
 import { Post } from "src/app/post.interface";
@@ -11,7 +11,7 @@ import { Post } from "src/app/post.interface";
 export class UploadImageComponent implements OnInit {
   private selectedFile: File = null;
   public newImage: any;
-  private post: Post;
+  @Input() post: Post;
 
   constructor(private postsService: PostsService, private router: Router) {}
 
@@ -27,14 +27,28 @@ export class UploadImageComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     formData.append("postImage", this.selectedFile, this.selectedFile.name);
-    this.postsService.createPost(formData).subscribe(
-      data => {
-        this.router.navigate(["/"]);
-      },
-      err => {
-        alert("Your image could not be posted. Please try again later");
-      }
-    );
+
+    if (this.router.url === "/new") {
+      // Upload the post to the database.
+      this.postsService.createPost(formData).subscribe(
+        data => {
+          this.router.navigate(["/"]);
+        },
+        err => {
+          alert("Your image could not be posted. Please try again later");
+        }
+      );
+    } else {
+      // Upload the comment to the database.
+      this.postsService.addComment(formData, this.post._id).subscribe(
+        res => {
+          location.reload();
+        },
+        err => {
+          alert("Your image could not be posted. Please try again later");
+        }
+      );
+    }
   }
 
   // When an image has been selected for upload, display a preview of it.
