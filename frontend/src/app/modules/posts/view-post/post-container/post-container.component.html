@@ -14,7 +14,7 @@
 
     <app-add-comment *ngIf="post" [post]="post"></app-add-comment>
 
-    <h2>Comments</h2>
+    <h3>Comments:</h3>
     <app-comments-container
       *ngIf="post && post.comments"
       [comments]="post.comments"
