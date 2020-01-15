@@ -3,7 +3,12 @@
     <app-post *ngIf="post" [post]="post"></app-post>
 
     <app-reaction-container *ngIf="post" [post]="post"></app-reaction-container>
-    <button type="button" *ngIf="isLoggedIn" (click)="DeletePost()">
+    <button
+      type="button"
+      *ngIf="isLoggedIn"
+      (click)="DeletePost()"
+      class="button deleteBtn"
+    >
       Delete Post
     </button>
 
