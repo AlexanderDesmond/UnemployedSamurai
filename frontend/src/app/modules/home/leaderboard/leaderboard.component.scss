@@ -1,18 +1,19 @@
-.leaderboard {
-  border: 1px solid black;
-  border-radius: 6px;
-  padding: 5px;
-  margin-bottom: 10px;
+.leaderboard-container {
   width: fit-content;
   text-align: center;
+  margin: auto;
+  margin-bottom: 2rem;
+  padding: 0 0.2rem 0 0.2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  h4 {
+    padding-top: 0.5rem;
+    font-size: 1.8rem;
+  }
 }
 
-.flex-container {
+.leaderboard {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-}
-
-.leaderboard-container {
-  display: inline-block;
 }

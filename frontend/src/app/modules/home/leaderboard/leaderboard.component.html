@@ -1,12 +1,8 @@
-<div>
-  <div class="leaderboard-container">
-    <div class="leaderboard">
-      <h3>Leaderboard</h3>
-      <div class="flex-container">
-        <div *ngFor="let user of users">
-          <app-leaderboard-item [user]="user"></app-leaderboard-item>
-        </div>
-      </div>
+<div class="leaderboard-container">
+  <h4>Leaderboard</h4>
+  <div class="leaderboard">
+    <div *ngFor="let user of users">
+      <app-leaderboard-item [user]="user"></app-leaderboard-item>
     </div>
   </div>
 </div>
