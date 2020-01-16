@@ -1,6 +1,7 @@
 .main {
   margin: auto;
   width: 66%;
+  padding: 0.1rem;
   background-color: white;
 
   .author {
@@ -20,7 +21,7 @@
 }
 
 .shaded {
-  background-color: lightgrey;
+  background-color: #f0f0f0;
 }
 
 .not-shaded {
