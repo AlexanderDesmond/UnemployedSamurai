@@ -5,6 +5,15 @@
 
   font-size: 2rem;
   padding: 1rem;
+
+  .reaction {
+    display: flex;
+    flex-direction: column;
+
+    .reaction-count {
+      font-size: 1rem;
+    }
+  }
 }
 
 .reaction {
