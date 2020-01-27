@@ -1,14 +1,9 @@
 .container {
-  width: 66%;
-  margin-left: 17%;
-  margin-right: 17%;
+  width: 75vw;
+  margin: auto;
   text-align: center;
-  align-content: center;
-}
-img {
-  max-height: 250px;
-}
 
-.file-picker {
-  border: 1px solid gray;
+  h2 {
+    font-size: 2.4rem;
+  }
 }

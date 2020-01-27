@@ -1,15 +1,32 @@
 .reaction-container {
-    // border: 1px solid red;
-    padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  font-size: 2rem;
+  padding: 1rem;
+
+  .reaction {
+    display: flex;
+    flex-direction: column;
+
+    .reaction-count {
+      font-size: 1rem;
+    }
+  }
 }
 
 .reaction {
-    cursor: pointer;
-    padding: 5px;
+  cursor: pointer;
+  padding: 0.4rem;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.reaction:hover {
+  transform: scale(1.5);
 }
 
 .selected {
-    background-color: aquamarine;
-    border: 1px solid red;
-    border-radius: 50px;
+  transform: scale(1.5);
 }

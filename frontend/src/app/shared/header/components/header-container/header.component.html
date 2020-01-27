@@ -4,8 +4,10 @@
     alt="logo"
     routerLink=""
   />
-  <span *ngIf="isLoggedIn">{{ currentUser }}</span>
-  <button class="header-button" type="button" (click)="logout()">
+  <span *ngIf="isLoggedIn">
+    <em>{{ currentUser }}</em>
+  </span>
+  <button class="button inverted-button" type="button" (click)="logout()">
     {{ isLoggedIn ? "Logout" : "Login" }}
   </button>
 </mat-toolbar>

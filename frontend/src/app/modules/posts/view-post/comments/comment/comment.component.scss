@@ -1,21 +1,29 @@
-.author {
-    text-align: left;
-    margin-left: 20%;
-}
-
 .main {
-    border:1px solid black;
-    border-radius: 6px;
-    width:98%;
-    margin: 1%;
-    background-color: white;
+  margin: auto;
+  width: 66%;
+  padding: 0.1rem;
+  background-color: white;
+
+  .author {
+    text-align: left;
+    margin-left: 1rem;
+
+    font-size: 1.4rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-size: 1.6rem;
+  }
 }
 
 .shaded {
-    background-color: lightgrey;
+  background-color: #f0f0f0;
 }
 
 .not-shaded {
-    background-color: white;
+  background-color: white;
 }
-

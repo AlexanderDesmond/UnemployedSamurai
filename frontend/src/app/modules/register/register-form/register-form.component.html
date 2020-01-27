@@ -1,54 +1,59 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <h1>Sign Up</h1>
+<div class="form-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h1>Sign Up</h1>
 
-  <mat-form-field>
-    <input matInput placeholder="username" formControlName="username" />
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="username" formControlName="username" />
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="email" formControlName="email" />
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="email" formControlName="email" />
+    </mat-form-field>
 
-  <mat-form-field
-    [color]="passwordComponentWithValidation.color"
-    style="width: 100%"
-  >
-    <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
-    <input
-      matInput
-      #passwordWithValidation
-      required
-      [type]="toggle.type"
-      placeholder="password"
-      formControlName="password"
-    />
-    <mat-hint
-      >Must contain at least 8 characters (including a capital letter, lowercase
-      letter, number, and symbol).</mat-hint
+    <mat-form-field
+      [color]="passwordComponentWithValidation.color"
+      style="width: 100%"
     >
-  </mat-form-field>
+      <mat-pass-toggle-visibility
+        #toggle
+        matSuffix
+      ></mat-pass-toggle-visibility>
+      <input
+        matInput
+        #passwordWithValidation
+        required
+        [type]="toggle.type"
+        placeholder="password"
+        formControlName="password"
+      />
+    </mat-form-field>
 
-  <div class="passwordStrength">
-    <mat-password-strength
-      #passwordComponentWithValidation
-      (onStrengthChanged)="onStrengthChanged($event)"
-      [password]="password.value"
+    <div class="passwordStrength">
+      <mat-password-strength
+        #passwordComponentWithValidation
+        (onStrengthChanged)="onStrengthChanged($event)"
+        [password]="password.value"
+      >
+      </mat-password-strength>
+      <mat-password-strength-info
+        *ngIf="showDetails"
+        [passwordComponent]="passwordComponentWithValidation"
+      >
+      </mat-password-strength-info>
+
+      <mat-hint>
+        Must contain at least 8 characters (including a capital letter,
+        lowercase letter, number, and symbol).
+      </mat-hint>
+    </div>
+
+    <button
+      class="button"
+      mat-raised-button
+      [disabled]="registerForm.invalid || loading"
     >
-    </mat-password-strength>
-    <mat-password-strength-info
-      *ngIf="showDetails"
-      [passwordComponent]="passwordComponentWithValidation"
-    >
-    </mat-password-strength-info>
-  </div>
-
-  <button
-    mat-raised-button
-    [disabled]="registerForm.invalid || loading"
-    color="primary"
-  >
-    Sign Up
-  </button>
-
+      Sign Up
+    </button>
+  </form>
   <p>Already have an account? <a routerLink="../login">Sign In</a>!</p>
-</form>
+</div>
