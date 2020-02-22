@@ -5,31 +5,19 @@ Advanced Internet Programming
 
 #### Table of Contents
 
-[Screenshots and Videos](#screenshots-and-videos)
-
-[Before You Run](#before-you-run)
-
-[How to Run](#how-to-run)
-
-... [Database (MongoDB)](#database-mongodb)
-
-... [Rest API](#rest-api)
-
-... [Front-End](#front-end)
-
-[Known Issues / How to Fix](#known-issues--how-to-fix)
-
-[Project Guidelines](#project-guidelines)
-
-...[Version Control](#version-control)
-
-...[Coding](#coding)
-
-...[Project Structure](#project-structure)
-
-[Major Libraries](#major-libraries)
-
-[Developers](#developers)
+- [Screenshots and Videos](#screenshots-and-videos)
+- [Before You Run](#before-you-run)
+- [How to Run](#how-to-run)
+  .._ [Database (MongoDB)](#database-mongodb)
+  .._ [Rest API](#rest-api)
+  ..\_ [Front-End](#front-end)
+- [Known Issues / How to Fix](#known-issues--how-to-fix)
+- [Project Guidelines](#project-guidelines)
+  .._ [Version Control](#version-control)
+  .._ [Coding](#coding)
+  ..\_ [Project Structure](#project-structure)
+- [Major Libraries](#major-libraries)
+- [Developers](#developers)
 
 ## Screenshots and Videos
 
