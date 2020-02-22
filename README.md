@@ -8,7 +8,7 @@ Advanced Internet Programming
 [Screenshots and Videos](#screenshots-and-videos)
 [Before You Run](#before-you-run)
 [How to Run](#how-to-run)
-[Known Issues / How to Fix](#known-issues/how-to-fix)
+[Known Issues / How to Fix](#known-issues-/-how-to-fix)
 [Project Guidelines](#project-guidelines)
 [Major Libraries](#major-libraries)
 [Developers](#developers)
