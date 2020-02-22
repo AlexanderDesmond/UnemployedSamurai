@@ -21,6 +21,10 @@ Advanced Internet Programming
 
 ## Screenshots and Videos
 
+##### Video
+
+![](images/video.gif)
+
 ##### Home Page (user not logged-in)
 
 ![](images/home_not_logged-in.png)
