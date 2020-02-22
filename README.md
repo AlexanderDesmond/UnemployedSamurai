@@ -12,16 +12,20 @@ Advanced Internet Programming
 [How to Run](#how-to-run)
 
 ... [Database (MongoDB)](#database-mongodb)
+
 ... [Rest API](#rest-api)
+
 ... [Front-End](#front-end)
 
 [Known Issues / How to Fix](#known-issues--how-to-fix)
 
 [Project Guidelines](#project-guidelines)
 
-... [Version Control](#version-control)
-... [Coding](#coding)
-... [Project Structure](#project-structure)
+...[Version Control](#version-control)
+
+...[Coding](#coding)
+
+...[Project Structure](#project-structure)
 
 [Major Libraries](#major-libraries)
 
