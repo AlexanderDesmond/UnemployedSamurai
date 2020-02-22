@@ -6,22 +6,28 @@ Advanced Internet Programming
 ## Screenshots and Video
 
 ![](images/home_not_logged-in.png)
-Home Page (user not logged-in)
+
+###### Home Page (user not logged-in)
 
 ![](images/register.png)
-Registration Page
+
+###### Registration Page
 
 ![](images/login.png)
-Login Page
+
+###### Login Page
 
 ![](images/home_logged-in.png)
-Home Page (user logged-in)
+
+###### Home Page (user logged-in)
 
 ![](images/upload_image.png)
-Upload Image Page
+
+###### Upload Image Page
 
 ![](images/view_post.png)
-View Post Page
+
+###### View Post Page
 
 ## Before you Run
 
