@@ -3,21 +3,41 @@
 Advanced Internet Programming
 <i>UTS Spring 2019</i>
 
+## Screenshots and Video
+
+![](images/home_not_logged-in.png)
+Home Page (user not logged-in)
+
+![](images/register.png)
+Registration Page
+
+![](images/login.png)
+Login Page
+
+![](images/home_logged-in.png)
+Home Page (user logged-in)
+
+![](images/upload_image.png)
+Upload Image Page
+
+![](images/view_post.png)
+View Post Page
+
 ## Before you Run
 
 1. Create a `.env` file in the `backend-api` folder
 2. Add following keys and their values into the .env file
-    ```
-    SECRET                  (a random string for jwt token generation)
-    MONGO_URI
-    TEST_MONGO_URI
-    PORT                    (custom port for api)
-    AWS_BUCKET_NAME
-    AWS_REGION
-    AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY
-    ```
-3. Please ensure that all AWS_* keys are correctly filled with a public S3 bucket for image storage as without that the images will not be correctly stored or displayed.
+   ```
+   SECRET                  (a random string for jwt token generation)
+   MONGO_URI
+   TEST_MONGO_URI
+   PORT                    (custom port for api)
+   AWS_BUCKET_NAME
+   AWS_REGION
+   AWS_ACCESS_KEY_ID
+   AWS_SECRET_ACCESS_KEY
+   ```
+3. Please ensure that all AWS\_\* keys are correctly filled with a public S3 bucket for image storage as without that the images will not be correctly stored or displayed.
 
 ## How to Run
 
@@ -36,7 +56,9 @@ mongod --dbpath ./database
 ```
 
 ### Rest API
-*Make sure to run the Database before running the API*
+
+_Make sure to run the Database before running the API_
+
 ```
 cd backend-api
 npm start
@@ -46,6 +68,7 @@ npm start
 ```
 
 ### Front-End
+
 ```
 cd frontend
 npm start
@@ -53,7 +76,6 @@ npm start
 # view frontend on browser at link:
 # http://localhost:4200
 ```
-
 
 ## Known Issues / How to Fix
 
