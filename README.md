@@ -25,6 +25,7 @@ Advanced Internet Programming
 
 ![](images/video.gif)
 
+<!--
 ##### Home Page (user not logged-in)
 
 ![](images/home_not_logged-in.png)
@@ -48,6 +49,7 @@ Advanced Internet Programming
 ##### View Post Page
 
 ![](images/view_post.png)
+-->
 
 ## Before you Run
 
