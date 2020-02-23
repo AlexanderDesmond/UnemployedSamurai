@@ -23,32 +23,6 @@ Advanced Internet Programming
 
 ![](images/video.gif)
 
-<!--
-##### Home Page (user not logged-in)
-
-![](images/home_not_logged-in.png)
-
-##### Registration Page
-
-![](images/register.png)
-
-##### Login Page
-
-![](images/login.png)
-
-##### Home Page (user logged-in)
-
-![](images/home_logged-in.png)
-
-##### Upload Image Page
-
-![](images/upload_image.png)
-
-##### View Post Page
-
-![](images/view_post.png)
--->
-
 ## Before you Run
 
 1. Create a `.env` file in the `backend-api` folder
