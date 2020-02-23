@@ -3,21 +3,41 @@
 Advanced Internet Programming
 <i>UTS Spring 2019</i>
 
+#### Table of Contents
+
+- [Video](#video)
+- [Before You Run](#before-you-run)
+- [How to Run](#how-to-run)
+  - [Database (MongoDB)](#database-mongodb)
+  - [Rest API](#rest-api)
+  - [Front-End](#front-end)
+- [Known Issues / How to Fix](#known-issues--how-to-fix)
+- [Project Guidelines](#project-guidelines)
+  - [Version Control](#version-control)
+  - [Coding](#coding)
+  - [Project Structure](#project-structure)
+- [Major Libraries](#major-libraries)
+- [Developers](#developers)
+
+## Video
+
+![](images/video.gif)
+
 ## Before you Run
 
 1. Create a `.env` file in the `backend-api` folder
 2. Add following keys and their values into the .env file
-    ```
-    SECRET                  (a random string for jwt token generation)
-    MONGO_URI
-    TEST_MONGO_URI
-    PORT                    (custom port for api)
-    AWS_BUCKET_NAME
-    AWS_REGION
-    AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY
-    ```
-3. Please ensure that all AWS_* keys are correctly filled with a public S3 bucket for image storage as without that the images will not be correctly stored or displayed.
+   ```
+   SECRET                  (a random string for jwt token generation)
+   MONGO_URI
+   TEST_MONGO_URI
+   PORT                    (custom port for api)
+   AWS_BUCKET_NAME
+   AWS_REGION
+   AWS_ACCESS_KEY_ID
+   AWS_SECRET_ACCESS_KEY
+   ```
+3. Please ensure that all AWS\_\* keys are correctly filled with a public S3 bucket for image storage as without that the images will not be correctly stored or displayed.
 
 ## How to Run
 
@@ -36,7 +56,9 @@ mongod --dbpath ./database
 ```
 
 ### Rest API
-*Make sure to run the Database before running the API*
+
+_Make sure to run the Database before running the API_
+
 ```
 cd backend-api
 npm start
@@ -46,6 +68,7 @@ npm start
 ```
 
 ### Front-End
+
 ```
 cd frontend
 npm start
@@ -53,7 +76,6 @@ npm start
 # view frontend on browser at link:
 # http://localhost:4200
 ```
-
 
 ## Known Issues / How to Fix
 
