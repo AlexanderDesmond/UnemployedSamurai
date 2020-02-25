@@ -1,4 +1,4 @@
-# UnemployedSamurai
+# ImageBoardy McImageBoardFace
 
 Advanced Internet Programming
 <i>UTS Spring 2019</i>
