@@ -122,6 +122,6 @@ Run `npm install`, then update the dependencies listed in the error message to t
 
 ## Developers
 
-12879779 Yat Ho Kwok<br>
-12544502 Alex Desmond<br>
-12582072 Jaspreet Panesar<br>
+Yat Ho Kwok<br>
+Alex Desmond<br>
+Jaspreet Panesar<br>
