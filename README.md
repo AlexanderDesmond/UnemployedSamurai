@@ -21,7 +21,7 @@ Advanced Internet Programming
 
 ## Video
 
-![](images/video.gif)
+[![Link to YouTube video](images/home_logged-in.png)](https://youtu.be/igdZbyFbkVU "Link to YouTube video")
 
 ## Before you Run
 
